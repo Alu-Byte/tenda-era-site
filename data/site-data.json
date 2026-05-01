@@ -1,0 +1,106 @@
+{
+  "images": [
+    {
+      "id": "835f7759-b669-490f-a25b-76229ce6c815",
+      "filename": "835f7759-b669-490f-a25b-76229ce6c815.png",
+      "originalName": "Gemini_Generated_Image_6ejcsj6ejcsj6ejc.png",
+      "url": "/uploads/835f7759-b669-490f-a25b-76229ce6c815.png",
+      "section": "hero",
+      "title": "Tenda ERA",
+      "description": "",
+      "order": 1777305360626,
+      "visible": true,
+      "uploadedAt": "2026-04-27T15:56:00.626Z"
+    },
+    {
+      "id": "57542a3e-cfe7-4ada-952d-39bf8c6daac2",
+      "filename": "57542a3e-cfe7-4ada-952d-39bf8c6daac2.PNG",
+      "originalName": "IMG_8286.PNG",
+      "url": "/uploads/57542a3e-cfe7-4ada-952d-39bf8c6daac2.PNG",
+      "section": "portfolio",
+      "title": "Test",
+      "description": "",
+      "order": 1777305413696,
+      "visible": true,
+      "uploadedAt": "2026-04-27T15:56:53.696Z"
+    },
+    {
+      "id": "e1e582e2-3d23-4fd7-b60b-79b50ab845ce",
+      "filename": "e1e582e2-3d23-4fd7-b60b-79b50ab845ce.jpg",
+      "originalName": "IMG_1001 (1).jpg",
+      "url": "/uploads/e1e582e2-3d23-4fd7-b60b-79b50ab845ce.jpg",
+      "section": "portfolio",
+      "title": "IMG_1001 (1)",
+      "description": "",
+      "order": 1777305420878,
+      "visible": true,
+      "uploadedAt": "2026-04-27T15:57:00.878Z"
+    },
+    {
+      "id": "2b2a79c0-922d-4629-80cc-8dd810a04cd1",
+      "filename": "2b2a79c0-922d-4629-80cc-8dd810a04cd1.jpeg",
+      "originalName": "IMG_8136.jpeg",
+      "url": "/uploads/2b2a79c0-922d-4629-80cc-8dd810a04cd1.jpeg",
+      "section": "tenda-1777306679019",
+      "title": "adsasdas",
+      "description": "",
+      "order": 1777306693852,
+      "visible": true,
+      "uploadedAt": "2026-04-27T16:18:13.852Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "tenda",
+      "name_sq": "Tenda",
+      "name_en": "Awnings",
+      "icon": "▤",
+      "order": 1
+    },
+    {
+      "id": "cadra",
+      "name_sq": "Çadra",
+      "name_en": "Umbrellas",
+      "icon": "⛱",
+      "order": 2
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "cadra-plazhi",
+      "categoryId": "cadra",
+      "name_sq": "Çadër Plazhi",
+      "name_en": "Beach Umbrella",
+      "desc_sq": "Çadra të mëdha për plazhe dhe zona bregdetare.",
+      "desc_en": "Large umbrellas for beaches and coastal areas.",
+      "order": 1
+    },
+    {
+      "id": "tenda-fikse",
+      "categoryId": "tenda",
+      "name_sq": "Tendë Fikse",
+      "name_en": "Fixed Awning",
+      "desc_sq": "Tendë e montuar në mënyrë permanente mbi fasadë ose tarracë.",
+      "desc_en": "Permanently mounted awning over a facade or terrace.",
+      "order": 2
+    },
+    {
+      "id": "cadra-restoranti",
+      "categoryId": "cadra",
+      "name_sq": "Çadër Restoranti",
+      "name_en": "Restaurant Umbrella",
+      "desc_sq": "Çadra komerciale për restorante, bare dhe kafene.",
+      "desc_en": "Commercial umbrellas for restaurants, bars and cafes.",
+      "order": 2
+    },
+    {
+      "id": "tenda-1777306679019",
+      "categoryId": "tenda",
+      "name_sq": "test",
+      "name_en": "test",
+      "desc_sq": "dasdasdd",
+      "desc_en": "sadasdas",
+      "order": 2
+    }
+  ]
+}
