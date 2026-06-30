@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkAdminAuth } from "@/lib/auth";
 import {
   getCategories, getSubcategories,
-  addSubcategory, updateSubcategory, deleteSubcategory,
+  addSubcategory, updateSubcategory, deleteSubcategory, updateCategory,
 } from "@/lib/data";
 
 export async function GET() {
@@ -25,8 +25,12 @@ export async function POST(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const { id, ...updates } = await req.json();
-  updateSubcategory(id, updates);
+  const { id, type, ...updates } = await req.json();
+  if (type === "category") {
+    updateCategory(id, updates);
+  } else {
+    updateSubcategory(id, updates);
+  }
   return NextResponse.json({ ok: true });
 }
 

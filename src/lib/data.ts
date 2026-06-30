@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import type { SiteData, SiteImage, Category, Subcategory } from "@/types";
+import type { SiteData, SiteImage, Category, Subcategory, FaqItem, OpeningHours, Announcement } from "@/types";
 
 const DATA_FILE = path.join(process.cwd(), "data", "site-data.json");
 
@@ -24,6 +24,7 @@ function ensureDataFile() {
       images: [],
       categories: DEFAULT_CATEGORIES,
       subcategories: DEFAULT_SUBCATEGORIES,
+      faqs: [],
     };
     fs.writeFileSync(DATA_FILE, JSON.stringify(initial, null, 2));
   }
@@ -33,9 +34,9 @@ export function readData(): SiteData {
   ensureDataFile();
   const raw = fs.readFileSync(DATA_FILE, "utf-8");
   const data = JSON.parse(raw) as SiteData;
-  // Back-fill new fields on older data files
   if (!data.categories) data.categories = DEFAULT_CATEGORIES;
   if (!data.subcategories) data.subcategories = DEFAULT_SUBCATEGORIES;
+  if (!data.faqs) data.faqs = [];
   return data;
 }
 
@@ -81,6 +82,15 @@ export function getCategories(): Category[] {
   return readData().categories.sort((a, b) => a.order - b.order);
 }
 
+export function updateCategory(id: string, updates: Partial<Category>): void {
+  const data = readData();
+  const idx = data.categories.findIndex((c) => c.id === id);
+  if (idx !== -1) {
+    data.categories[idx] = { ...data.categories[idx], ...updates };
+    writeData(data);
+  }
+}
+
 // ── Subcategories ─────────────────────────────────────────
 export function getSubcategories(): Subcategory[] {
   return readData().subcategories.sort((a, b) => a.order - b.order);
@@ -104,7 +114,63 @@ export function updateSubcategory(id: string, updates: Partial<Subcategory>): vo
 export function deleteSubcategory(id: string): void {
   const data = readData();
   data.subcategories = data.subcategories.filter((s) => s.id !== id);
-  // Also remove images belonging to this subcategory
   data.images = data.images.filter((img) => img.section !== id);
+  writeData(data);
+}
+
+// ── FAQs ──────────────────────────────────────────────────
+export function getFaqs(): FaqItem[] {
+  return readData().faqs.sort((a, b) => a.order - b.order);
+}
+
+export function addFaq(faq: FaqItem): void {
+  const data = readData();
+  data.faqs.push(faq);
+  writeData(data);
+}
+
+export function updateFaq(id: string, updates: Partial<FaqItem>): void {
+  const data = readData();
+  const idx = data.faqs.findIndex((f) => f.id === id);
+  if (idx !== -1) {
+    data.faqs[idx] = { ...data.faqs[idx], ...updates };
+    writeData(data);
+  }
+}
+
+export function deleteFaq(id: string): void {
+  const data = readData();
+  data.faqs = data.faqs.filter((f) => f.id !== id);
+  writeData(data);
+}
+
+// ── Opening Hours ─────────────────────────────────────────
+const DEFAULT_HOURS: OpeningHours = {
+  weekdays_sq: "E Hënë – E Premte, 8:00 – 18:00",
+  weekdays_en: "Monday – Friday, 8:00 AM – 6:00 PM",
+  saturday_sq: "E Shtunë, 8:00 – 14:00",
+  saturday_en: "Saturday, 8:00 AM – 2:00 PM",
+};
+
+export function getOpeningHours(): OpeningHours {
+  return readData().openingHours ?? DEFAULT_HOURS;
+}
+
+export function updateOpeningHours(updates: Partial<OpeningHours>): void {
+  const data = readData();
+  data.openingHours = { ...(data.openingHours ?? DEFAULT_HOURS), ...updates };
+  writeData(data);
+}
+
+// ── Announcement ──────────────────────────────────────────
+const DEFAULT_ANNOUNCEMENT: Announcement = { text_sq: "", text_en: "", active: false, bg: "red" };
+
+export function getAnnouncement(): Announcement {
+  return readData().announcement ?? DEFAULT_ANNOUNCEMENT;
+}
+
+export function updateAnnouncement(updates: Partial<Announcement>): void {
+  const data = readData();
+  data.announcement = { ...(data.announcement ?? DEFAULT_ANNOUNCEMENT), ...updates };
   writeData(data);
 }

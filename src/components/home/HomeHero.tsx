@@ -41,6 +41,8 @@ export default function HomeHero({ heroImages }: Props) {
             />
             {/* Dark gradient overlay — heavier at bottom for wave */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            {/* Red gradient accent */}
+            <div className="absolute inset-0 bg-[#c0231e]/25" />
           </>
         ) : (
           <>
@@ -64,7 +66,7 @@ export default function HomeHero({ heroImages }: Props) {
         style={{ clipPath: "polygon(0 50%, 100% 0, 100% 100%, 0 100%)" }} />
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 pt-28 pb-44 flex flex-col lg:flex-row items-center gap-14">
+      <div className="relative w-full max-w-7xl mx-auto px-6 pt-28 pb-44 flex flex-col lg:flex-row items-center gap-14">
 
         {/* Left: text */}
         <div className="flex-1 text-white text-center lg:text-left">

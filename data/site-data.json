@@ -1,52 +1,424 @@
 {
   "images": [
     {
-      "id": "835f7759-b669-490f-a25b-76229ce6c815",
-      "filename": "835f7759-b669-490f-a25b-76229ce6c815.png",
-      "originalName": "Gemini_Generated_Image_6ejcsj6ejcsj6ejc.png",
-      "url": "/uploads/835f7759-b669-490f-a25b-76229ce6c815.png",
+      "id": "8d63372d-da70-402a-bd6f-53a34f49acef",
+      "filename": "8d63372d-da70-402a-bd6f-53a34f49acef.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.16 PM.jpeg",
+      "url": "/uploads/8d63372d-da70-402a-bd6f-53a34f49acef.jpeg",
+      "section": "home-portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.16 PM",
+      "description": "",
+      "order": 2,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:27:15.432Z"
+    },
+    {
+      "id": "8fbc79e9-5f9a-42f3-b12e-9ee2a545d67f",
+      "filename": "8fbc79e9-5f9a-42f3-b12e-9ee2a545d67f.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.12 PM.jpeg",
+      "url": "/uploads/8fbc79e9-5f9a-42f3-b12e-9ee2a545d67f.jpeg",
+      "section": "home-portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.12 PM",
+      "description": "",
+      "order": 5,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:31:59.518Z"
+    },
+    {
+      "id": "3b430c13-85f1-4469-98c6-3c0ae193a30c",
+      "filename": "3b430c13-85f1-4469-98c6-3c0ae193a30c.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.11 PM.jpeg",
+      "url": "/uploads/3b430c13-85f1-4469-98c6-3c0ae193a30c.jpeg",
+      "section": "home-portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.11 PM",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:37:11.194Z"
+    },
+    {
+      "id": "732a024f-c23a-44c1-a70d-a99904d5c8fa",
+      "filename": "732a024f-c23a-44c1-a70d-a99904d5c8fa.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.19 PM.jpeg",
+      "url": "/uploads/732a024f-c23a-44c1-a70d-a99904d5c8fa.jpeg",
+      "section": "home-portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.19 PM",
+      "description": "",
+      "order": 4,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:37:51.141Z"
+    },
+    {
+      "id": "0d9154ec-58fd-4fc7-89f9-ee97db8861a5",
+      "filename": "0d9154ec-58fd-4fc7-89f9-ee97db8861a5.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.17 PM.jpeg",
+      "url": "/uploads/0d9154ec-58fd-4fc7-89f9-ee97db8861a5.jpeg",
+      "section": "home-portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.17 PM",
+      "description": "",
+      "order": 3,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:38:28.288Z"
+    },
+    {
+      "id": "7c839d07-be7f-4dc5-b3cb-e919411c9ef2",
+      "filename": "7c839d07-be7f-4dc5-b3cb-e919411c9ef2.jpeg",
+      "originalName": "qwqwqw.jpeg",
+      "url": "/uploads/7c839d07-be7f-4dc5-b3cb-e919411c9ef2.jpeg",
       "section": "hero",
-      "title": "Tenda ERA",
+      "title": "qwqwqw",
       "description": "",
-      "order": 1777305360626,
+      "order": 1777650013130,
       "visible": true,
-      "uploadedAt": "2026-04-27T15:56:00.626Z"
+      "uploadedAt": "2026-05-01T15:40:13.130Z"
     },
     {
-      "id": "57542a3e-cfe7-4ada-952d-39bf8c6daac2",
-      "filename": "57542a3e-cfe7-4ada-952d-39bf8c6daac2.PNG",
-      "originalName": "IMG_8286.PNG",
-      "url": "/uploads/57542a3e-cfe7-4ada-952d-39bf8c6daac2.PNG",
+      "id": "8a950309-e66c-4672-b574-710b4e9804c5",
+      "filename": "8a950309-e66c-4672-b574-710b4e9804c5.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.13 PM.jpeg",
+      "url": "/uploads/8a950309-e66c-4672-b574-710b4e9804c5.jpeg",
+      "section": "cat-cover-cadra",
+      "title": "cadra cover",
+      "description": "",
+      "order": 1777650343554,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:45:43.554Z"
+    },
+    {
+      "id": "7f9a58d8-3fca-42c0-bd37-517a97ec0074",
+      "filename": "7f9a58d8-3fca-42c0-bd37-517a97ec0074.jpeg",
+      "originalName": "2323.jpeg",
+      "url": "/uploads/7f9a58d8-3fca-42c0-bd37-517a97ec0074.jpeg",
+      "section": "cat-cover-cadra",
+      "title": "cadra cover",
+      "description": "",
+      "order": 1777650348818,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:45:48.818Z"
+    },
+    {
+      "id": "660e14da-5e72-47ed-9e2d-fe350a3c9476",
+      "filename": "660e14da-5e72-47ed-9e2d-fe350a3c9476.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.13 PM.jpeg",
+      "url": "/uploads/660e14da-5e72-47ed-9e2d-fe350a3c9476.jpeg",
+      "section": "cat-cover-cadra",
+      "title": "cadra cover",
+      "description": "",
+      "order": 1777650895984,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:54:55.984Z"
+    },
+    {
+      "id": "e2583e48-6d99-4c3f-a38a-099df891ecb3",
+      "filename": "e2583e48-6d99-4c3f-a38a-099df891ecb3.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.21 PM.jpeg",
+      "url": "/uploads/e2583e48-6d99-4c3f-a38a-099df891ecb3.jpeg",
+      "section": "cat-cover-tenda",
+      "title": "tenda cover",
+      "description": "",
+      "order": 1777650942622,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:55:42.622Z"
+    },
+    {
+      "id": "4f921d6a-8cfd-4e60-b819-441ee55d0f18",
+      "filename": "4f921d6a-8cfd-4e60-b819-441ee55d0f18.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.15 PM.jpeg",
+      "url": "/uploads/4f921d6a-8cfd-4e60-b819-441ee55d0f18.jpeg",
       "section": "portfolio",
-      "title": "Test",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.15 PM",
       "description": "",
-      "order": 1777305413696,
+      "order": 6,
       "visible": true,
-      "uploadedAt": "2026-04-27T15:56:53.696Z"
+      "uploadedAt": "2026-05-01T15:56:37.208Z"
     },
     {
-      "id": "e1e582e2-3d23-4fd7-b60b-79b50ab845ce",
-      "filename": "e1e582e2-3d23-4fd7-b60b-79b50ab845ce.jpg",
-      "originalName": "IMG_1001 (1).jpg",
-      "url": "/uploads/e1e582e2-3d23-4fd7-b60b-79b50ab845ce.jpg",
+      "id": "336cc3d4-0fa5-4c3b-8308-7bfbf5be497d",
+      "filename": "336cc3d4-0fa5-4c3b-8308-7bfbf5be497d.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.15 PM2.jpeg",
+      "url": "/uploads/336cc3d4-0fa5-4c3b-8308-7bfbf5be497d.jpeg",
       "section": "portfolio",
-      "title": "IMG_1001 (1)",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.15 PM2",
       "description": "",
-      "order": 1777305420878,
+      "order": 9,
       "visible": true,
-      "uploadedAt": "2026-04-27T15:57:00.878Z"
+      "uploadedAt": "2026-05-01T15:56:37.229Z"
     },
     {
-      "id": "2b2a79c0-922d-4629-80cc-8dd810a04cd1",
-      "filename": "2b2a79c0-922d-4629-80cc-8dd810a04cd1.jpeg",
-      "originalName": "IMG_8136.jpeg",
-      "url": "/uploads/2b2a79c0-922d-4629-80cc-8dd810a04cd1.jpeg",
-      "section": "tenda-1777306679019",
-      "title": "adsasdas",
+      "id": "92e6326f-de1b-4487-95a3-4e4c94a89260",
+      "filename": "92e6326f-de1b-4487-95a3-4e4c94a89260.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.16 PM.jpeg",
+      "url": "/uploads/92e6326f-de1b-4487-95a3-4e4c94a89260.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.16 PM",
       "description": "",
-      "order": 1777306693852,
+      "order": 2,
       "visible": true,
-      "uploadedAt": "2026-04-27T16:18:13.852Z"
+      "uploadedAt": "2026-05-01T15:56:37.253Z"
+    },
+    {
+      "id": "8189be07-b3ee-4bec-bddb-131f42411dcc",
+      "filename": "8189be07-b3ee-4bec-bddb-131f42411dcc.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.16 PM1.jpeg",
+      "url": "/uploads/8189be07-b3ee-4bec-bddb-131f42411dcc.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.16 PM1",
+      "description": "",
+      "order": 1,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.267Z"
+    },
+    {
+      "id": "3819b9ee-0118-42bd-9613-80bab24e10b5",
+      "filename": "3819b9ee-0118-42bd-9613-80bab24e10b5.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.17 PM.jpeg",
+      "url": "/uploads/3819b9ee-0118-42bd-9613-80bab24e10b5.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.17 PM",
+      "description": "",
+      "order": 3,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.287Z"
+    },
+    {
+      "id": "54221c66-6161-4005-90e4-4ce9b2bb97d1",
+      "filename": "54221c66-6161-4005-90e4-4ce9b2bb97d1.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.18 PM.jpeg",
+      "url": "/uploads/54221c66-6161-4005-90e4-4ce9b2bb97d1.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.18 PM",
+      "description": "",
+      "order": 4,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.317Z"
+    },
+    {
+      "id": "3b998ac9-7ca0-46d9-abc4-48bc2bb1968d",
+      "filename": "3b998ac9-7ca0-46d9-abc4-48bc2bb1968d.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.19 PM.jpeg",
+      "url": "/uploads/3b998ac9-7ca0-46d9-abc4-48bc2bb1968d.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.19 PM",
+      "description": "",
+      "order": 5,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.349Z"
+    },
+    {
+      "id": "168608ad-7edd-4c6c-99c8-2ba428746c54",
+      "filename": "168608ad-7edd-4c6c-99c8-2ba428746c54.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.20 PM.jpeg",
+      "url": "/uploads/168608ad-7edd-4c6c-99c8-2ba428746c54.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.20 PM",
+      "description": "",
+      "order": 15,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.365Z"
+    },
+    {
+      "id": "2b039511-ec2e-48d1-ba99-fb2a90fb4dd9",
+      "filename": "2b039511-ec2e-48d1-ba99-fb2a90fb4dd9.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.21 PM.jpeg",
+      "url": "/uploads/2b039511-ec2e-48d1-ba99-fb2a90fb4dd9.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.21 PM",
+      "description": "",
+      "order": 7,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.380Z"
+    },
+    {
+      "id": "392150f3-f5b9-4255-b188-edc3314326fc",
+      "filename": "392150f3-f5b9-4255-b188-edc3314326fc.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.11 PM.jpeg",
+      "url": "/uploads/392150f3-f5b9-4255-b188-edc3314326fc.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.11 PM",
+      "description": "",
+      "order": 8,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.410Z"
+    },
+    {
+      "id": "619e5b99-326d-4dbb-a42a-709a98097488",
+      "filename": "619e5b99-326d-4dbb-a42a-709a98097488.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.12 PM.jpeg",
+      "url": "/uploads/619e5b99-326d-4dbb-a42a-709a98097488.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.12 PM",
+      "description": "",
+      "order": 10,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.424Z"
+    },
+    {
+      "id": "4ade6849-8841-4e4c-825a-10ebb6e33d63",
+      "filename": "4ade6849-8841-4e4c-825a-10ebb6e33d63.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.12 PM2.jpeg",
+      "url": "/uploads/4ade6849-8841-4e4c-825a-10ebb6e33d63.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.12 PM2",
+      "description": "",
+      "order": 11,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.456Z"
+    },
+    {
+      "id": "8de04c46-8c5b-41f8-afc3-4a7c0d56936e",
+      "filename": "8de04c46-8c5b-41f8-afc3-4a7c0d56936e.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.13 PM.jpeg",
+      "url": "/uploads/8de04c46-8c5b-41f8-afc3-4a7c0d56936e.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.13 PM",
+      "description": "",
+      "order": 12,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.487Z"
+    },
+    {
+      "id": "c7799fd7-a832-4f25-a269-ec635f62a1ca",
+      "filename": "c7799fd7-a832-4f25-a269-ec635f62a1ca.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.15 PM.jpeg",
+      "url": "/uploads/c7799fd7-a832-4f25-a269-ec635f62a1ca.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.15 PM",
+      "description": "",
+      "order": 14,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.502Z"
+    },
+    {
+      "id": "efb7caee-c891-4e7f-93c3-8f19c523f93f",
+      "filename": "efb7caee-c891-4e7f-93c3-8f19c523f93f.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.16 PM.jpeg",
+      "url": "/uploads/efb7caee-c891-4e7f-93c3-8f19c523f93f.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.16 PM",
+      "description": "",
+      "order": 16,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.518Z"
+    },
+    {
+      "id": "363d3749-d6e0-4c09-abd8-bb1f4c63f53f",
+      "filename": "363d3749-d6e0-4c09-abd8-bb1f4c63f53f.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.17 PM.jpeg",
+      "url": "/uploads/363d3749-d6e0-4c09-abd8-bb1f4c63f53f.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.17 PM",
+      "description": "",
+      "order": 17,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.549Z"
+    },
+    {
+      "id": "184f3d64-a5dd-41ea-9426-7ef452a2285d",
+      "filename": "184f3d64-a5dd-41ea-9426-7ef452a2285d.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.18 PM.jpeg",
+      "url": "/uploads/184f3d64-a5dd-41ea-9426-7ef452a2285d.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.18 PM",
+      "description": "",
+      "order": 18,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.562Z"
+    },
+    {
+      "id": "9f6d9cee-fd5d-4e3a-bf5f-e566af8433a2",
+      "filename": "9f6d9cee-fd5d-4e3a-bf5f-e566af8433a2.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.09.20 PM.jpeg",
+      "url": "/uploads/9f6d9cee-fd5d-4e3a-bf5f-e566af8433a2.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.09.20 PM",
+      "description": "",
+      "order": 19,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.579Z"
+    },
+    {
+      "id": "db992361-5f35-4c1c-a57a-bcec8fbe134e",
+      "filename": "db992361-5f35-4c1c-a57a-bcec8fbe134e.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.10.09 PM.jpeg",
+      "url": "/uploads/db992361-5f35-4c1c-a57a-bcec8fbe134e.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.10.09 PM",
+      "description": "",
+      "order": 23,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.596Z"
+    },
+    {
+      "id": "c2b266b7-3771-4876-8224-fdb820c6071c",
+      "filename": "c2b266b7-3771-4876-8224-fdb820c6071c.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.10.10 PM.jpeg",
+      "url": "/uploads/c2b266b7-3771-4876-8224-fdb820c6071c.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.10.10 PM",
+      "description": "",
+      "order": 13,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.626Z"
+    },
+    {
+      "id": "ebe2971f-6a52-463f-b6a7-488ae7695a6b",
+      "filename": "ebe2971f-6a52-463f-b6a7-488ae7695a6b.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.10.11 PM.jpeg",
+      "url": "/uploads/ebe2971f-6a52-463f-b6a7-488ae7695a6b.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.10.11 PM",
+      "description": "",
+      "order": 20,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.643Z"
+    },
+    {
+      "id": "bf3f96e0-3e57-420f-bb0f-3d57d176df8a",
+      "filename": "bf3f96e0-3e57-420f-bb0f-3d57d176df8a.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.10.12 PM.jpeg",
+      "url": "/uploads/bf3f96e0-3e57-420f-bb0f-3d57d176df8a.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.10.12 PM",
+      "description": "",
+      "order": 21,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.669Z"
+    },
+    {
+      "id": "fd36b9df-088e-4dfa-8ff5-ef1f03ddd85d",
+      "filename": "fd36b9df-088e-4dfa-8ff5-ef1f03ddd85d.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.10.12wqqwq PM.jpeg",
+      "url": "/uploads/fd36b9df-088e-4dfa-8ff5-ef1f03ddd85d.jpeg",
+      "section": "portfolio",
+      "title": "WhatsApp Image 2026-05-01 at 4.10.12wqqwq PM",
+      "description": "",
+      "order": 22,
+      "visible": true,
+      "uploadedAt": "2026-05-01T15:56:37.689Z"
+    },
+    {
+      "id": "dc273d80-b9a0-4fa0-a0a6-05e2ee96f354",
+      "filename": "dc273d80-b9a0-4fa0-a0a6-05e2ee96f354.jpg",
+      "originalName": "cobra_LE_upscale_prime.jpg",
+      "url": "/uploads/dc273d80-b9a0-4fa0-a0a6-05e2ee96f354.jpg",
+      "section": "about",
+      "title": "cobra_LE_upscale_prime",
+      "description": "",
+      "order": 1777651411026,
+      "visible": true,
+      "uploadedAt": "2026-05-01T16:03:31.026Z"
+    },
+    {
+      "id": "eb73bfca-e084-4910-a58c-f85ac49ac0d1",
+      "filename": "eb73bfca-e084-4910-a58c-f85ac49ac0d1.jpeg",
+      "originalName": "WhatsApp Image 2026-05-01 at 4.07.15 PM2.jpeg",
+      "url": "/uploads/eb73bfca-e084-4910-a58c-f85ac49ac0d1.jpeg",
+      "section": "cadra-plazhi",
+      "title": "WhatsApp Image 2026-05-01 at 4.07.15 PM2",
+      "description": "",
+      "order": 1777740694624,
+      "visible": true,
+      "uploadedAt": "2026-05-02T16:51:34.624Z"
     }
   ],
   "categories": [
@@ -54,15 +426,19 @@
       "id": "tenda",
       "name_sq": "Tenda",
       "name_en": "Awnings",
-      "icon": "▤",
-      "order": 1
+      "icon": "",
+      "order": 1,
+      "coverImage": "/uploads/e2583e48-6d99-4c3f-a38a-099df891ecb3.jpeg",
+      "coverPosition": "50% 42%"
     },
     {
       "id": "cadra",
       "name_sq": "Çadra",
       "name_en": "Umbrellas",
-      "icon": "⛱",
-      "order": 2
+      "icon": "",
+      "order": 2,
+      "coverImage": "/uploads/660e14da-5e72-47ed-9e2d-fe350a3c9476.jpeg",
+      "coverPosition": "54% 29%"
     }
   ],
   "subcategories": [
@@ -102,5 +478,44 @@
       "desc_en": "sadasdas",
       "order": 2
     }
-  ]
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "q_sq": "A janë rezistente ndaj ujit?",
+      "a_sq": "Po, të gjitha produktet tona janë prodhuara me materiale të cilësisë së lartë, rezistente ndaj ujit dhe rrezeve UV. Tendave dhe çadrat tona janë projektuar për t'i bërë ballë kushteve të ndryshme të motit.",
+      "q_en": "Are they waterproof?",
+      "a_en": "Yes, all our products are made with high-quality waterproof and UV-resistant materials. Our awnings and canopies are designed to withstand various weather conditions.",
+      "order": 1
+    },
+    {
+      "id": "faq-2",
+      "q_sq": "Sa kohë zgjat dërgesa?",
+      "a_sq": "Koha e prodhimit dhe dorëzimit varet nga lloji dhe dimensionet e produktit. Zakonisht është ndërmjet 2–4 javësh nga konfirmimi i porosisë. Ekipi ynë do t'ju njoftojë me afatin e saktë.",
+      "q_en": "How long does shipping take?",
+      "a_en": "Production and delivery time depends on the product type and dimensions. Typically it takes 2–4 weeks from order confirmation. Our team will keep you informed of the exact timeline.",
+      "order": 2
+    },
+    {
+      "id": "faq-3",
+      "q_sq": "A ofrojnë instalim?",
+      "a_sq": "Po! Ofrojmë shërbim të plotë instalimi nga ekipi ynë i trajnuar profesionalisht. Kostoja e instalimit përfshihet ose llogaritet veçmas në varësi të projektit.",
+      "q_en": "Do you offer installation?",
+      "a_en": "Yes! We offer a full installation service carried out by our professionally trained team. Installation cost is either included or calculated separately depending on the project.",
+      "order": 3
+    }
+  ],
+  "openingHours": {
+    "weekdays_sq": "E Hënë – E Premte, 8:00 – 18:00",
+    "weekdays_en": "Monday – Friday, 8:00 AM – 6:00 PM",
+    "saturday_sq": "E Shtunë, 8:00 – 14:00",
+    "saturday_en": "Saturday, 8:00 AM – 2:00 PM"
+  },
+  "announcement": {
+    "text_sq": "",
+    "text_en": "",
+    "active": true,
+    "bg": "yellow",
+    "link": "wefwefwefefwefwf"
+  }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import type { Category, Subcategory } from "@/types";
@@ -46,12 +47,18 @@ export default function HomeProducts({ categories, subcategories }: Props) {
             const color = catColors[cat.id] ?? catColorsFallback[i % catColorsFallback.length];
             return (
               <Link key={cat.id} href={`/products#${cat.id}`} className="group relative rounded-3xl overflow-hidden touch-manipulation">
-                <div className={`bg-gradient-to-br ${color} p-8 min-h-[260px] flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1`}>
-                  <div className="flex items-start justify-between">
+                <div className={`relative bg-gradient-to-br ${color} p-8 min-h-[260px] flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1`}>
+                  {cat.coverImage && (
+                    <>
+                      <Image src={cat.coverImage} alt={lang === "sq" ? cat.name_sq : cat.name_en} fill className="object-cover" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-75`} />
+                    </>
+                  )}
+                  <div className="relative flex items-start justify-between">
                     <span className="text-6xl opacity-80">{cat.icon}</span>
                     <ArrowRight size={20} className="text-white/40 group-hover:text-white/80 group-hover:translate-x-1 transition-all mt-1" />
                   </div>
-                  <div>
+                  <div className="relative">
                     <h3 className="text-white font-display text-3xl font-bold mb-2">
                       {lang === "sq" ? cat.name_sq : cat.name_en}
                     </h3>

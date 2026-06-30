@@ -4,35 +4,45 @@ import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/LangContext";
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const steps = 60;
-          const increment = target / steps;
-          let current = 0;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              setCount(target);
-              clearInterval(timer);
-            } else {
-              setCount(Math.floor(current));
-            }
-          }, 1500 / steps);
+    if (!el || started.current) return;
+
+    const start = () => {
+      if (started.current) return;
+      started.current = true;
+      setCount(0);
+      const steps = 50;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          setCount(target);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
         }
-      },
-      { threshold: 0.3 }
+      }, 1200 / steps);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) start(); },
+      { threshold: 0.1 }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Fallback: start after 1.5s even if observer never fires
+    const fallback = setTimeout(start, 1500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, [target]);
 
   return <span ref={ref}>{count}{suffix}</span>;

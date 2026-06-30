@@ -3,7 +3,7 @@ export type Lang = "sq" | "en";
 export const translations = {
   sq: {
     nav: {
-      home: "Kryefaqja",
+      home: "Home",
       products: "Produktet",
       portfolio: "Portofoli",
       about: "Rreth Nesh",
@@ -112,6 +112,7 @@ export const translations = {
       email: "Email",
       hours: "Orari",
       hours_val: "E Hënë – E Premte, 8:00 – 18:00",
+      hours_sat: "E Shtunë, 8:00 – 14:00",
       follow: "Na Ndiqni",
       form_title: "Dërgoni Mesazh",
       first_name: "Emri",
@@ -123,6 +124,24 @@ export const translations = {
       sent_title: "Mesazhi u Dërgua!",
       sent_desc: "Faleminderit që na kontaktuat. Ekipi ynë do t'ju përgjigjet brenda një dite pune.",
       send_another: "Dërgo mesazh tjetër",
+    },
+    faq: {
+      label: "Pyetje të Shpeshta",
+      title: "Keni Pyetje?",
+      items: [
+        {
+          q: "A janë rezistente ndaj ujit?",
+          a: "Po, të gjitha produktet tona janë prodhuara me materiale të cilësisë së lartë, rezistente ndaj ujit dhe rrezeve UV. Tendave dhe çadrat tona janë projektuar për t'i bërë ballë kushteve të ndryshme të motit.",
+        },
+        {
+          q: "Sa kohë zgjat dërgesa?",
+          a: "Koha e prodhimit dhe dorëzimit varet nga lloji dhe dimensionet e produktit. Zakonisht është ndërmjet 2–4 javësh nga konfirmimi i porosisë. Ekipi ynë do t'ju njoftojë me afatin e saktë.",
+        },
+        {
+          q: "A ofrojnë instalim?",
+          a: "Po! Ofrojmë shërbim të plotë instalimi nga ekipi ynë i trajnuar profesionalisht. Kostoja e instalimit përfshihet ose llogaritet veçmas në varësi të projektit.",
+        },
+      ],
     },
     footer: {
       desc: "Prodhues i tendave dhe çadrajave premium të diellit për dyqane, bare dhe plazhe që nga viti 1994.",
@@ -244,6 +263,7 @@ export const translations = {
       email: "Email",
       hours: "Hours",
       hours_val: "Monday – Friday, 8:00 AM – 6:00 PM",
+      hours_sat: "Saturday, 8:00 AM – 2:00 PM",
       follow: "Follow Us",
       form_title: "Send a Message",
       first_name: "First Name",
@@ -255,6 +275,24 @@ export const translations = {
       sent_title: "Message Sent!",
       sent_desc: "Thank you for reaching out. Our team will get back to you within one business day.",
       send_another: "Send another message",
+    },
+    faq: {
+      label: "Frequently Asked Questions",
+      title: "Got Questions?",
+      items: [
+        {
+          q: "Are they waterproof?",
+          a: "Yes, all our products are made with high-quality waterproof and UV-resistant materials. Our awnings and canopies are designed to withstand various weather conditions.",
+        },
+        {
+          q: "How long does shipping take?",
+          a: "Production and delivery time depends on the product type and dimensions. Typically it takes 2–4 weeks from order confirmation. Our team will keep you informed of the exact timeline.",
+        },
+        {
+          q: "Do you offer installation?",
+          a: "Yes! We offer a full installation service carried out by our professionally trained team. Installation cost is either included or calculated separately depending on the project.",
+        },
+      ],
     },
     footer: {
       desc: "Producers of premium sun awnings, canopies and shade solutions for shops, bars and beaches since 1994.",

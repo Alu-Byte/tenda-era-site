@@ -15,12 +15,21 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: var(--cream);
   color: var(--charcoal);
-  overflow-x: hidden;
+  /* overflow-x: clip does NOT create a scroll container (unlike hidden),
+     so iOS Safari keeps position:fixed elements fully interactive */
+  overflow-x: clip;
+}
+
+/* backdrop for the mobile nav <dialog> */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 ::selection { background: var(--red); color: white; }

@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useLang } from "@/lib/LangContext";
 import { Award, Users, Globe, Wrench } from "lucide-react";
+import type { SiteImage } from "@/types";
 
 const timelineSQ = [
   { year: "1994", title: "Themeluar në Tiranë", desc: "Tenda Era u themelua me një vizion për të sjellë zgjidhje profesionale hije në tregun shqiptar." },
@@ -42,7 +44,11 @@ const partnersEN = [
   { name: "Frigerio", country: "Italy", desc: "Premium outdoor shade and shelter solutions." },
 ];
 
-export default function AboutContent() {
+interface Props {
+  images: SiteImage[];
+}
+
+export default function AboutContent({ images }: Props) {
   const { lang, t } = useLang();
   const a = t.about_page;
   const timeline = lang === "sq" ? timelineSQ : timelineEN;
@@ -75,12 +81,23 @@ export default function AboutContent() {
               <p>{a.story_p3}</p>
             </div>
           </div>
-          <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] rounded-3xl h-96 flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #c0231e 0, #c0231e 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
-            <div className="text-center relative z-10 p-8">
-              <p className="font-display text-7xl font-bold text-[#c0231e]">30+</p>
-              <p className="text-white/60 text-lg mt-2">{lang === "sq" ? "Vjet Sipërsie" : "Years of Excellence"}</p>
-            </div>
+          <div className="rounded-3xl h-96 relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d]">
+            {images[0] ? (
+              <>
+                <Image src={images[0].url} alt={images[0].title || "Rreth Nesh"} fill className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </>
+            ) : (
+              <>
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #c0231e 0, #c0231e 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
+                <div className="text-center absolute inset-0 flex items-center justify-center p-8">
+                  <div>
+                    <p className="font-display text-7xl font-bold text-[#c0231e]">30+</p>
+                    <p className="text-white/60 text-lg mt-2">{lang === "sq" ? "Vjet Sipërsie" : "Years of Excellence"}</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

@@ -4,8 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/lib/LangContext";
 import type { Category, Subcategory, SiteImage } from "@/types";
-import { ArrowRight, ZoomIn, X } from "lucide-react";
+import { ZoomIn, X, Box } from "lucide-react";
 import Link from "next/link";
+import ModelViewer from "@/components/ModelViewer";
 
 interface Props {
   categories: Category[];
@@ -22,6 +23,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
   const { lang, t } = useLang();
   const p = t.products_page;
   const [lightbox, setLightbox] = useState<SiteImage | null>(null);
+  const [model3d, setModel3d] = useState<{ src: string; alt: string } | null>(null);
 
   return (
     <>
@@ -49,8 +51,14 @@ export default function ProductsContent({ categories, subcategories, images }: P
               <div className="max-w-7xl mx-auto px-6">
                 {/* Category header */}
                 <div className="flex items-center gap-4 mb-12">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${bg} flex items-center justify-center text-3xl shrink-0`}>
-                    {cat.icon}
+                  <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${bg} flex items-center justify-center text-3xl shrink-0 overflow-hidden`}>
+                    {cat.coverImage ? (
+                      <>
+                        <Image src={cat.coverImage} alt={lang === "sq" ? cat.name_sq : cat.name_en} fill className="object-cover" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${bg} opacity-60`} />
+                        <span className="relative">{cat.icon}</span>
+                      </>
+                    ) : cat.icon}
                   </div>
                   <div>
                     <h2 className="font-display text-4xl font-bold text-[#1a1a1a]">
@@ -75,10 +83,20 @@ export default function ProductsContent({ categories, subcategories, images }: P
                           {/* Subcategory header */}
                           <div className="flex items-center gap-3 mb-6">
                             <div className="w-1 h-8 rounded-full bg-[#c0231e]" />
-                            <div>
-                              <h3 className="font-display text-2xl font-semibold text-[#1a1a1a]">
-                                {lang === "sq" ? sub.name_sq : sub.name_en}
-                              </h3>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 flex-wrap">
+                                <h3 className="font-display text-2xl font-semibold text-[#1a1a1a]">
+                                  {lang === "sq" ? sub.name_sq : sub.name_en}
+                                </h3>
+                                {sub.modelUrl && (
+                                  <button
+                                    onClick={() => setModel3d({ src: sub.modelUrl!, alt: lang === "sq" ? sub.name_sq : sub.name_en })}
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1a1a1a] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#c0231e] transition-colors"
+                                  >
+                                    <Box size={13} /> {lang === "sq" ? "Shiko 3D" : "View 3D"}
+                                  </button>
+                                )}
+                              </div>
                               {(lang === "sq" ? sub.desc_sq : sub.desc_en) && (
                                 <p className="text-[#2d2d2d]/60 text-sm mt-0.5">
                                   {lang === "sq" ? sub.desc_sq : sub.desc_en}
@@ -133,6 +151,16 @@ export default function ProductsContent({ categories, subcategories, images }: P
           </div>
         </div>
       </section>
+
+
+      {/* 3D Model Viewer */}
+      {model3d && (
+        <ModelViewer
+          src={model3d.src}
+          alt={model3d.alt}
+          onClose={() => setModel3d(null)}
+        />
+      )}
 
       {/* Lightbox */}
       {lightbox && (

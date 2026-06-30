@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "@/lib/LangContext";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -26,8 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col antialiased">
-        <LangProvider>{children}</LangProvider>
+      <body className="min-h-screen flex flex-col antialiased" suppressHydrationWarning>
+        <LangProvider>
+          {children}
+          <WhatsAppButton />
+        </LangProvider>
       </body>
     </html>
   );

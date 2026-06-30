@@ -5,11 +5,13 @@ import Image from "next/image";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import { FacebookIcon, InstagramIcon } from "@/components/SocialIcons";
+import { useSiteInfo } from "@/lib/useSiteInfo";
 
 export default function Footer() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const f = t.footer;
   const nav = t.nav;
+  const { openingHours } = useSiteInfo();
 
   return (
     <footer className="bg-[#1a1a1a] text-white">
@@ -22,10 +24,10 @@ export default function Footer() {
           </div>
           <p className="text-white/60 text-sm leading-relaxed">{f.desc}</p>
           <div className="flex gap-3 mt-6">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:border-[#c0231e] hover:text-[#c0231e] transition-colors touch-manipulation">
+            <a href="https://www.facebook.com/profile.php?id=61585040403719" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:border-[#c0231e] hover:text-[#c0231e] transition-colors touch-manipulation">
               <FacebookIcon size={16} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:border-[#c0231e] hover:text-[#c0231e] transition-colors touch-manipulation">
+            <a href="https://www.instagram.com/cadra.tenda.erashpk/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:border-[#c0231e] hover:text-[#c0231e] transition-colors touch-manipulation">
               <InstagramIcon size={16} />
             </a>
           </div>
@@ -54,13 +56,11 @@ export default function Footer() {
           <h4 className="text-[#c0231e] font-semibold text-sm uppercase tracking-widest mb-5">{f.products_title}</h4>
           <ul className="space-y-3 text-sm text-white/70">
             {[
-              t.products_section.awnings.title,
-              t.products_section.umbrellas.title,
-              t.products_section.canopies.title,
-              t.products_section.accessories.title,
+              { href: "/products#tenda", label: lang === "sq" ? "Tenda" : "Awnings" },
+              { href: "/products#cadra", label: lang === "sq" ? "Çadra" : "Umbrellas" },
             ].map((p) => (
-              <li key={p}>
-                <Link href="/products" className="hover:text-white transition-colors">{p}</Link>
+              <li key={p.href}>
+                <Link href={p.href} className="hover:text-white transition-colors">{p.label}</Link>
               </li>
             ))}
           </ul>
@@ -72,13 +72,17 @@ export default function Footer() {
           <ul className="space-y-4 text-sm text-white/70">
             <li className="flex gap-3">
               <MapPin size={16} className="text-[#c0231e] mt-0.5 shrink-0" />
-              <span>Rr. &quot;Muhedin Llagani&quot;, Tiranë, Shqipëri</span>
+              <span className="flex flex-col gap-0.5">
+                <span>Era shpk Prush Vaqarr Rruga Green Line km 1, Tiranë, Albania</span>
+                <span>Rr. &quot;Muhedin Llagani&quot;, Tiranë, Shqipëri</span>
+              </span>
             </li>
             <li className="flex gap-3">
               <Phone size={16} className="text-[#c0231e] mt-0.5 shrink-0" />
               <div className="flex flex-col gap-1">
                 <a href="tel:+355692075317" className="hover:text-white transition-colors">+355 692 075 317</a>
                 <a href="tel:+355692075318" className="hover:text-white transition-colors">+355 692 075 318</a>
+                <a href="tel:+355692075319" className="hover:text-white transition-colors">+355 692 075 319</a>
               </div>
             </li>
             <li className="flex gap-3">
@@ -87,7 +91,10 @@ export default function Footer() {
             </li>
             <li className="flex gap-3">
               <Clock size={16} className="text-[#c0231e] mt-0.5 shrink-0" />
-              <span>{t.contact_page.hours_val}</span>
+              <span className="flex flex-col gap-0.5">
+                <span>{lang === "sq" ? openingHours.weekdays_sq : openingHours.weekdays_en}</span>
+                <span>{lang === "sq" ? openingHours.saturday_sq : openingHours.saturday_en}</span>
+              </span>
             </li>
           </ul>
         </div>

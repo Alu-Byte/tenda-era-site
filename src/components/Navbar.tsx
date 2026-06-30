@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
+import AnnouncementBar from "@/components/AnnouncementBar";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -21,6 +22,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  useEffect(() => { setOpen(false); }, [pathname]);
+
   const links = [
     { href: "/", label: t.nav.home },
     { href: "/products", label: t.nav.products },
@@ -29,131 +32,117 @@ export default function Navbar() {
     { href: "/contact", label: t.nav.contact },
   ];
 
-  // Always solid — on homepage at top we do a dark semi-transparent;
-  // once scrolled or on any other page, full white with shadow.
-  const atTop = isHome && !scrolled;
-  const navBg = atTop
-    ? "bg-black/50 backdrop-blur-md"
-    : "bg-white shadow-md";
-  const textColor = atTop ? "text-white" : "text-[#1a1a1a]";
-  const activeColor = atTop ? "text-[#c0231e]" : "text-[#c0231e]";
-  const borderColor = atTop ? "border-white/30" : "border-gray-200";
+  const atTop = false;
+  const navBg = "bg-white shadow-md";
+  const textColor = "#1a1a1a";
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-18 md:h-20">
+    <>
+      {/* ── Navbar bar ─────────────────────────────────────────── */}
+      <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9000, transition: "background 0.3s" }}>
+        <AnnouncementBar />
+        <div className={navBg} style={{ maxWidth: "100%" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 py-2">
-          <Image
-            src="/logo.jpg"
-            alt="Tenda Era"
-            width={54}
-            height={48}
-            className="object-contain rounded-sm"
-            priority
-          />
-          <span className={`font-display text-lg font-bold tracking-wide hidden sm:block ${atTop ? "text-white" : "text-[#1a1a1a]"}`}>
-            Tenda <span className="text-[#c0231e]">Era</span>
-          </span>
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium tracking-wide uppercase transition-colors duration-200 relative group ${
-                pathname === link.href ? activeColor : `${textColor} hover:text-[#c0231e]`
-              }`}
-            >
-              {link.label}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#c0231e] transition-all duration-300 ${
-                pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
-              }`} />
-            </Link>
-          ))}
-
-          {/* Lang switcher */}
-          <div className={`flex items-center border rounded-full overflow-hidden ${borderColor}`}>
-            <button
-              onClick={() => setLang("sq")}
-              className={`px-3 py-1.5 text-xs font-bold uppercase transition-colors touch-manipulation ${
-                lang === "sq" ? "bg-[#c0231e] text-white" : `${textColor} opacity-70 hover:opacity-100`
-              }`}
-            >SQ</button>
-            <button
-              onClick={() => setLang("en")}
-              className={`px-3 py-1.5 text-xs font-bold uppercase transition-colors touch-manipulation ${
-                lang === "en" ? "bg-[#c0231e] text-white" : `${textColor} opacity-70 hover:opacity-100`
-              }`}
-            >EN</button>
-          </div>
-
-          <Link
-            href="/contact"
-            className="px-5 py-2.5 bg-[#c0231e] text-white text-sm font-semibold rounded-full hover:bg-[#9a1c18] active:bg-[#9a1c18] transition-colors"
-          >
-            {t.nav.quote}
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", minWidth: 0 }}>
+            <Image src="/logo.png" alt="Tenda Era" width={40} height={35} style={{ objectFit: "contain", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.18))", flexShrink: 0 }} priority />
+            <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 15, fontWeight: 700, color: textColor, whiteSpace: "nowrap" }}>
+              Tenda <span style={{ color: "#c0231e" }}>Era</span>
+            </span>
           </Link>
-        </nav>
 
-        {/* Mobile right side */}
-        <div className="md:hidden flex items-center gap-2">
-          {/* Lang switcher */}
-          <div className={`flex items-center border rounded-full overflow-hidden ${borderColor}`}>
-            <button
-              onClick={() => setLang("sq")}
-              className={`px-3 py-2 text-xs font-bold uppercase transition-colors touch-manipulation min-w-[40px] ${
-                lang === "sq" ? "bg-[#c0231e] text-white" : `${textColor} opacity-70`
-              }`}
-            >SQ</button>
-            <button
-              onClick={() => setLang("en")}
-              className={`px-3 py-2 text-xs font-bold uppercase transition-colors touch-manipulation min-w-[40px] ${
-                lang === "en" ? "bg-[#c0231e] text-white" : `${textColor} opacity-70`
-              }`}
-            >EN</button>
-          </div>
-          <button
-            className={`p-2.5 touch-manipulation rounded-lg ${textColor}`}
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu — full dropdown */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${
-        open ? "max-h-screen" : "max-h-0"
-      } bg-white border-t border-gray-100 shadow-lg`}>
-        <nav className="flex flex-col divide-y divide-gray-100">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={`px-6 py-4 text-sm font-semibold tracking-wide uppercase touch-manipulation active:bg-gray-50 ${
-                pathname === link.href ? "text-[#c0231e]" : "text-[#1a1a1a]"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="px-6 py-5">
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="block w-full py-4 bg-[#c0231e] text-white text-sm font-semibold rounded-2xl text-center touch-manipulation active:bg-[#9a1c18]"
-            >
+          {/* Desktop nav — hidden on mobile */}
+          <nav className="hidden md:flex" style={{ alignItems: "center", gap: 24 }}>
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} style={{ fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", textDecoration: "none", color: pathname === link.href ? "#c0231e" : textColor }}>
+                {link.label}
+              </Link>
+            ))}
+            <Link href="/contact" style={{ padding: "9px 20px", background: "#c0231e", color: "#fff", fontSize: 13, fontWeight: 600, borderRadius: 999, textDecoration: "none" }}>
               {t.nav.quote}
             </Link>
+            <div style={{ display: "flex", gap: 2, border: `1px solid ${atTop ? "rgba(255,255,255,0.4)" : "#e5e5e5"}`, borderRadius: 999, padding: "3px 4px" }}>
+              {(["sq", "en"] as const).map((l) => (
+                <button key={l} type="button" onClick={() => setLang(l)}
+                  style={{ padding: "5px 12px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", borderRadius: 999, border: "none", cursor: "pointer", background: lang === l ? "#c0231e" : "transparent", color: lang === l ? "#fff" : textColor }}>
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          {/* Mobile controls */}
+          <div className="flex md:hidden" style={{ alignItems: "center", gap: 4 }}>
+            {(["sq", "en"] as const).map((l) => (
+              <button key={l} type="button" onClick={() => setLang(l)}
+                style={{ minWidth: 44, minHeight: 44, padding: "0 10px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", borderRadius: 999, border: "none", cursor: "pointer", touchAction: "manipulation", background: lang === l ? "#c0231e" : "transparent", color: lang === l ? "#fff" : textColor }}>
+                {l.toUpperCase()}
+              </button>
+            ))}
+            <button type="button" onClick={() => setOpen(true)} aria-label="Open menu"
+              style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "none", border: "none", cursor: "pointer", touchAction: "manipulation" }}>
+              <Menu size={26} color={textColor} />
+            </button>
           </div>
-        </nav>
-      </div>
-    </header>
+        </div>
+        </div>
+      </header>
+
+      {/* ── Mobile menu overlay ─────────────────────────────────── */}
+      {open && (
+        <>
+          {/* Dimmed backdrop */}
+          <div
+            onClick={() => setOpen(false)}
+            style={{ position: "fixed", inset: 0, zIndex: 9001, background: "rgba(0,0,0,0.5)" }}
+          />
+
+          {/* Slide-in panel */}
+          <div style={{ position: "fixed", top: 0, right: 0, bottom: 0, width: "min(300px, 85vw)", zIndex: 9002, background: "#fff", display: "flex", flexDirection: "column", boxShadow: "-4px 0 24px rgba(0,0,0,0.15)" }}>
+
+            {/* Panel header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid #f0f0f0" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <Image src="/logo.png" alt="Tenda Era" width={36} height={32} style={{ objectFit: "contain", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.15))" }} />
+                <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: "#1a1a1a" }}>
+                  Tenda <span style={{ color: "#c0231e" }}>Era</span>
+                </span>
+              </div>
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu"
+                style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "none", border: "none", cursor: "pointer", touchAction: "manipulation" }}>
+                <X size={22} color="#1a1a1a" />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav style={{ flex: 1, overflowY: "auto" }}>
+              {links.map((link) => (
+                <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
+                  style={{ display: "block", padding: "16px 20px", fontSize: 13, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", borderBottom: "1px solid #f5f5f5", color: pathname === link.href ? "#c0231e" : "#1a1a1a", textDecoration: "none" }}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Bottom actions */}
+            <div style={{ padding: 20, borderTop: "1px solid #f0f0f0", display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ display: "flex", gap: 8 }}>
+                {(["sq", "en"] as const).map((l) => (
+                  <button key={l} type="button" onClick={() => setLang(l)}
+                    style={{ flex: 1, padding: "12px 8px", fontSize: 13, fontWeight: 700, textTransform: "uppercase", borderRadius: 12, border: "none", cursor: "pointer", touchAction: "manipulation", background: lang === l ? "#c0231e" : "#f3f4f6", color: lang === l ? "#fff" : "#1a1a1a" }}>
+                    {l.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+              <Link href="/contact" onClick={() => setOpen(false)}
+                style={{ display: "block", padding: 15, background: "#c0231e", color: "#fff", fontSize: 14, fontWeight: 600, borderRadius: 14, textAlign: "center", textDecoration: "none" }}>
+                {t.nav.quote}
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }

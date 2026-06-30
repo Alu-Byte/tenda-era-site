@@ -85,7 +85,7 @@ export default function AdminLogin() {
         </form>
 
         <p className="text-center text-white/30 text-xs mt-6">
-          Default password: <span className="font-mono">tendaera2024</span>
+          Hint: <span className="font-mono">Me pyet mua</span>
         </p>
       </div>
     </div>
