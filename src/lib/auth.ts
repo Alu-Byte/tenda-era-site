@@ -29,9 +29,14 @@ function getPasswordHash(): string {
   const defaultPwd = process.env.ADMIN_PASSWORD;
   if (!defaultPwd) throw new Error("ADMIN_PASSWORD env var is not set.");
   const hash = bcrypt.hashSync(defaultPwd, 10);
-  const dir = path.dirname(AUTH_FILE);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
+  try {
+    const dir = path.dirname(AUTH_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
+  } catch {
+    // Read-only filesystem (e.g. Vercel serverless) — hash above is still
+    // valid for this request, it just won't be cached to disk.
+  }
   return hash;
 }
 
@@ -58,4 +63,8 @@ export function changePassword(newPassword: string): void {
   const dir = path.dirname(AUTH_FILE);
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
+  // Note: on a read-only filesystem (Vercel serverless) this throws, so the
+  // "change password" feature only persists in environments with a writable
+  // filesystem (e.g. local dev). It is not silently swallowed here on purpose —
+  // the caller should surface the failure rather than claim success falsely.
 }
