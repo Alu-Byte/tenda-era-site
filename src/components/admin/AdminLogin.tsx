@@ -35,7 +35,7 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-full bg-[#c0231e] flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-full bg-[#e11d3c] flex items-center justify-center mx-auto mb-4">
             <Lock size={28} className="text-white" />
           </div>
           <h1 className="font-display text-3xl font-bold text-white mb-2">Admin Panel</h1>
@@ -53,7 +53,7 @@ export default function AdminLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 pr-12 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm"
+                className="w-full px-4 py-3 pr-12 rounded-xl border border-[#e5e5e5] focus:border-[#e11d3c] focus:outline-none text-[#1a1a1a] text-sm"
                 placeholder="Enter admin password"
                 autoFocus
               />
@@ -74,7 +74,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#c0231e] text-white font-semibold rounded-xl hover:bg-[#9a1c18] active:bg-[#9a1c18] transition-colors flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation"
+            className="w-full py-3 bg-[#e11d3c] text-white font-semibold rounded-xl hover:bg-[#b91429] active:bg-[#b91429] transition-colors flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation"
           >
             {loading ? (
               <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

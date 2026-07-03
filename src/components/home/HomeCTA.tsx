@@ -9,21 +9,35 @@ export default function HomeCTA() {
   const c = t.cta;
 
   return (
-    <section className="bg-[#faf8f4] py-24">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] rounded-3xl p-14 relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#c0231e]/10" />
-          <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-white/5" />
+    <section className="bg-[#fbfaf6] py-20 lg:py-28">
+      <div className="max-w-5xl mx-auto px-6 text-center">
+        <div className="relative rounded-[2rem] p-10 lg:p-16 overflow-hidden shadow-elevated"
+          style={{
+            background: "linear-gradient(135deg, #171717 0%, #262626 100%)",
+          }}>
+          {/* Glowing accents */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#e11d3c]/25 blur-[80px]" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#f43f5e]/15 blur-[80px]" />
+          {/* Grid pattern */}
+          <div className="absolute inset-0 opacity-[0.05]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+            backgroundSize: "24px 24px",
+          }} />
+
           <div className="relative z-10">
-            <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-4">{c.label}</p>
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">{c.title}</h2>
-            <p className="text-white/60 text-lg mb-10 max-w-xl mx-auto">{c.desc}</p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-4 bg-[#c0231e] text-white font-semibold rounded-full hover:bg-[#9a1c18] active:bg-[#9a1c18] transition-colors touch-manipulation hover:gap-3">
-                {c.btn_quote} <ArrowRight size={18} />
+            <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#f43f5e] animate-pulse" />
+              {c.label}
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight max-w-2xl mx-auto">{c.title}</h2>
+            <p className="text-white/65 text-base lg:text-lg mb-10 max-w-xl mx-auto leading-relaxed">{c.desc}</p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-4 bg-[#e11d3c] text-white font-semibold rounded-full hover:bg-[#b91429] transition-all touch-manipulation shadow-[0_10px_30px_-8px_rgba(225,29,60,0.6)] hover:-translate-y-0.5 no-underline">
+                {c.btn_quote}
+                <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <a href="tel:+355692075317" className="inline-flex items-center gap-2 px-7 py-4 border border-white/30 text-white font-semibold rounded-full hover:border-white hover:bg-white/10 active:bg-white/10 transition-all touch-manipulation">
-                <Phone size={18} /> {c.btn_call}
+              <a href="tel:+355692075317" className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 backdrop-blur-sm border border-white/25 text-white font-semibold rounded-full hover:bg-white/15 hover:border-white/40 transition-all touch-manipulation no-underline">
+                <Phone size={17} /> {c.btn_call}
               </a>
             </div>
           </div>

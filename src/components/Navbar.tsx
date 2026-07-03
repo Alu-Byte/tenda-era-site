@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import AnnouncementBar from "@/components/AnnouncementBar";
 
@@ -12,11 +12,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
   const { lang, setLang, t } = useLang();
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 80);
+    const handler = () => setScrolled(window.scrollY > 30);
     handler();
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
@@ -32,112 +31,163 @@ export default function Navbar() {
     { href: "/contact", label: t.nav.contact },
   ];
 
-  const atTop = false;
-  const navBg = "bg-white shadow-md";
-  const textColor = "#1a1a1a";
+  const navBg = scrolled
+    ? "bg-white/85 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.04),0_8px_24px_-8px_rgba(0,0,0,0.08)]"
+    : "bg-white/75 backdrop-blur-lg";
 
   return (
     <>
       {/* ── Navbar bar ─────────────────────────────────────────── */}
-      <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9000, transition: "background 0.3s" }}>
+      <header className="fixed top-0 left-0 right-0 z-[9000]">
         <AnnouncementBar />
-        <div className={navBg} style={{ maxWidth: "100%" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <div className={`${navBg} transition-all duration-300 border-b border-neutral-100/60`}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
 
-          {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", minWidth: 0 }}>
-            <Image src="/logo.png" alt="Tenda Era" width={40} height={35} style={{ objectFit: "contain", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.18))", flexShrink: 0 }} priority />
-            <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 15, fontWeight: 700, color: textColor, whiteSpace: "nowrap" }}>
-              Tenda <span style={{ color: "#c0231e" }}>Era</span>
-            </span>
-          </Link>
-
-          {/* Desktop nav — hidden on mobile */}
-          <nav className="hidden md:flex" style={{ alignItems: "center", gap: 24 }}>
-            {links.map((link) => (
-              <Link key={link.href} href={link.href} style={{ fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", textDecoration: "none", color: pathname === link.href ? "#c0231e" : textColor }}>
-                {link.label}
-              </Link>
-            ))}
-            <Link href="/contact" style={{ padding: "9px 20px", background: "#c0231e", color: "#fff", fontSize: 13, fontWeight: 600, borderRadius: 999, textDecoration: "none" }}>
-              {t.nav.quote}
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2.5 min-w-0 no-underline group">
+              <Image
+                src="/logo.png"
+                alt="Tenda Era"
+                width={38}
+                height={34}
+                className="object-contain flex-shrink-0 transition-transform group-hover:scale-105"
+                style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))" }}
+                priority
+              />
+              <span className="font-display text-[15px] font-bold text-neutral-900 whitespace-nowrap tracking-tight">
+                Tenda <span className="text-[#e11d3c]">Era</span>
+              </span>
             </Link>
-            <div style={{ display: "flex", gap: 2, border: `1px solid ${atTop ? "rgba(255,255,255,0.4)" : "#e5e5e5"}`, borderRadius: 999, padding: "3px 4px" }}>
+
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {links.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`relative px-3.5 py-2 text-[13px] font-semibold tracking-wide rounded-lg transition-all no-underline
+                      ${active
+                        ? "text-[#e11d3c]"
+                        : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100/70"}`}
+                  >
+                    {link.label}
+                    {active && (
+                      <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#e11d3c]" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Right cluster */}
+            <div className="hidden md:flex items-center gap-3">
+              {/* Lang toggle */}
+              <div className="flex items-center bg-neutral-100/80 rounded-full p-0.5">
+                {(["sq", "en"] as const).map((l) => (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setLang(l)}
+                    className={`px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full transition-all
+                      ${lang === l
+                        ? "bg-white text-neutral-900 shadow-sm"
+                        : "text-neutral-500 hover:text-neutral-800"}`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+              {/* CTA */}
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#e11d3c] text-white text-[12.5px] font-semibold rounded-full no-underline hover:bg-[#b91429] transition-all shadow-[0_4px_12px_-2px_rgba(225,29,60,0.35)] hover:shadow-[0_6px_16px_-2px_rgba(225,29,60,0.45)]"
+              >
+                <Phone size={13} strokeWidth={2.5} />
+                {t.nav.quote}
+              </Link>
+            </div>
+
+            {/* Mobile controls */}
+            <div className="flex md:hidden items-center gap-1">
               {(["sq", "en"] as const).map((l) => (
-                <button key={l} type="button" onClick={() => setLang(l)}
-                  style={{ padding: "5px 12px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", borderRadius: 999, border: "none", cursor: "pointer", background: lang === l ? "#c0231e" : "transparent", color: lang === l ? "#fff" : textColor }}>
-                  {l.toUpperCase()}
+                <button
+                  key={l}
+                  type="button"
+                  onClick={() => setLang(l)}
+                  aria-label={`Switch to ${l.toUpperCase()}`}
+                  className={`min-w-[38px] h-11 px-2 text-[11px] font-bold uppercase rounded-full transition-colors touch-manipulation
+                    ${lang === l ? "bg-[#e11d3c] text-white" : "text-neutral-700 hover:bg-neutral-100"}`}
+                >
+                  {l}
                 </button>
               ))}
-            </div>
-          </nav>
-
-          {/* Mobile controls */}
-          <div className="flex md:hidden" style={{ alignItems: "center", gap: 4 }}>
-            {(["sq", "en"] as const).map((l) => (
-              <button key={l} type="button" onClick={() => setLang(l)}
-                style={{ minWidth: 44, minHeight: 44, padding: "0 10px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", borderRadius: 999, border: "none", cursor: "pointer", touchAction: "manipulation", background: lang === l ? "#c0231e" : "transparent", color: lang === l ? "#fff" : textColor }}>
-                {l.toUpperCase()}
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-label="Open menu"
+                className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors touch-manipulation ml-0.5"
+              >
+                <Menu size={24} className="text-neutral-900" />
               </button>
-            ))}
-            <button type="button" onClick={() => setOpen(true)} aria-label="Open menu"
-              style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "none", border: "none", cursor: "pointer", touchAction: "manipulation" }}>
-              <Menu size={26} color={textColor} />
-            </button>
+            </div>
           </div>
-        </div>
         </div>
       </header>
 
       {/* ── Mobile menu overlay ─────────────────────────────────── */}
       {open && (
         <>
-          {/* Dimmed backdrop */}
           <div
             onClick={() => setOpen(false)}
-            style={{ position: "fixed", inset: 0, zIndex: 9001, background: "rgba(0,0,0,0.5)" }}
+            className="fixed inset-0 z-[9001] bg-black/40 backdrop-blur-sm animate-fade-in"
           />
+          <div className="fixed top-0 right-0 bottom-0 z-[9002] bg-white flex flex-col shadow-2xl animate-scale-in"
+            style={{ width: "min(320px, 88vw)" }}>
 
-          {/* Slide-in panel */}
-          <div style={{ position: "fixed", top: 0, right: 0, bottom: 0, width: "min(300px, 85vw)", zIndex: 9002, background: "#fff", display: "flex", flexDirection: "column", boxShadow: "-4px 0 24px rgba(0,0,0,0.15)" }}>
-
-            {/* Panel header */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", borderBottom: "1px solid #f0f0f0" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <Image src="/logo.png" alt="Tenda Era" width={36} height={32} style={{ objectFit: "contain", filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.15))" }} />
-                <span style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 700, color: "#1a1a1a" }}>
-                  Tenda <span style={{ color: "#c0231e" }}>Era</span>
+            <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-100">
+              <div className="flex items-center gap-2.5">
+                <Image src="/logo.png" alt="Tenda Era" width={34} height={30} className="object-contain"
+                  style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))" }} />
+                <span className="font-display text-lg font-bold text-neutral-900 tracking-tight">
+                  Tenda <span className="text-[#e11d3c]">Era</span>
                 </span>
               </div>
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu"
-                style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "none", border: "none", cursor: "pointer", touchAction: "manipulation" }}>
-                <X size={22} color="#1a1a1a" />
+                className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-neutral-100 transition-colors touch-manipulation">
+                <X size={22} className="text-neutral-900" />
               </button>
             </div>
 
-            {/* Nav links */}
-            <nav style={{ flex: 1, overflowY: "auto" }}>
-              {links.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
-                  style={{ display: "block", padding: "16px 20px", fontSize: 13, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", borderBottom: "1px solid #f5f5f5", color: pathname === link.href ? "#c0231e" : "#1a1a1a", textDecoration: "none" }}>
-                  {link.label}
-                </Link>
-              ))}
+            <nav className="flex-1 overflow-y-auto py-2">
+              {links.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
+                    className={`flex items-center px-5 py-4 text-sm font-semibold tracking-wide no-underline transition-colors
+                      ${active
+                        ? "text-[#e11d3c] bg-[#e11d3c]/5 border-l-4 border-[#e11d3c]"
+                        : "text-neutral-800 border-l-4 border-transparent hover:bg-neutral-50"}`}>
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
 
-            {/* Bottom actions */}
-            <div style={{ padding: 20, borderTop: "1px solid #f0f0f0", display: "flex", flexDirection: "column", gap: 10 }}>
-              <div style={{ display: "flex", gap: 8 }}>
+            <div className="p-4 border-t border-neutral-100 flex flex-col gap-3">
+              <div className="flex items-center bg-neutral-100 rounded-full p-1">
                 {(["sq", "en"] as const).map((l) => (
                   <button key={l} type="button" onClick={() => setLang(l)}
-                    style={{ flex: 1, padding: "12px 8px", fontSize: 13, fontWeight: 700, textTransform: "uppercase", borderRadius: 12, border: "none", cursor: "pointer", touchAction: "manipulation", background: lang === l ? "#c0231e" : "#f3f4f6", color: lang === l ? "#fff" : "#1a1a1a" }}>
-                    {l.toUpperCase()}
+                    className={`flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all touch-manipulation
+                      ${lang === l ? "bg-white text-neutral-900 shadow-sm" : "text-neutral-500"}`}>
+                    {l}
                   </button>
                 ))}
               </div>
               <Link href="/contact" onClick={() => setOpen(false)}
-                style={{ display: "block", padding: 15, background: "#c0231e", color: "#fff", fontSize: 14, fontWeight: 600, borderRadius: 14, textAlign: "center", textDecoration: "none" }}>
-                {t.nav.quote}
+                className="flex items-center justify-center gap-2 py-3.5 bg-[#e11d3c] text-white text-sm font-semibold rounded-full no-underline hover:bg-[#b91429] transition-colors touch-manipulation shadow-lg shadow-[#e11d3c]/30">
+                <Phone size={14} /> {t.nav.quote}
               </Link>
             </div>
           </div>

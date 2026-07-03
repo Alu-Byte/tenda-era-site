@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 
-const productOptionsSQ = ["Tendë Tërheqëse", "Tendë Fikse", "Çadër e Madhe", "Kanopi / Pergolë", "Aksesore / Pjesë", "Tjetër / Nuk jam i sigurt"];
+const productOptionsSQ = ["Tendë Tërheqëse", "Tendë Fikse", "Çadër e Madhe", "Kanope / Pergolë", "Aksesorë / Pjesë", "Tjetër / Nuk jam i sigurt"];
 const productOptionsEN = ["Retractable Awning", "Fixed Awning", "Large Umbrella", "Canopy / Pergola", "Accessories / Parts", "Other / Not sure"];
 
 export default function ContactForm() {
@@ -25,58 +25,61 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="bg-white rounded-3xl p-12 border border-[#e5e5e5] flex flex-col items-center justify-center text-center gap-4 min-h-[400px]">
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-          <CheckCircle size={32} className="text-green-600" />
+      <div className="bg-white rounded-3xl p-12 border border-neutral-200 shadow-soft flex flex-col items-center justify-center text-center gap-4 min-h-[400px]">
+        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-100 flex items-center justify-center">
+          <CheckCircle size={32} className="text-emerald-600" strokeWidth={2.2} />
         </div>
-        <h3 className="font-display text-2xl font-bold text-[#1a1a1a]">{c.sent_title}</h3>
-        <p className="text-[#2d2d2d]/60 max-w-sm">{c.sent_desc}</p>
-        <button onClick={() => setSent(false)} className="mt-4 px-6 py-3 border border-[#e5e5e5] rounded-full text-sm font-medium text-[#1a1a1a] hover:border-[#c0231e] transition-colors touch-manipulation">
+        <h3 className="font-display text-2xl lg:text-3xl font-bold text-neutral-900 tracking-tight">{c.sent_title}</h3>
+        <p className="text-neutral-500 max-w-sm leading-relaxed">{c.sent_desc}</p>
+        <button onClick={() => setSent(false)} className="mt-4 px-6 py-3 border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#e11d3c] hover:text-[#e11d3c] transition-colors touch-manipulation">
           {c.send_another}
         </button>
       </div>
     );
   }
 
+  const inputClass = "w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-[#e11d3c] focus:ring-4 focus:ring-[#e11d3c]/10 focus:outline-none text-neutral-900 text-sm transition-all placeholder:text-neutral-400";
+  const labelClass = "block text-[11px] font-bold uppercase tracking-[0.15em] text-neutral-500 mb-2";
+
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 border border-[#e5e5e5] space-y-5">
-      <h3 className="font-display text-2xl font-bold text-[#1a1a1a] mb-2">{c.form_title}</h3>
+    <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200 shadow-soft space-y-5">
+      <h3 className="font-display text-2xl lg:text-3xl font-bold text-neutral-900 mb-2 tracking-tight">{c.form_title}</h3>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">{c.first_name} *</label>
-          <input type="text" required className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors" placeholder={lang === "sq" ? "Emri" : "John"} />
+          <label className={labelClass}>{c.first_name} *</label>
+          <input type="text" required className={inputClass} placeholder={lang === "sq" ? "Emri" : "John"} />
         </div>
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">{c.last_name} *</label>
-          <input type="text" required className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors" placeholder={lang === "sq" ? "Mbiemri" : "Doe"} />
+          <label className={labelClass}>{c.last_name} *</label>
+          <input type="text" required className={inputClass} placeholder={lang === "sq" ? "Mbiemri" : "Doe"} />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">Email *</label>
-        <input type="email" required className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors" placeholder="you@example.com" />
+        <label className={labelClass}>Email *</label>
+        <input type="email" required className={inputClass} placeholder="you@example.com" />
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">{c.phone}</label>
-        <input type="tel" className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors" placeholder="+355 ..." />
+        <label className={labelClass}>{c.phone}</label>
+        <input type="tel" className={inputClass} placeholder="+355 ..." />
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">{c.product_label}</label>
-        <select className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors bg-white">
+        <label className={labelClass}>{c.product_label}</label>
+        <select className={inputClass}>
           <option value="">{lang === "sq" ? "Zgjidhni produktin..." : "Select a product..."}</option>
           {productOptions.map((o) => <option key={o} value={o}>{o}</option>)}
         </select>
       </div>
 
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-[#2d2d2d]/50 mb-2">{c.message_label} *</label>
-        <textarea required rows={5} className="w-full px-4 py-3 rounded-xl border border-[#e5e5e5] focus:border-[#c0231e] focus:outline-none text-[#1a1a1a] text-sm transition-colors resize-none" placeholder={c.message_placeholder} />
+        <label className={labelClass}>{c.message_label} *</label>
+        <textarea required rows={5} className={`${inputClass} resize-none`} placeholder={c.message_placeholder} />
       </div>
 
-      <button type="submit" disabled={loading} className="w-full py-4 bg-[#c0231e] text-white font-semibold rounded-xl hover:bg-[#9a1c18] active:bg-[#9a1c18] transition-colors flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation">
+      <button type="submit" disabled={loading} className="w-full py-4 bg-[#e11d3c] text-white font-semibold rounded-xl hover:bg-[#b91429] transition-all flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation shadow-[0_10px_24px_-8px_rgba(225,29,60,0.5)] hover:-translate-y-0.5">
         {loading ? (
           <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
         ) : (

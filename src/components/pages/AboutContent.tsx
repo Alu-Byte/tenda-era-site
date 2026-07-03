@@ -6,10 +6,10 @@ import { Award, Users, Globe, Wrench } from "lucide-react";
 import type { SiteImage } from "@/types";
 
 const timelineSQ = [
-  { year: "1994", title: "Themeluar në Tiranë", desc: "Tenda Era u themelua me një vizion për të sjellë zgjidhje profesionale hije në tregun shqiptar." },
-  { year: "2000s", title: "Partneritete Ndërkombëtare", desc: "U bë përfaqësuesi ekskluziv shqiptar për Corti, Calbari, Mehler dhe Frigerio." },
-  { year: "2010s", title: "Zgjerim në të gjithë Shqipërinë", desc: "Qindra projekte të përfunduara në Tiranë, Durrës, Vlorë, Sarandë dhe qytete kryesore." },
-  { year: "Sot", title: "Lider i Tregut", desc: "Me mbi 30 vjet eksperiencë, Tenda Era mbetet kompania kryesore e tendave dhe çadrajave të diellit." },
+  { year: "1994", title: "Themeluar në Tiranë", desc: "Tenda Era u themelua me një vizion për të sjellë zgjidhje profesionale hijeje në tregun shqiptar." },
+  { year: "2000s", title: "Partneritete Ndërkombëtare", desc: "U bëmë përfaqësuesi ekskluziv shqiptar për Corti, Calbari, Mehler dhe Frigerio." },
+  { year: "2010s", title: "Zgjerim në të gjithë Shqipërinë", desc: "Qindra projekte të përfunduara në Tiranë, Durrës, Vlorë, Sarandë dhe qytetet kryesore." },
+  { year: "Sot", title: "Lider i Tregut", desc: "Me mbi 30 vjet eksperiencë, Tenda Era mbetet kompania kryesore e tendave dhe çadrave të diellit në vend." },
 ];
 const timelineEN = [
   { year: "1994", title: "Founded in Tirana", desc: "Tenda Era was established with a vision to bring professional shade solutions to the Albanian market." },
@@ -19,10 +19,10 @@ const timelineEN = [
 ];
 
 const valuesSQ = [
-  { icon: Award, title: "Cilësia Para Gjithash", desc: "Ne përdorim vetëm materiale dhe pajisje europiane të certifikuara." },
-  { icon: Users, title: "Ekip Ekspert", desc: "Instaluesit tanë janë trajnuar drejtpërdrejt nga prodhuesit partnerë." },
-  { icon: Globe, title: "Standarde Europiane", desc: "Të gjitha produktet tona plotësojnë standardet BE të sigurisë dhe cilësisë." },
-  { icon: Wrench, title: "Shërbim i Plotë", desc: "Nga dizajni dhe fabrikimi deri tek instalimi dhe mirëmbajtja e vazhdueshme." },
+  { icon: Award, title: "Cilësia Mbi Gjithçka", desc: "Ne përdorim vetëm materiale dhe pajisje europiane të certifikuara — pa kompromise në qëndrueshmëri apo finiturë." },
+  { icon: Users, title: "Ekip Ekspert", desc: "Montuesit tanë janë trajnuar drejtpërdrejt nga prodhuesit partnerë dhe janë të certifikuar për çdo sistem." },
+  { icon: Globe, title: "Standarde Europiane", desc: "Të gjitha produktet tona plotësojnë standardet e BE-së për siguri e cilësi dhe janë të mbuluara nga garancia e prodhuesit." },
+  { icon: Wrench, title: "Shërbim i Plotë", desc: "Nga dizajni dhe prodhimi deri te montimi dhe mirëmbajtja e vazhdueshme — kujdesemi për gjithçka." },
 ];
 const valuesEN = [
   { icon: Award, title: "Quality First", desc: "We only use certified European materials and hardware — no compromises on durability or finish." },
@@ -32,10 +32,10 @@ const valuesEN = [
 ];
 
 const partnersSQ = [
-  { name: "Corti", country: "Itali", desc: "Specialistë në sisteme tende tërheqëse të larta." },
-  { name: "Calbari", country: "Itali", desc: "Prodhues kryesor i sistemeve komerciale kanopi dhe pergole." },
-  { name: "Mehler", country: "Gjermani", desc: "Pëlhura teknike të klasit botëror për tendave dhe struktura tensile." },
-  { name: "Frigerio", country: "Itali", desc: "Zgjidhje premium të hijes dhe strehimit të jashtëm." },
+  { name: "Corti", country: "Itali", desc: "Specialistë në sisteme tendash tërheqëse të nivelit të lartë." },
+  { name: "Calbari", country: "Itali", desc: "Prodhues kryesor i sistemeve komerciale të kanopeve dhe pergolave." },
+  { name: "Mehler", country: "Gjermani", desc: "Pëlhura teknike të klasit botëror për tenda dhe struktura tensile." },
+  { name: "Frigerio", country: "Itali", desc: "Zgjidhje premium hijeje dhe strehimi të jashtëm." },
 ];
 const partnersEN = [
   { name: "Corti", country: "Italy", desc: "Specialists in high-end retractable awning systems." },
@@ -57,25 +57,33 @@ export default function AboutContent({ images }: Props) {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] pt-36 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{a.label}</p>
-          <h1 className="font-display text-5xl lg:text-6xl font-bold text-white mb-6">{a.title}</h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">{a.desc}</p>
+      <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#e11d3c]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#f43f5e]/10 blur-[100px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#f43f5e]" />
+            {a.label}
+            <span className="w-6 h-px bg-[#f43f5e]" />
+          </p>
+          <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{a.title}</h1>
+          <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{a.desc}</p>
         </div>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="absolute bottom-0 left-0 right-0 w-full h-16 block">
+          <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1350,50 1440,30 L1440,80 L0,80 Z" fill="#fbfaf6" />
+        </svg>
       </section>
 
-      <div className="bg-[#1a1a1a] h-12 relative">
-        <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#faf8f4]" style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }} />
-      </div>
-
       {/* Story */}
-      <section className="bg-[#faf8f4] py-20 px-6">
+      <section className="bg-[#fbfaf6] py-20 lg:py-24 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{a.story_label}</p>
-            <h2 className="font-display text-4xl font-bold text-[#1a1a1a] mb-6">{a.story_title}</h2>
-            <div className="space-y-4 text-[#2d2d2d]/70 leading-relaxed">
+            <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#e11d3c]" />
+              {a.story_label}
+            </p>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 tracking-tight leading-[1.1]">{a.story_title}</h2>
+            <div className="space-y-4 text-neutral-600 leading-relaxed">
               <p>{a.story_p1}</p>
               <p>{a.story_p2}</p>
               <p>{a.story_p3}</p>
@@ -89,11 +97,11 @@ export default function AboutContent({ images }: Props) {
               </>
             ) : (
               <>
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #c0231e 0, #c0231e 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #e11d3c 0, #e11d3c 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
                 <div className="text-center absolute inset-0 flex items-center justify-center p-8">
                   <div>
-                    <p className="font-display text-7xl font-bold text-[#c0231e]">30+</p>
-                    <p className="text-white/60 text-lg mt-2">{lang === "sq" ? "Vjet Sipërsie" : "Years of Excellence"}</p>
+                    <p className="font-display text-7xl font-bold text-[#e11d3c]">30+</p>
+                    <p className="text-white/60 text-lg mt-2">{lang === "sq" ? "Vjet Përsosmërie" : "Years of Excellence"}</p>
                   </div>
                 </div>
               </>
@@ -103,20 +111,24 @@ export default function AboutContent({ images }: Props) {
       </section>
 
       {/* Values */}
-      <section className="bg-white py-20 px-6">
+      <section className="bg-white py-20 lg:py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{a.values_label}</p>
-            <h2 className="font-display text-4xl font-bold text-[#1a1a1a]">{a.values_title}</h2>
+            <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#e11d3c]" />
+              {a.values_label}
+              <span className="w-6 h-px bg-[#e11d3c]" />
+            </p>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">{a.values_title}</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="p-7 rounded-2xl border border-[#e5e5e5] hover:border-[#c0231e] transition-colors group">
-                <div className="w-12 h-12 rounded-xl bg-[#c0231e]/10 flex items-center justify-center mb-5 group-hover:bg-[#c0231e]/20 transition-colors">
-                  <v.icon size={22} className="text-[#c0231e]" />
+              <div key={v.title} className="p-7 rounded-2xl border border-neutral-200 bg-white hover:border-[#e11d3c]/30 hover:shadow-soft transition-all group">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#fef2f4] to-[#fce7ea] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                  <v.icon size={22} className="text-[#e11d3c]" />
                 </div>
-                <h3 className="font-semibold text-[#1a1a1a] mb-2">{v.title}</h3>
-                <p className="text-sm text-[#2d2d2d]/60 leading-relaxed">{v.desc}</p>
+                <h3 className="font-semibold text-neutral-900 mb-2 tracking-tight">{v.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -124,25 +136,29 @@ export default function AboutContent({ images }: Props) {
       </section>
 
       {/* Timeline */}
-      <section className="bg-[#faf8f4] py-20 px-6">
+      <section className="bg-[#fbfaf6] py-20 lg:py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{a.timeline_label}</p>
-            <h2 className="font-display text-4xl font-bold text-[#1a1a1a]">{a.timeline_title}</h2>
+            <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#e11d3c]" />
+              {a.timeline_label}
+              <span className="w-6 h-px bg-[#e11d3c]" />
+            </p>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">{a.timeline_title}</h2>
           </div>
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-[#e5e5e5]" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#e11d3c]/60 via-[#e11d3c]/25 to-transparent" />
             <div className="space-y-10">
               {timeline.map((item) => (
                 <div key={item.year} className="flex gap-8 items-start">
                   <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-[#c0231e] border-4 border-[#faf8f4] flex items-center justify-center z-10 relative">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#e11d3c] to-[#b91429] border-4 border-[#fbfaf6] flex items-center justify-center z-10 relative shadow-lg shadow-[#e11d3c]/30">
                       <span className="text-white font-bold text-xs text-center leading-tight">{item.year}</span>
                     </div>
                   </div>
-                  <div className="pb-4 pt-3">
-                    <h3 className="font-display text-xl font-semibold text-[#1a1a1a] mb-2">{item.title}</h3>
-                    <p className="text-[#2d2d2d]/60 leading-relaxed">{item.desc}</p>
+                  <div className="pb-4 pt-3 flex-1">
+                    <h3 className="font-display text-xl lg:text-2xl font-semibold text-neutral-900 mb-2 tracking-tight">{item.title}</h3>
+                    <p className="text-neutral-600 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -152,23 +168,29 @@ export default function AboutContent({ images }: Props) {
       </section>
 
       {/* Partners */}
-      <section className="bg-[#1a1a1a] py-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section className="bg-neutral-950 py-20 lg:py-24 px-6 relative overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#e11d3c]/12 blur-[110px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#f43f5e]/8 blur-[110px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-14">
-            <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{a.partners_label}</p>
-            <h2 className="font-display text-4xl font-bold text-white">{a.partners_title}</h2>
-            <p className="text-white/50 mt-4 max-w-xl mx-auto">{a.partners_desc}</p>
+            <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#f43f5e]" />
+              {a.partners_label}
+              <span className="w-6 h-px bg-[#f43f5e]" />
+            </p>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold text-white tracking-tight">{a.partners_title}</h2>
+            <p className="text-white/55 mt-4 max-w-xl mx-auto leading-relaxed">{a.partners_desc}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {partners.map((p) => (
-              <div key={p.name} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-[#c0231e]/50 transition-colors">
+              <div key={p.name} className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-[#e11d3c]/40 hover:bg-white/[0.06] transition-all group">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-[#c0231e]/20 flex items-center justify-center">
-                    <span className="text-[#c0231e] font-bold">{p.name[0]}</span>
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#e11d3c]/25 to-[#e11d3c]/10 border border-[#e11d3c]/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span className="text-[#f43f5e] font-bold">{p.name[0]}</span>
                   </div>
                   <div>
-                    <p className="font-display text-lg font-semibold text-white">{p.name}</p>
-                    <p className="text-white/40 text-xs">{p.country}</p>
+                    <p className="font-display text-lg font-semibold text-white tracking-tight">{p.name}</p>
+                    <p className="text-white/45 text-[11px] uppercase tracking-widest font-semibold">{p.country}</p>
                   </div>
                 </div>
                 <p className="text-white/60 text-sm leading-relaxed">{p.desc}</p>

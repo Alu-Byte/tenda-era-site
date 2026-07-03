@@ -8,9 +8,9 @@ import { useLang } from "@/lib/LangContext";
 const STORAGE_KEY = "announcement_dismissed";
 
 const BG: Record<string, string> = {
-  red: "bg-[#c0231e] text-white",
-  dark: "bg-[#1a1a1a] text-white",
-  yellow: "bg-amber-400 text-[#1a1a1a]",
+  red: "bg-gradient-to-r from-[#e11d3c] to-[#f43f5e] text-white",
+  dark: "bg-gradient-to-r from-neutral-950 to-neutral-800 text-white",
+  yellow: "bg-gradient-to-r from-amber-400 to-amber-300 text-neutral-900",
 };
 
 export default function AnnouncementBar() {
@@ -36,18 +36,18 @@ export default function AnnouncementBar() {
   const bg = BG[announcement.bg] ?? BG.red;
 
   return (
-    <div className={`relative z-50 w-full py-2.5 px-4 text-center text-sm font-semibold ${bg}`}>
+    <div className={`relative z-50 w-full py-2.5 px-4 text-center text-sm font-medium ${bg}`}>
       {announcement.link ? (
-        <a href={announcement.link} className="hover:underline underline-offset-2">{text}</a>
+        <a href={announcement.link} className="hover:underline underline-offset-4">{text}</a>
       ) : (
         <span>{text}</span>
       )}
       <button
         onClick={dismiss}
-        className="absolute right-3 top-1/2 -translate-y-1/2 opacity-70 hover:opacity-100 transition-opacity p-1"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center opacity-80 hover:opacity-100 hover:bg-white/15 transition-all"
         aria-label="Mbyll"
       >
-        <X size={15} />
+        <X size={14} />
       </button>
     </div>
   );

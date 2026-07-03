@@ -10,19 +10,24 @@ export default function PortfolioContent({ images }: { images: SiteImage[] }) {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-[#1a1a1a] to-[#2d2d2d] pt-36 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#c0231e] text-sm font-semibold uppercase tracking-widest mb-3">{p.label}</p>
-          <h1 className="font-display text-5xl lg:text-6xl font-bold text-white mb-6">{p.title}</h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">{p.desc}</p>
+      <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#e11d3c]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#f43f5e]/10 blur-[100px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto text-center relative">
+          <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#f43f5e]" />
+            {p.label}
+            <span className="w-6 h-px bg-[#f43f5e]" />
+          </p>
+          <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{p.title}</h1>
+          <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{p.desc}</p>
         </div>
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="absolute bottom-0 left-0 right-0 w-full h-16 block">
+          <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1350,50 1440,30 L1440,80 L0,80 Z" fill="#fbfaf6" />
+        </svg>
       </section>
 
-      <div className="bg-[#1a1a1a] h-12 relative">
-        <div className="absolute bottom-0 left-0 right-0 h-12 bg-[#faf8f4]" style={{ clipPath: "ellipse(55% 100% at 50% 100%)" }} />
-      </div>
-
-      <section className="bg-[#faf8f4] py-16 px-6 min-h-[60vh]">
+      <section className="bg-[#fbfaf6] py-16 lg:py-20 px-6 min-h-[60vh]">
         <div className="max-w-7xl mx-auto">
           <PortfolioGallery images={images} />
         </div>

@@ -44,7 +44,7 @@ export default function ModelViewer({ src, alt, onClose }: Props) {
         onClick={onClose}
       >
         <button
-          className="absolute top-4 right-4 text-white hover:text-[#c0231e] transition-colors z-10"
+          className="absolute top-4 right-4 text-white hover:text-[#e11d3c] transition-colors z-10"
           onClick={onClose}
         >
           <X size={32} />

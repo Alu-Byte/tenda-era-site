@@ -31,7 +31,7 @@ export default function PortfolioGallery({ images }: Props) {
           {images.map((img) => (
             <div
               key={img.id}
-              className="break-inside-avoid rounded-2xl overflow-hidden relative group cursor-pointer"
+              className="break-inside-avoid rounded-2xl overflow-hidden relative group cursor-pointer shadow-soft hover:shadow-elevated transition-shadow ring-1 ring-neutral-200"
               onClick={() => setLightbox(img)}
             >
               <Image
@@ -39,15 +39,17 @@ export default function PortfolioGallery({ images }: Props) {
                 alt={img.title || img.originalName}
                 width={600}
                 height={400}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-center justify-center">
-                <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={32} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all group-hover:scale-100 scale-90">
+                  <ZoomIn className="text-neutral-900" size={20} />
+                </div>
               </div>
               {img.title && (
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                   <p className="text-white font-semibold text-sm">{img.title}</p>
-                  {img.description && <p className="text-white/60 text-xs">{img.description}</p>}
+                  {img.description && <p className="text-white/70 text-xs mt-0.5">{img.description}</p>}
                 </div>
               )}
             </div>
@@ -60,7 +62,7 @@ export default function PortfolioGallery({ images }: Props) {
             onClick={() => setLightbox(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white hover:text-[#c0231e] transition-colors touch-manipulation"
+              className="absolute top-4 right-4 text-white hover:text-[#e11d3c] transition-colors touch-manipulation"
               onClick={() => setLightbox(null)}
             >
               <X size={32} />
@@ -88,11 +90,13 @@ export default function PortfolioGallery({ images }: Props) {
 
   return (
     <div>
-      <div className="mb-8 p-4 bg-[#c0231e]/10 border border-[#c0231e]/30 rounded-2xl flex items-center gap-3">
-        <span className="text-[#c0231e] text-xl">💡</span>
-        <p className="text-sm text-[#2d2d2d]/70">
+      <div className="mb-8 p-5 bg-white border border-[#e11d3c]/20 rounded-2xl flex items-start gap-4 shadow-soft">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#fef2f4] to-[#fce7ea] flex items-center justify-center shrink-0">
+          <span className="text-[#e11d3c] text-lg">💡</span>
+        </div>
+        <p className="text-sm text-neutral-600 leading-relaxed pt-1">
           Portfolio images are managed from the{" "}
-          <a href="/admin" className="text-[#c0231e] font-semibold underline">Admin Panel</a>.
+          <a href="/admin" className="text-[#e11d3c] font-semibold underline">Admin Panel</a>.
           Upload your project photos and assign them to &quot;Portfolio&quot; to display them here.
         </p>
       </div>
@@ -101,14 +105,14 @@ export default function PortfolioGallery({ images }: Props) {
         {placeholders.map((p, i) => (
           <div
             key={i}
-            className={`break-inside-avoid rounded-2xl overflow-hidden bg-gradient-to-br from-[#2d2d2d] to-[#1a1a1a] flex items-end p-6 relative ${
+            className={`break-inside-avoid rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950 flex items-end p-6 relative ring-1 ring-white/5 ${
               p.tall ? "h-80" : "h-52"
             }`}
           >
             <div
-              className="absolute inset-0 opacity-10"
+              className="absolute inset-0 opacity-[0.08]"
               style={{
-                backgroundImage: `repeating-linear-gradient(45deg, #c0231e 0, #c0231e 1px, transparent 0, transparent 50%)`,
+                backgroundImage: `radial-gradient(circle at 1px 1px, #f43f5e 1px, transparent 0)`,
                 backgroundSize: "20px 20px",
               }}
             />

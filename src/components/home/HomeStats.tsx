@@ -59,15 +59,19 @@ export default function HomeStats() {
   ];
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-16 lg:py-20 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="font-display text-4xl lg:text-5xl font-bold text-[#c0231e] mb-2">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+          {stats.map((stat, i) => (
+            <div
+              key={stat.label}
+              className="text-center px-2 py-6 lg:py-8 rounded-2xl hover:bg-neutral-50/70 transition-colors relative"
+            >
+              {i > 0 && <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-16 bg-neutral-200/70" />}
+              <p className="font-display text-4xl lg:text-[3.25rem] font-bold text-[#e11d3c] mb-2 tracking-tight leading-none">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </p>
-              <p className="text-sm text-[#2d2d2d]/60 font-medium uppercase tracking-wider">
+              <p className="text-[11px] lg:text-xs text-neutral-500 font-semibold uppercase tracking-[0.15em]">
                 {stat.label}
               </p>
             </div>
