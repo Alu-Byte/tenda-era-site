@@ -3,10 +3,13 @@ export const dynamic = "force-dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AboutContent from "@/components/pages/AboutContent";
-import { getImagesBySection } from "@/lib/data";
+import { readDataAsync } from "@/lib/data";
 
-export default function AboutPage() {
-  const aboutImages = getImagesBySection("about");
+export default async function AboutPage() {
+  const data = await readDataAsync();
+  const aboutImages = data.images
+    .filter((img) => img.section === "about" && img.visible)
+    .sort((a, b) => a.order - b.order);
   return (
     <>
       <Navbar />

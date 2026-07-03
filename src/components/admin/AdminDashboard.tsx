@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import type { SiteImage, Category, Subcategory, FaqItem, OpeningHours, Announcement } from "@/types";
 import { invalidateSiteInfoCache } from "@/lib/useSiteInfo";
+import { useToast, apiFetch } from "@/lib/toast";
 
 const FIXED_SECTIONS = [
   { value: "hero", label: "Hero (Faqja Kryesore)" },
@@ -25,6 +26,7 @@ type Tab = "images" | "products" | "faq" | "settings";
 export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("images");
   const router = useRouter();
+  const toast = useToast();
 
   // ── Images ──
   const [images, setImages] = useState<SiteImage[]>([]);
@@ -143,36 +145,52 @@ export default function AdminDashboard() {
   async function handleUpload(files: FileList | null) {
     if (!files || files.length === 0) return;
     setUploading(true);
+    let succeeded = 0;
     for (const file of Array.from(files)) {
       const form = new FormData();
       form.append("file", file);
       form.append("section", uploadSection);
       form.append("title", uploadTitle || file.name.replace(/\.[^.]+$/, ""));
-      await fetch("/api/admin/upload", { method: "POST", body: form });
+      try {
+        await apiFetch("/api/admin/upload", { method: "POST", body: form });
+        succeeded++;
+      } catch (e) {
+        toast.err(`Ngarkimi dështoi: ${(e as Error).message}`);
+      }
     }
     setUploadTitle("");
     if (fileRef.current) fileRef.current.value = "";
     await fetchImages();
     setUploading(false);
+    if (succeeded > 0) toast.ok(`${succeeded} foto u ngarkuan`);
   }
 
   async function toggleVisible(img: SiteImage) {
-    await fetch("/api/admin/images", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: img.id, visible: !img.visible }),
-    });
-    setImages((prev) => prev.map((i) => i.id === img.id ? { ...i, visible: !i.visible } : i));
+    try {
+      await apiFetch("/api/admin/images", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: img.id, visible: !img.visible }),
+      });
+      setImages((prev) => prev.map((i) => i.id === img.id ? { ...i, visible: !i.visible } : i));
+    } catch (e) {
+      toast.err(`Ndryshimi dështoi: ${(e as Error).message}`);
+    }
   }
 
   async function deleteImg(id: string) {
     if (!confirm("Fshi këtë foto përgjithmonë?")) return;
-    await fetch("/api/admin/images", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setImages((prev) => prev.filter((i) => i.id !== id));
+    try {
+      await apiFetch("/api/admin/images", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setImages((prev) => prev.filter((i) => i.id !== id));
+      toast.ok("Foto u fshi");
+    } catch (e) {
+      toast.err(`Fshirja dështoi: ${(e as Error).message}`);
+    }
   }
 
   function startImgEdit(img: SiteImage) {
@@ -182,13 +200,18 @@ export default function AdminDashboard() {
   }
 
   async function saveImgEdit(id: string) {
-    await fetch("/api/admin/images", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, title: editImgTitle, section: editImgSection }),
-    });
-    setImages((prev) => prev.map((i) => i.id === id ? { ...i, title: editImgTitle, section: editImgSection } : i));
-    setEditingImgId(null);
+    try {
+      await apiFetch("/api/admin/images", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, title: editImgTitle, section: editImgSection }),
+      });
+      setImages((prev) => prev.map((i) => i.id === id ? { ...i, title: editImgTitle, section: editImgSection } : i));
+      setEditingImgId(null);
+      toast.ok("Ndryshimet u ruajtën");
+    } catch (e) {
+      toast.err(`Ruajtja dështoi: ${(e as Error).message}`);
+    }
   }
 
   async function changeOrder(img: SiteImage, dir: "up" | "down") {
@@ -197,15 +220,19 @@ export default function AdminDashboard() {
     const swapIdx = dir === "up" ? idx - 1 : idx + 1;
     if (swapIdx < 0 || swapIdx >= group.length) return;
     const a = group[idx], b = group[swapIdx];
-    await Promise.all([
-      fetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
-      fetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
-    ]);
-    setImages((prev) => prev.map((i) => {
-      if (i.id === a.id) return { ...i, order: b.order };
-      if (i.id === b.id) return { ...i, order: a.order };
-      return i;
-    }));
+    try {
+      await Promise.all([
+        apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
+        apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
+      ]);
+      setImages((prev) => prev.map((i) => {
+        if (i.id === a.id) return { ...i, order: b.order };
+        if (i.id === b.id) return { ...i, order: a.order };
+        return i;
+      }));
+    } catch (e) {
+      toast.err(`Rirenditja dështoi: ${(e as Error).message}`);
+    }
   }
 
   // ── Subcategory actions ──
@@ -223,38 +250,53 @@ export default function AdminDashboard() {
       desc_en: newSub.desc_en,
       order: subs.length + 1,
     };
-    await fetch("/api/admin/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(sub),
-    });
-    setSubcategories((prev) => [...prev, sub]);
-    setNewSub({ name_sq: "", name_en: "", desc_sq: "", desc_en: "" });
-    setAddingTo(null);
+    try {
+      await apiFetch("/api/admin/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sub),
+      });
+      setSubcategories((prev) => [...prev, sub]);
+      setNewSub({ name_sq: "", name_en: "", desc_sq: "", desc_en: "" });
+      setAddingTo(null);
+      toast.ok("Nënkategoria u shtua");
+    } catch (e) {
+      toast.err(`Shtimi dështoi: ${(e as Error).message}`);
+    }
     setSavingSub(false);
   }
 
   async function saveSubEdit(id: string) {
     setSavingSub(true);
-    await fetch("/api/admin/products", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, ...subEdits }),
-    });
-    setSubcategories((prev) => prev.map((s) => s.id === id ? { ...s, ...subEdits } as Subcategory : s));
-    setEditingSubId(null);
+    try {
+      await apiFetch("/api/admin/products", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, ...subEdits }),
+      });
+      setSubcategories((prev) => prev.map((s) => s.id === id ? { ...s, ...subEdits } as Subcategory : s));
+      setEditingSubId(null);
+      toast.ok("Ndryshimet u ruajtën");
+    } catch (e) {
+      toast.err(`Ruajtja dështoi: ${(e as Error).message}`);
+    }
     setSavingSub(false);
   }
 
   async function deleteSub(id: string) {
     if (!confirm("Fshi këtë nënkategori dhe të gjitha fotot e saj?")) return;
-    await fetch("/api/admin/products", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setSubcategories((prev) => prev.filter((s) => s.id !== id));
-    setImages((prev) => prev.filter((img) => img.section !== id));
+    try {
+      await apiFetch("/api/admin/products", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setSubcategories((prev) => prev.filter((s) => s.id !== id));
+      setImages((prev) => prev.filter((img) => img.section !== id));
+      toast.ok("Nënkategoria u fshi");
+    } catch (e) {
+      toast.err(`Fshirja dështoi: ${(e as Error).message}`);
+    }
   }
 
   // ── FAQ actions ──
@@ -267,25 +309,40 @@ export default function AdminDashboard() {
       q_en: newFaq.q_en, a_en: newFaq.a_en,
       order: faqs.length + 1,
     };
-    await fetch("/api/admin/faq", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) });
-    setFaqs((prev) => [...prev, item]);
-    setNewFaq({ q_sq: "", a_sq: "", q_en: "", a_en: "" });
-    setAddingFaq(false);
+    try {
+      await apiFetch("/api/admin/faq", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) });
+      setFaqs((prev) => [...prev, item]);
+      setNewFaq({ q_sq: "", a_sq: "", q_en: "", a_en: "" });
+      setAddingFaq(false);
+      toast.ok("Pyetja u shtua");
+    } catch (e) {
+      toast.err(`Shtimi dështoi: ${(e as Error).message}`);
+    }
     setSavingFaq(false);
   }
 
   async function saveFaqEdit(id: string) {
     setSavingFaq(true);
-    await fetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, ...faqEdits }) });
-    setFaqs((prev) => prev.map((f) => f.id === id ? { ...f, ...faqEdits } as FaqItem : f));
-    setEditingFaqId(null);
+    try {
+      await apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, ...faqEdits }) });
+      setFaqs((prev) => prev.map((f) => f.id === id ? { ...f, ...faqEdits } as FaqItem : f));
+      setEditingFaqId(null);
+      toast.ok("Ndryshimet u ruajtën");
+    } catch (e) {
+      toast.err(`Ruajtja dështoi: ${(e as Error).message}`);
+    }
     setSavingFaq(false);
   }
 
   async function deleteFaqItem(id: string) {
     if (!confirm("Fshi këtë pyetje?")) return;
-    await fetch("/api/admin/faq", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) });
-    setFaqs((prev) => prev.filter((f) => f.id !== id));
+    try {
+      await apiFetch("/api/admin/faq", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) });
+      setFaqs((prev) => prev.filter((f) => f.id !== id));
+      toast.ok("Pyetja u fshi");
+    } catch (e) {
+      toast.err(`Fshirja dështoi: ${(e as Error).message}`);
+    }
   }
 
   async function moveFaq(faq: FaqItem, dir: "up" | "down") {
@@ -294,15 +351,19 @@ export default function AdminDashboard() {
     const swapIdx = dir === "up" ? idx - 1 : idx + 1;
     if (swapIdx < 0 || swapIdx >= sorted.length) return;
     const a = sorted[idx], b = sorted[swapIdx];
-    await Promise.all([
-      fetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
-      fetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
-    ]);
-    setFaqs((prev) => prev.map((f) => {
-      if (f.id === a.id) return { ...f, order: b.order };
-      if (f.id === b.id) return { ...f, order: a.order };
-      return f;
-    }));
+    try {
+      await Promise.all([
+        apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
+        apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
+      ]);
+      setFaqs((prev) => prev.map((f) => {
+        if (f.id === a.id) return { ...f, order: b.order };
+        if (f.id === b.id) return { ...f, order: a.order };
+        return f;
+      }));
+    } catch (e) {
+      toast.err(`Rirenditja dështoi: ${(e as Error).message}`);
+    }
   }
 
   // ── Translation helpers ──
@@ -362,16 +423,19 @@ export default function AdminDashboard() {
   async function handleSaveHours() {
     setSavingHours(true);
     setHoursMsg(null);
-    const res = await fetch("/api/admin/site", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "hours", ...hours }),
-    });
-    if (res.ok) {
+    try {
+      await apiFetch("/api/admin/site", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "hours", ...hours }),
+      });
       setHoursMsg({ type: "ok", text: "Orari u ruajt me sukses!" });
       invalidateSiteInfoCache();
-    } else {
-      setHoursMsg({ type: "err", text: "Gabim gjatë ruajtjes." });
+      toast.ok("Orari u ruajt");
+    } catch (e) {
+      const msg = (e as Error).message;
+      setHoursMsg({ type: "err", text: `Gabim: ${msg}` });
+      toast.err(`Ruajtja dështoi: ${msg}`);
     }
     setSavingHours(false);
   }
@@ -380,16 +444,19 @@ export default function AdminDashboard() {
   async function handleSaveAnnouncement() {
     setSavingAnn(true);
     setAnnMsg(null);
-    const res = await fetch("/api/admin/site", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "announcement", ...ann }),
-    });
-    if (res.ok) {
+    try {
+      await apiFetch("/api/admin/site", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "announcement", ...ann }),
+      });
       setAnnMsg({ type: "ok", text: "Njoftimi u ruajt me sukses!" });
       invalidateSiteInfoCache();
-    } else {
-      setAnnMsg({ type: "err", text: "Gabim gjatë ruajtjes." });
+      toast.ok("Njoftimi u ruajt");
+    } catch (e) {
+      const msg = (e as Error).message;
+      setAnnMsg({ type: "err", text: `Gabim: ${msg}` });
+      toast.err(`Ruajtja dështoi: ${msg}`);
     }
     setSavingAnn(false);
   }
@@ -400,10 +467,20 @@ export default function AdminDashboard() {
     if (newPwd !== confirmPwd) { setPwdMsg({ type: "err", text: "Fjalëkalimet e reja nuk përputhen." }); return; }
     if (newPwd.length < 8) { setPwdMsg({ type: "err", text: "Fjalëkalimi i ri duhet të ketë të paktën 8 karaktere." }); return; }
     setSavingPwd(true);
-    const res = await fetch("/api/admin/password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ currentPassword: currentPwd, newPassword: newPwd }) });
-    const data = await res.json();
-    if (!res.ok) { setPwdMsg({ type: "err", text: data.error ?? "Gabim." }); }
-    else { setPwdMsg({ type: "ok", text: "Fjalëkalimi u ndryshua me sukses!" }); setCurrentPwd(""); setNewPwd(""); setConfirmPwd(""); }
+    try {
+      await apiFetch("/api/admin/password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPassword: currentPwd, newPassword: newPwd }),
+      });
+      setPwdMsg({ type: "ok", text: "Fjalëkalimi u ndryshua me sukses!" });
+      setCurrentPwd(""); setNewPwd(""); setConfirmPwd("");
+      toast.ok("Fjalëkalimi u ndryshua");
+    } catch (e) {
+      const msg = (e as Error).message;
+      setPwdMsg({ type: "err", text: msg });
+      toast.err(msg);
+    }
     setSavingPwd(false);
   }
 
@@ -452,44 +529,63 @@ export default function AdminDashboard() {
 
     setImages((prev) => prev.map((img) => orderMap.has(img.id) ? { ...img, order: orderMap.get(img.id)! } : img));
 
-    await Promise.all(
-      updates.map((u) =>
-        fetch("/api/admin/images", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: u.id, order: u.order }),
-        })
-      )
-    );
+    try {
+      await Promise.all(
+        updates.map((u) =>
+          apiFetch("/api/admin/images", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: u.id, order: u.order }),
+          })
+        )
+      );
+    } catch (e) {
+      toast.err(`Rirenditja dështoi: ${(e as Error).message}`);
+      await fetchImages();
+    }
 
     handleDragEnd();
   }
 
   async function deleteSelected() {
     setDeletingSelected(true);
+    const ids = Array.from(selected);
+    let ok = 0, fail = 0;
     await Promise.all(
-      Array.from(selected).map((id) =>
-        fetch("/api/admin/images", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id }),
-        })
-      )
+      ids.map(async (id) => {
+        try {
+          await apiFetch("/api/admin/images", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id }),
+          });
+          ok++;
+        } catch {
+          fail++;
+        }
+      })
     );
-    setImages((prev) => prev.filter((i) => !selected.has(i.id)));
+    await fetchImages();
     setSelected(new Set());
     setSelectMode(false);
     setShowDeleteConfirm(false);
     setDeletingSelected(false);
+    if (ok > 0) toast.ok(`${ok} foto u fshinë`);
+    if (fail > 0) toast.err(`${fail} foto nuk u fshinë`);
   }
 
   async function saveCoverPosition(catId: string, position: string) {
     setCategories((prev) => prev.map((c) => c.id === catId ? { ...c, coverPosition: position } : c));
-    await fetch("/api/admin/products", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: catId, type: "category", coverPosition: position }),
-    });
+    try {
+      await apiFetch("/api/admin/products", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: catId, type: "category", coverPosition: position }),
+      });
+    } catch (e) {
+      toast.err(`Pozicioni nuk u ruajt: ${(e as Error).message}`);
+      await fetchProducts();
+    }
   }
 
   async function uploadCover(catId: string, file: File) {
@@ -498,15 +594,19 @@ export default function AdminDashboard() {
     form.append("file", file);
     form.append("section", `cat-cover-${catId}`);
     form.append("title", `${catId} cover`);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: form });
-    const data = await res.json();
-    if (data.image?.url) {
-      await fetch("/api/admin/products", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: catId, type: "category", coverImage: data.image.url }),
-      });
-      setCategories((prev) => prev.map((c) => c.id === catId ? { ...c, coverImage: data.image.url } : c));
+    try {
+      const data = await apiFetch("/api/admin/upload", { method: "POST", body: form }) as { image?: { url?: string } };
+      if (data?.image?.url) {
+        await apiFetch("/api/admin/products", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: catId, type: "category", coverImage: data.image.url }),
+        });
+        setCategories((prev) => prev.map((c) => c.id === catId ? { ...c, coverImage: data.image!.url } : c));
+        toast.ok("Kopertina u ruajt");
+      }
+    } catch (e) {
+      toast.err(`Ngarkimi dështoi: ${(e as Error).message}`);
     }
     setUploadingCover(null);
   }

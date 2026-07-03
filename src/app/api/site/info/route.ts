@@ -1,11 +1,28 @@
 import { NextResponse } from "next/server";
-import { getOpeningHours, getAnnouncement } from "@/lib/data";
+import { readDataAsync } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
+const DEFAULT_HOURS = {
+  weekdays_sq: "E Hënë – E Premte, 8:00 – 18:00",
+  weekdays_en: "Monday – Friday, 8:00 AM – 6:00 PM",
+  saturday_sq: "E Shtunë, 8:00 – 14:00",
+  saturday_en: "Saturday, 8:00 AM – 2:00 PM",
+};
+const DEFAULT_ANN = { text_sq: "", text_en: "", active: false, bg: "red" as const };
+
 export async function GET() {
-  return NextResponse.json({
-    openingHours: getOpeningHours(),
-    announcement: getAnnouncement(),
-  });
+  try {
+    const data = await readDataAsync();
+    return NextResponse.json({
+      openingHours: data.openingHours ?? DEFAULT_HOURS,
+      announcement: data.announcement ?? DEFAULT_ANN,
+    });
+  } catch (err) {
+    console.error("[site/info GET]", err);
+    return NextResponse.json({
+      openingHours: DEFAULT_HOURS,
+      announcement: DEFAULT_ANN,
+    });
+  }
 }

@@ -9,14 +9,15 @@ import HomePortfolioPreview from "@/components/home/HomePortfolioPreview";
 import HomePartners from "@/components/home/HomePartners";
 import HomeCTA from "@/components/home/HomeCTA";
 import HomeFAQ from "@/components/home/HomeFAQ";
-import { getImagesBySection, getCategories, getSubcategories, getFaqs } from "@/lib/data";
+import { readDataAsync } from "@/lib/data";
 
-export default function HomePage() {
-  const heroImages = getImagesBySection("hero");
-  const portfolioImages = getImagesBySection("home-portfolio");
-  const categories = getCategories();
-  const subcategories = getSubcategories();
-  const faqs = getFaqs();
+export default async function HomePage() {
+  const data = await readDataAsync();
+  const heroImages = data.images.filter((i) => i.section === "hero" && i.visible).sort((a, b) => a.order - b.order);
+  const portfolioImages = data.images.filter((i) => i.section === "home-portfolio" && i.visible).sort((a, b) => a.order - b.order);
+  const categories = [...data.categories].sort((a, b) => a.order - b.order);
+  const subcategories = [...data.subcategories].sort((a, b) => a.order - b.order);
+  const faqs = [...data.faqs].sort((a, b) => a.order - b.order);
 
   return (
     <>

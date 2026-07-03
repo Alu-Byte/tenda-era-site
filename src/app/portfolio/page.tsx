@@ -1,10 +1,15 @@
+export const dynamic = "force-dynamic";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PortfolioContent from "@/components/pages/PortfolioContent";
-import { getImagesBySection } from "@/lib/data";
+import { readDataAsync } from "@/lib/data";
 
 export default async function PortfolioPage() {
-  const images = getImagesBySection("portfolio");
+  const data = await readDataAsync();
+  const images = data.images
+    .filter((img) => img.section === "portfolio" && img.visible)
+    .sort((a, b) => a.order - b.order);
   return (
     <>
       <Navbar />

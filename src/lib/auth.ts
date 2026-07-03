@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
+import { readDataAsync, writeData } from "@/lib/data";
+import type { SiteData } from "@/types";
 
 const AUTH_FILE = path.join(process.cwd(), "data", "auth.json");
 export const SESSION_COOKIE = "te_admin_session";
@@ -19,25 +21,33 @@ export function createSessionToken(): string {
   return crypto.createHmac("sha256", getSecret()).update("te_admin").digest("hex");
 }
 
-function getPasswordHash(): string {
-  if (fs.existsSync(AUTH_FILE)) {
-    try {
+/**
+ * Password hash resolution order:
+ *   1. site-data blob (persisted via writeData) — production path
+ *   2. local auth.json — legacy dev path
+ *   3. ADMIN_PASSWORD env var, hashed on-the-fly — bootstrap fallback
+ */
+async function getPasswordHash(): Promise<string> {
+  // 1. Blob / site data
+  try {
+    const data = await readDataAsync();
+    if ((data as SiteData & { adminHash?: string }).adminHash) {
+      return (data as SiteData & { adminHash?: string }).adminHash!;
+    }
+  } catch { /* ignore */ }
+
+  // 2. Local auth.json (dev only)
+  try {
+    if (fs.existsSync(AUTH_FILE)) {
       const data = JSON.parse(fs.readFileSync(AUTH_FILE, "utf-8"));
       if (data.passwordHash) return data.passwordHash;
-    } catch {}
-  }
+    }
+  } catch { /* ignore */ }
+
+  // 3. ADMIN_PASSWORD env var
   const defaultPwd = process.env.ADMIN_PASSWORD;
   if (!defaultPwd) throw new Error("ADMIN_PASSWORD env var is not set.");
-  const hash = bcrypt.hashSync(defaultPwd, 10);
-  try {
-    const dir = path.dirname(AUTH_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
-  } catch {
-    // Read-only filesystem (e.g. Vercel serverless) — hash above is still
-    // valid for this request, it just won't be cached to disk.
-  }
-  return hash;
+  return bcrypt.hashSync(defaultPwd, 10);
 }
 
 export async function checkAdminAuth(): Promise<boolean> {
@@ -54,17 +64,23 @@ export async function checkAdminAuth(): Promise<boolean> {
   }
 }
 
-export function validatePassword(password: string): boolean {
-  return bcrypt.compareSync(password, getPasswordHash());
+export async function validatePassword(password: string): Promise<boolean> {
+  const hash = await getPasswordHash();
+  return bcrypt.compareSync(password, hash);
 }
 
-export function changePassword(newPassword: string): void {
+export async function changePassword(newPassword: string): Promise<void> {
   const hash = bcrypt.hashSync(newPassword, 10);
-  const dir = path.dirname(AUTH_FILE);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
-  // Note: on a read-only filesystem (Vercel serverless) this throws, so the
-  // "change password" feature only persists in environments with a writable
-  // filesystem (e.g. local dev). It is not silently swallowed here on purpose —
-  // the caller should surface the failure rather than claim success falsely.
+
+  // Prefer persistent storage (blob) on Vercel — falls back to local file in dev.
+  const data = (await readDataAsync()) as SiteData & { adminHash?: string };
+  data.adminHash = hash;
+  await writeData(data);
+
+  // Also keep the local file up-to-date if the fs is writable (dev).
+  try {
+    const dir = path.dirname(AUTH_FILE);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(AUTH_FILE, JSON.stringify({ passwordHash: hash }));
+  } catch { /* read-only fs on Vercel — safe to ignore, blob has it */ }
 }
