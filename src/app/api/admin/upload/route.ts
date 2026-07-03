@@ -14,7 +14,10 @@ const ALLOWED_EXTS = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
 const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
 
 function isBlobStorage(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN ||
+      (process.env.BLOB_STORE_ID && process.env.VERCEL)
+  );
 }
 
 export async function POST(req: NextRequest) {

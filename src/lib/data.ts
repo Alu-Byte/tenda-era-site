@@ -26,7 +26,12 @@ const INITIAL_DATA: SiteData = {
 };
 
 function isBlobStorage(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  // Detects both classic (BLOB_READ_WRITE_TOKEN) and OIDC-based
+  // (BLOB_STORE_ID + VERCEL_OIDC_TOKEN) Blob configurations.
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN ||
+      (process.env.BLOB_STORE_ID && process.env.VERCEL)
+  );
 }
 
 // ── In-memory cache (per serverless instance) ─────────────
