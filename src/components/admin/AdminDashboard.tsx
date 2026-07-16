@@ -16,7 +16,6 @@ import { useToast, apiFetch } from "@/lib/toast";
 
 const FIXED_SECTIONS = [
   { value: "hero", label: "Hero (Faqja Kryesore)" },
-  { value: "home-portfolio", label: "Faqja · Projektet e Fundit" },
   { value: "portfolio", label: "Faqja e Portofolit" },
   { value: "about", label: "Faqja Rreth Nesh" },
 ];
@@ -150,7 +149,7 @@ export default function AdminDashboard() {
       const form = new FormData();
       form.append("file", file);
       form.append("section", uploadSection);
-      form.append("title", uploadTitle || file.name.replace(/\.[^.]+$/, ""));
+      form.append("title", uploadTitle);
       try {
         await apiFetch("/api/admin/upload", { method: "POST", body: form });
         succeeded++;
@@ -221,10 +220,8 @@ export default function AdminDashboard() {
     if (swapIdx < 0 || swapIdx >= group.length) return;
     const a = group[idx], b = group[swapIdx];
     try {
-      await Promise.all([
-        apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
-        apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
-      ]);
+      await apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) });
+      await apiFetch("/api/admin/images", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) });
       setImages((prev) => prev.map((i) => {
         if (i.id === a.id) return { ...i, order: b.order };
         if (i.id === b.id) return { ...i, order: a.order };
@@ -241,6 +238,9 @@ export default function AdminDashboard() {
     setSavingSub(true);
     const id = `${categoryId}-${Date.now()}`;
     const subs = subcategories.filter((s) => s.categoryId === categoryId);
+    // Take the current max order + 1 so deleting an entry never leaves the
+    // next add colliding with an existing order value.
+    const nextOrder = subs.reduce((m, s) => Math.max(m, s.order), 0) + 1;
     const sub: Subcategory = {
       id,
       categoryId,
@@ -248,7 +248,7 @@ export default function AdminDashboard() {
       name_en: newSub.name_en,
       desc_sq: newSub.desc_sq,
       desc_en: newSub.desc_en,
-      order: subs.length + 1,
+      order: nextOrder,
     };
     try {
       await apiFetch("/api/admin/products", {
@@ -303,11 +303,12 @@ export default function AdminDashboard() {
   async function addFaqItem() {
     if (!newFaq.q_sq && !newFaq.q_en) return;
     setSavingFaq(true);
+    const nextOrder = faqs.reduce((m, f) => Math.max(m, f.order), 0) + 1;
     const item: FaqItem = {
       id: `faq-${Date.now()}`,
       q_sq: newFaq.q_sq, a_sq: newFaq.a_sq,
       q_en: newFaq.q_en, a_en: newFaq.a_en,
-      order: faqs.length + 1,
+      order: nextOrder,
     };
     try {
       await apiFetch("/api/admin/faq", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(item) });
@@ -352,10 +353,8 @@ export default function AdminDashboard() {
     if (swapIdx < 0 || swapIdx >= sorted.length) return;
     const a = sorted[idx], b = sorted[swapIdx];
     try {
-      await Promise.all([
-        apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) }),
-        apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) }),
-      ]);
+      await apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: a.id, order: b.order }) });
+      await apiFetch("/api/admin/faq", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: b.id, order: a.order }) });
       setFaqs((prev) => prev.map((f) => {
         if (f.id === a.id) return { ...f, order: b.order };
         if (f.id === b.id) return { ...f, order: a.order };
@@ -530,15 +529,13 @@ export default function AdminDashboard() {
     setImages((prev) => prev.map((img) => orderMap.has(img.id) ? { ...img, order: orderMap.get(img.id)! } : img));
 
     try {
-      await Promise.all(
-        updates.map((u) =>
-          apiFetch("/api/admin/images", {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id: u.id, order: u.order }),
-          })
-        )
-      );
+      for (const u of updates) {
+        await apiFetch("/api/admin/images", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: u.id, order: u.order }),
+        });
+      }
     } catch (e) {
       toast.err(`Rirenditja dështoi: ${(e as Error).message}`);
       await fetchImages();
@@ -551,20 +548,18 @@ export default function AdminDashboard() {
     setDeletingSelected(true);
     const ids = Array.from(selected);
     let ok = 0, fail = 0;
-    await Promise.all(
-      ids.map(async (id) => {
-        try {
-          await apiFetch("/api/admin/images", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id }),
-          });
-          ok++;
-        } catch {
-          fail++;
-        }
-      })
-    );
+    for (const id of ids) {
+      try {
+        await apiFetch("/api/admin/images", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+        ok++;
+      } catch {
+        fail++;
+      }
+    }
     await fetchImages();
     setSelected(new Set());
     setSelectMode(false);
@@ -889,10 +884,19 @@ export default function AdminDashboard() {
                       {/* Category header */}
                       <div className="relative flex items-center justify-between px-6 py-4 bg-[#1a1a1a] overflow-hidden min-h-[72px]">
                         {cat.coverImage && (
-                          <Image src={cat.coverImage} alt={cat.name_en} fill className="object-cover opacity-20" />
+                          <>
+                            <Image src={cat.coverImage} alt={cat.name_en} fill className="object-cover opacity-40" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/85 via-[#1a1a1a]/40 to-[#1a1a1a]/85" />
+                          </>
                         )}
                         <div className="relative flex items-center gap-3">
-                          <span className="text-2xl">{cat.icon}</span>
+                          {cat.coverImage ? (
+                            <div className="relative w-14 h-14 rounded-xl overflow-hidden ring-2 ring-[#e11d3c]/60 shrink-0">
+                              <Image src={cat.coverImage} alt={cat.name_en} fill className="object-cover" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
+                            </div>
+                          ) : (
+                            <span className="text-2xl">{cat.icon}</span>
+                          )}
                           <div>
                             <p className="font-display text-lg font-semibold text-white">{cat.name_sq}</p>
                             <p className="text-white/50 text-xs">{cat.name_en}</p>
