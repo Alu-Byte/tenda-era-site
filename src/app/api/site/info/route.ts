@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readDataAsync } from "@/lib/data";
+import { readFresh } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +13,12 @@ const DEFAULT_ANN = { text_sq: "", text_en: "", active: false, bg: "red" as cons
 
 export async function GET() {
   try {
-    const data = await readDataAsync();
+    const data = await readFresh();
     return NextResponse.json({
       openingHours: data.openingHours ?? DEFAULT_HOURS,
       announcement: data.announcement ?? DEFAULT_ANN,
+    }, {
+      headers: { "Cache-Control": "no-store, no-cache, must-revalidate" },
     });
   } catch (err) {
     console.error("[site/info GET]", err);

@@ -3,22 +3,18 @@ import { writeFile, mkdir } from "fs/promises";
 import { existsSync } from "fs";
 import path from "path";
 import { v4 as uuid } from "uuid";
-import { put } from "@vercel/blob";
+import sharp from "sharp";
 import { checkAdminAuth } from "@/lib/auth";
 import { addImage } from "@/lib/data";
+import { isCloudinary, uploadImageToCloudinary } from "@/lib/cloudinary";
 import type { SiteImage } from "@/types";
+
+export const maxDuration = 60;
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 const ALLOWED_EXTS = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
 const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
-
-function isBlobStorage(): boolean {
-  return Boolean(
-    process.env.BLOB_READ_WRITE_TOKEN ||
-      (process.env.BLOB_STORE_ID && process.env.VERCEL)
-  );
-}
 
 export async function POST(req: NextRequest) {
   const authed = await checkAdminAuth();
@@ -46,23 +42,33 @@ export async function POST(req: NextRequest) {
     }
 
     const id = uuid();
-    const filename = `${id}${ext}`;
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const rawBuffer = Buffer.from(await file.arrayBuffer());
+
+    // Normalize: auto-rotate from EXIF, cap max dimension, re-encode as
+    // high-quality WebP. GIFs are preserved as-is to keep any animation.
+    let processedBuffer: Buffer;
+    let outputExt: string;
+    if (file.type === "image/gif") {
+      processedBuffer = rawBuffer;
+      outputExt = ".gif";
+    } else {
+      processedBuffer = await sharp(rawBuffer)
+        .rotate()
+        .resize({ width: 2560, height: 2560, fit: "inside", withoutEnlargement: true })
+        .webp({ quality: 92 })
+        .toBuffer();
+      outputExt = ".webp";
+    }
+    const filename = `${id}${outputExt}`;
 
     let url: string;
-    if (isBlobStorage()) {
-      // Store in Vercel Blob (production)
-      const blob = await put(`uploads/${filename}`, buffer, {
-        access: "public",
-        contentType: file.type,
-        addRandomSuffix: false,
-        allowOverwrite: false,
-      });
-      url = blob.url;
+    if (isCloudinary()) {
+      // Store in Cloudinary (production)
+      url = await uploadImageToCloudinary(processedBuffer, id, outputExt);
     } else {
       // Store on local filesystem (dev)
       if (!existsSync(UPLOAD_DIR)) await mkdir(UPLOAD_DIR, { recursive: true });
-      await writeFile(path.join(UPLOAD_DIR, filename), buffer);
+      await writeFile(path.join(UPLOAD_DIR, filename), processedBuffer);
       url = `/uploads/${filename}`;
     }
 

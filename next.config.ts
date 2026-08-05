@@ -4,10 +4,12 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.100.120"],
   images: {
     remotePatterns: [
-      // Vercel Blob — public URLs for uploaded photos.
-      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+      // Cloudinary — public URLs for uploaded photos.
+      { protocol: "https", hostname: "res.cloudinary.com" },
     ],
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    qualities: [75, 90, 100],
+    minimumCacheTTL: 31536000,
   },
 };
 

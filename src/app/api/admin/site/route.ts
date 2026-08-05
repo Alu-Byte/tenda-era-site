@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkAdminAuth } from "@/lib/auth";
-import { readDataAsync, updateOpeningHours, updateAnnouncement } from "@/lib/data";
+import { readFresh, updateOpeningHours, updateAnnouncement } from "@/lib/data";
 
 const DEFAULT_HOURS = {
   weekdays_sq: "E Hënë – E Premte, 8:00 – 18:00",
@@ -14,7 +14,7 @@ export async function GET() {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const data = await readDataAsync();
+    const data = await readFresh();
     return NextResponse.json({
       openingHours: data.openingHours ?? DEFAULT_HOURS,
       announcement: data.announcement ?? DEFAULT_ANN,

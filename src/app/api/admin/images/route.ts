@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { unlink } from "fs/promises";
 import path from "path";
 import { existsSync } from "fs";
-import { del as delBlob } from "@vercel/blob";
 import { checkAdminAuth } from "@/lib/auth";
-import { readDataAsync, updateImage, deleteImage } from "@/lib/data";
+import { readFresh, updateImage, deleteImage } from "@/lib/data";
+import { deleteImageFromCloudinary } from "@/lib/cloudinary";
 
 export async function GET() {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const data = await readDataAsync();
+    const data = await readFresh();
     return NextResponse.json(data.images);
   } catch (err) {
     console.error("[images GET]", err);
@@ -38,19 +38,25 @@ export async function DELETE(req: NextRequest) {
     const { id } = await req.json();
     // Snapshot the image record (with url) before we delete it so we know
     // whether it lives on Blob or the local filesystem.
-    const data = await readDataAsync();
+    const data = await readFresh();
     const img = data.images.find((i) => i.id === id);
     const filename = await deleteImage(id);
+    let orphaned = false;
     if (img?.url?.startsWith("https://")) {
-      // Vercel Blob URL — remove from Blob
-      try { await delBlob(img.url); } catch (e) { console.warn("[images] blob del failed", e); }
+      // Remote (Cloudinary) URL — remove from Cloudinary
+      try {
+        await deleteImageFromCloudinary(img.url);
+      } catch (e) {
+        console.error("[images DELETE] cloudinary del failed for", img.url, e);
+        orphaned = true;
+      }
     } else if (filename) {
       const filePath = path.join(process.cwd(), "public", "uploads", filename);
       if (existsSync(filePath)) {
-        try { await unlink(filePath); } catch (e) { console.warn("[images] fs unlink failed", e); }
+        try { await unlink(filePath); } catch (e) { console.warn("[images DELETE] fs unlink failed", e); }
       }
     }
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, orphaned });
   } catch (err) {
     console.error("[images DELETE]", err);
     return NextResponse.json({ error: (err as Error).message }, { status: 500 });

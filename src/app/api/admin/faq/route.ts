@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkAdminAuth } from "@/lib/auth";
-import { readDataAsync, addFaq, updateFaq, deleteFaq } from "@/lib/data";
+import { readFresh, addFaq, updateFaq, deleteFaq } from "@/lib/data";
 
 export async function GET() {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const data = await readDataAsync();
+    const data = await readFresh();
     return NextResponse.json([...data.faqs].sort((a, b) => a.order - b.order));
   } catch (err) {
     console.error("[faq GET]", err);

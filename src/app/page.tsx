@@ -14,7 +14,7 @@ import { readDataAsync } from "@/lib/data";
 export default async function HomePage() {
   const data = await readDataAsync();
   const heroImages = data.images.filter((i) => i.section === "hero" && i.visible).sort((a, b) => a.order - b.order);
-  const portfolioImages = data.images.filter((i) => i.section === "home-portfolio" && i.visible).sort((a, b) => a.order - b.order);
+  const portfolioImages = data.images.filter((i) => i.section === "portfolio" && i.visible).sort((a, b) => a.order - b.order);
   const categories = [...data.categories].sort((a, b) => a.order - b.order);
   const subcategories = [...data.subcategories].sort((a, b) => a.order - b.order);
   const faqs = [...data.faqs].sort((a, b) => a.order - b.order);

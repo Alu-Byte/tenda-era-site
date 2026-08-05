@@ -7,14 +7,22 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tendaera.com"),
   title: "Tenda Era — Tenda & Çadra Dielli",
   description:
     "Tenda Era — prodhues i tendave dhe çadrajave premium të diellit për dyqane, bare dhe plazhe në Shqipëri që nga 1994. Sun awnings and umbrellas in Albania.",
   keywords: ["tenda", "awnings", "umbrellas", "shade", "Albania", "Tirana", "tendaera", "çadra"],
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
   openGraph: {
     title: "Tenda Era",
     description: "Tenda & çadra premium të diellit që nga 1994.",
     type: "website",
+    url: "https://tendaera.com",
+    siteName: "Tenda Era",
   },
 };
 

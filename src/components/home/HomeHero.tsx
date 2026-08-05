@@ -37,6 +37,7 @@ export default function HomeHero({ heroImages }: Props) {
               fill
               className="object-cover scale-105"
               priority
+              quality={90}
               sizes="100vw"
             />
             {/* Modern layered gradient — cleaner, lighter */}

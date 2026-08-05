@@ -1,10 +1,13 @@
 import fs from "fs";
 import path from "path";
-import { put, list } from "@vercel/blob";
+import {
+  isCloudinary,
+  readSiteDataFromCloudinary,
+  writeSiteDataToCloudinary,
+} from "./cloudinary";
 import type { SiteData, SiteImage, Category, Subcategory, FaqItem, OpeningHours, Announcement } from "@/types";
 
 const DATA_FILE = path.join(process.cwd(), "data", "site-data.json");
-const BLOB_KEY = "site-data.json";
 
 const DEFAULT_CATEGORIES: Category[] = [
   { id: "tenda", name_sq: "Tenda", name_en: "Awnings", icon: "▤", order: 1 },
@@ -25,19 +28,10 @@ const INITIAL_DATA: SiteData = {
   faqs: [],
 };
 
-function isBlobStorage(): boolean {
-  // Detects both classic (BLOB_READ_WRITE_TOKEN) and OIDC-based
-  // (BLOB_STORE_ID + VERCEL_OIDC_TOKEN) Blob configurations.
-  return Boolean(
-    process.env.BLOB_READ_WRITE_TOKEN ||
-      (process.env.BLOB_STORE_ID && process.env.VERCEL)
-  );
-}
-
 // ── In-memory cache (per serverless instance) ─────────────
-// Blob-backed reads use a short TTL so writes from other Lambda instances
+// Remote reads use a short TTL so writes from other Lambda instances
 // (e.g. admin uploads) become visible without waiting for a cold start.
-const BLOB_CACHE_TTL_MS = 3_000;
+const REMOTE_CACHE_TTL_MS = 3_000;
 let cache: SiteData | null = null;
 let cacheAt = 0;
 let cachePromise: Promise<SiteData> | null = null;
@@ -73,36 +67,20 @@ function writeToFile(data: SiteData): void {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 }
 
-// ── Blob read (prod) ──────────────────────────────────────
-async function readFromBlob(): Promise<SiteData> {
+// ── Cloudinary read (prod) ────────────────────────────────
+async function readFromCloudinary(): Promise<SiteData> {
   try {
-    const { blobs } = await list({ prefix: BLOB_KEY });
-    const match = blobs.find((b) => b.pathname === BLOB_KEY);
-    if (!match) return { ...INITIAL_DATA };
-    // The public `url` is served through a CDN edge that lags behind writes by
-    // seconds — reading it right after a `put` returns the previous version,
-    // which corrupts read-modify-write cycles (a second admin edit reads stale
-    // data and drops the first). `downloadUrl` (?download=1) skips that cache
-    // and returns the freshly written content.
-    const bust = new Date(match.uploadedAt).getTime();
-    const fresh = match.downloadUrl ?? match.url;
-    const url = `${fresh}${fresh.includes("?") ? "&" : "?"}v=${bust}`;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) return { ...INITIAL_DATA };
-    return normalize(await res.json());
+    const doc = await readSiteDataFromCloudinary();
+    if (!doc) return { ...INITIAL_DATA };
+    return normalize(doc as SiteData);
   } catch (err) {
-    console.error("[data] readFromBlob failed:", err);
+    console.error("[data] readFromCloudinary failed:", err);
     return { ...INITIAL_DATA };
   }
 }
 
-async function writeToBlob(data: SiteData): Promise<void> {
-  await put(BLOB_KEY, JSON.stringify(data, null, 2), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-  });
+async function writeToCloudinary(data: SiteData): Promise<void> {
+  await writeSiteDataToCloudinary(data);
 }
 
 // ── Public sync + async APIs ──────────────────────────────
@@ -111,11 +89,11 @@ async function writeToBlob(data: SiteData): Promise<void> {
 // cache that's warmed up on first call.
 
 async function ensureCache(): Promise<SiteData> {
-  const blob = isBlobStorage();
-  const fresh = cache && (!blob || Date.now() - cacheAt < BLOB_CACHE_TTL_MS);
+  const remote = isCloudinary();
+  const fresh = cache && (!remote || Date.now() - cacheAt < REMOTE_CACHE_TTL_MS);
   if (fresh) return cache!;
   if (!cachePromise) {
-    cachePromise = (blob ? readFromBlob() : Promise.resolve(readFromFile()))
+    cachePromise = (remote ? readFromCloudinary() : Promise.resolve(readFromFile()))
       .then((d) => { cache = d; cacheAt = Date.now(); cachePromise = null; return d; })
       .catch((err) => { cachePromise = null; throw err; });
   }
@@ -127,7 +105,7 @@ export async function readDataAsync(): Promise<SiteData> {
 }
 
 export function readData(): SiteData {
-  if (!isBlobStorage()) {
+  if (!isCloudinary()) {
     if (!cache) cache = readFromFile();
     return cache;
   }
@@ -143,8 +121,8 @@ export function readData(): SiteData {
 export async function writeData(data: SiteData): Promise<void> {
   cache = data;
   cacheAt = Date.now();
-  if (isBlobStorage()) {
-    await writeToBlob(data);
+  if (isCloudinary()) {
+    await writeToCloudinary(data);
   } else {
     writeToFile(data);
   }

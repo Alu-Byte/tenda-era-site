@@ -17,19 +17,27 @@ const DEFAULT: SiteInfo = {
   announcement: { text_sq: "", text_en: "", active: false, bg: "red" },
 };
 
+// Short TTL so admin changes (hours, announcement) propagate to all pages
+// within a few seconds without needing a full browser reload.
+const CACHE_TTL_MS = 5_000;
 let cache: SiteInfo | null = null;
+let cacheAt = 0;
 let inflight: Promise<SiteInfo> | null = null;
+
+function isFresh() {
+  return cache !== null && Date.now() - cacheAt < CACHE_TTL_MS;
+}
 
 export function useSiteInfo(): SiteInfo {
   const [info, setInfo] = useState<SiteInfo>(() => cache ?? DEFAULT);
 
   useEffect(() => {
-    if (cache) { setInfo(cache); return; }
+    if (isFresh()) { setInfo(cache!); return; }
     if (!inflight) {
-      inflight = fetch("/api/site/info")
+      inflight = fetch("/api/site/info", { cache: "no-store" })
         .then((r) => r.json())
-        .then((data: SiteInfo) => { cache = data; return data; })
-        .catch(() => DEFAULT);
+        .then((data: SiteInfo) => { cache = data; cacheAt = Date.now(); inflight = null; return data; })
+        .catch(() => { inflight = null; return DEFAULT; });
     }
     inflight.then(setInfo);
   }, []);
@@ -39,5 +47,6 @@ export function useSiteInfo(): SiteInfo {
 
 export function invalidateSiteInfoCache() {
   cache = null;
+  cacheAt = 0;
   inflight = null;
 }

@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import type { FaqItem } from "@/types";
 
-const INITIAL_SHOW = 3;
+const INITIAL_SHOW = 5;
 
 interface Props {
   items: FaqItem[];

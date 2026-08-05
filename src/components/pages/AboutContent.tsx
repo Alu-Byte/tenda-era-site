@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/lib/LangContext";
-import { Award, Users, Globe, Wrench } from "lucide-react";
+import { Award, Users, Globe, Wrench, X, ZoomIn } from "lucide-react";
 import type { SiteImage } from "@/types";
 
 const timelineSQ = [
@@ -54,6 +55,8 @@ export default function AboutContent({ images }: Props) {
   const timeline = lang === "sq" ? timelineSQ : timelineEN;
   const values = lang === "sq" ? valuesSQ : valuesEN;
   const partners = lang === "sq" ? partnersSQ : partnersEN;
+  const [lightbox, setLightbox] = useState<SiteImage | null>(null);
+  const galleryImages = images.slice(1);
 
   return (
     <>
@@ -135,8 +138,87 @@ export default function AboutContent({ images }: Props) {
         </div>
       </section>
 
+      {/* Gallery */}
+      {galleryImages.length > 0 && (
+        <section className="bg-[#fbfaf6] py-20 lg:py-24 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                <span className="w-6 h-px bg-[#e11d3c]" />
+                {lang === "sq" ? "Galeri" : "Gallery"}
+                <span className="w-6 h-px bg-[#e11d3c]" />
+              </p>
+              <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">
+                {lang === "sq" ? "Momente nga Ne" : "Moments From Us"}
+              </h2>
+            </div>
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+              {galleryImages.map((img) => (
+                <div
+                  key={img.id}
+                  className="break-inside-avoid rounded-2xl overflow-hidden relative group cursor-pointer shadow-soft hover:shadow-elevated transition-shadow ring-1 ring-neutral-200"
+                  onClick={() => setLightbox(img)}
+                >
+                  <Image
+                    src={img.url}
+                    alt={img.title || img.originalName}
+                    width={600}
+                    height={400}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={90}
+                    className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all group-hover:scale-100 scale-90">
+                      <ZoomIn className="text-neutral-900" size={20} />
+                    </div>
+                  </div>
+                  {img.title && (
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                      <p className="text-white font-semibold text-sm">{img.title}</p>
+                      {img.description && <p className="text-white/70 text-xs mt-0.5">{img.description}</p>}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white hover:text-[#e11d3c] transition-colors touch-manipulation"
+            onClick={() => setLightbox(null)}
+          >
+            <X size={32} />
+          </button>
+          <div className="max-w-4xl max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={lightbox.url}
+              alt={lightbox.title || lightbox.originalName}
+              width={1200}
+              height={800}
+              sizes="90vw"
+              quality={100}
+              className="max-h-[85vh] w-auto object-contain rounded-xl"
+            />
+            {lightbox.title && (
+              <div className="mt-3 text-center">
+                <p className="text-white font-semibold">{lightbox.title}</p>
+                {lightbox.description && <p className="text-white/60 text-sm">{lightbox.description}</p>}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Timeline */}
-      <section className="bg-[#fbfaf6] py-20 lg:py-24 px-6">
+      <section className={`${galleryImages.length > 0 ? "bg-white" : "bg-[#fbfaf6]"} py-20 lg:py-24 px-6`}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkAdminAuth } from "@/lib/auth";
 import {
-  readDataAsync,
+  readFresh,
   addSubcategory, updateSubcategory, deleteSubcategory, updateCategory,
 } from "@/lib/data";
 
@@ -9,7 +9,7 @@ export async function GET() {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const data = await readDataAsync();
+    const data = await readFresh();
     return NextResponse.json({
       categories: [...data.categories].sort((a, b) => a.order - b.order),
       subcategories: [...data.subcategories].sort((a, b) => a.order - b.order),
