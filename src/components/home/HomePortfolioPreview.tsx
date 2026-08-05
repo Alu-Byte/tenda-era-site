@@ -57,18 +57,13 @@ export default function HomePortfolioPreview({ images }: Props) {
               >
                 <Image
                   src={img.url}
-                  alt={img.title || img.originalName}
+                  alt=""
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   quality={90}
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
-                {img.title && (
-                  <div className="absolute bottom-0 left-0 right-0 px-4 py-3 translate-y-2 group-hover:translate-y-0 opacity-90 group-hover:opacity-100 transition-all">
-                    <p className="text-white font-semibold text-sm drop-shadow">{img.title}</p>
-                  </div>
-                )}
               </div>
             ))
           ) : (

@@ -33,10 +33,8 @@ export default function AdminDashboard() {
   const [filterSection, setFilterSection] = useState<string>("all");
   const [uploading, setUploading] = useState(false);
   const [uploadSection, setUploadSection] = useState<string>("portfolio");
-  const [uploadTitle, setUploadTitle] = useState("");
   const [dragOver, setDragOver] = useState(false);
   const [editingImgId, setEditingImgId] = useState<string | null>(null);
-  const [editImgTitle, setEditImgTitle] = useState("");
   const [editImgSection, setEditImgSection] = useState("");
   const [selectMode, setSelectMode] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -149,7 +147,6 @@ export default function AdminDashboard() {
       const form = new FormData();
       form.append("file", file);
       form.append("section", uploadSection);
-      form.append("title", uploadTitle);
       try {
         await apiFetch("/api/admin/upload", { method: "POST", body: form });
         succeeded++;
@@ -157,7 +154,6 @@ export default function AdminDashboard() {
         toast.err(`Ngarkimi dështoi: ${(e as Error).message}`);
       }
     }
-    setUploadTitle("");
     if (fileRef.current) fileRef.current.value = "";
     await fetchImages();
     setUploading(false);
@@ -194,7 +190,6 @@ export default function AdminDashboard() {
 
   function startImgEdit(img: SiteImage) {
     setEditingImgId(img.id);
-    setEditImgTitle(img.title || "");
     setEditImgSection(img.section);
   }
 
@@ -203,9 +198,9 @@ export default function AdminDashboard() {
       await apiFetch("/api/admin/images", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, title: editImgTitle, section: editImgSection }),
+        body: JSON.stringify({ id, section: editImgSection }),
       });
-      setImages((prev) => prev.map((i) => i.id === id ? { ...i, title: editImgTitle, section: editImgSection } : i));
+      setImages((prev) => prev.map((i) => i.id === id ? { ...i, section: editImgSection } : i));
       setEditingImgId(null);
       toast.ok("Ndryshimet u ruajtën");
     } catch (e) {
@@ -703,20 +698,12 @@ export default function AdminDashboard() {
                 onDragLeave={() => setDragOver(false)}
                 onDrop={(e) => { e.preventDefault(); setDragOver(false); handleUpload(e.dataTransfer.files); }}
               >
-                <div className="flex flex-col sm:flex-row gap-4 mb-5">
-                  <div className="flex-1">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Ngarko në Seksion</label>
-                    <select value={uploadSection} onChange={(e) => setUploadSection(e.target.value)}
-                      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm text-gray-700">
-                      {allSections.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
-                    </select>
-                  </div>
-                  <div className="flex-1">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Titulli (opsional)</label>
-                    <input type="text" value={uploadTitle} onChange={(e) => setUploadTitle(e.target.value)}
-                      placeholder="p.sh. Tendë Plazhi"
-                      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm" />
-                  </div>
+                <div className="mb-5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Ngarko në Seksion</label>
+                  <select value={uploadSection} onChange={(e) => setUploadSection(e.target.value)}
+                    className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm text-gray-700">
+                    {allSections.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+                  </select>
                 </div>
                 <div className="text-center">
                   <Upload size={28} className="text-gray-300 mx-auto mb-2" />
@@ -813,7 +800,7 @@ export default function AdminDashboard() {
                       }`}
                     >
                       <div className="relative aspect-square bg-gray-100">
-                        <Image src={img.url} alt={img.title || img.filename} fill className="object-cover" />
+                        <Image src={img.url} alt="" fill className="object-cover" />
                         <div className="absolute inset-0 bg-black/0 hover:bg-black/50 transition-all flex items-center justify-center gap-2 opacity-0 hover:opacity-100">
                           <button onClick={() => toggleVisible(img)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-[#e11d3c] hover:text-white transition-colors">{img.visible ? <Eye size={15} /> : <EyeOff size={15} />}</button>
                           <button onClick={() => startImgEdit(img)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-[#1a1a1a] hover:text-white transition-colors"><Edit2 size={15} /></button>
@@ -838,7 +825,6 @@ export default function AdminDashboard() {
                       <div className="p-3">
                         {editingImgId === img.id ? (
                           <div className="space-y-2">
-                            <input value={editImgTitle} onChange={(e) => setEditImgTitle(e.target.value)} placeholder="Titulli" className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-200 focus:border-[#e11d3c] focus:outline-none" />
                             <select value={editImgSection} onChange={(e) => setEditImgSection(e.target.value)} className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-200 focus:border-[#e11d3c] focus:outline-none">
                               {allSections.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
                             </select>
@@ -849,8 +835,7 @@ export default function AdminDashboard() {
                           </div>
                         ) : (
                           <>
-                            <p className={`text-xs font-semibold truncate ${img.title ? "text-gray-700" : "italic text-gray-300"}`}>{img.title || "Pa titull"}</p>
-                            <p className="text-xs text-[#e11d3c] mt-0.5 truncate">{sectionLabel(img.section)}</p>
+                            <p className="text-xs text-[#e11d3c] font-semibold truncate">{sectionLabel(img.section)}</p>
                             <p className="text-gray-300 text-xs mt-1">{new Date(img.uploadedAt).toLocaleDateString()}</p>
                           </>
                         )}

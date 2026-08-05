@@ -116,15 +116,10 @@ export default function ProductsContent({ categories, subcategories, images }: P
                               {subImages.map((img) => (
                                 <div key={img.id} className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer bg-gray-100"
                                   onClick={() => setLightbox(img)}>
-                                  <Image src={img.url} alt={img.title || img.originalName} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                                  <Image src={img.url} alt="" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                                   <div className="absolute inset-0 bg-[#1a1a1a]/0 group-hover:bg-[#1a1a1a]/50 transition-all flex items-center justify-center">
                                     <ZoomIn className="text-white opacity-0 group-hover:opacity-100 transition-opacity" size={28} />
                                   </div>
-                                  {img.title && (
-                                    <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-black/60 opacity-0 group-hover:opacity-100 transition-opacity">
-                                      <p className="text-white text-xs font-medium truncate">{img.title}</p>
-                                    </div>
-                                  )}
                                 </div>
                               ))}
                             </div>
@@ -177,13 +172,8 @@ export default function ProductsContent({ categories, subcategories, images }: P
             <X size={32} />
           </button>
           <div className="max-w-4xl max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
-            <Image src={lightbox.url} alt={lightbox.title || lightbox.originalName} width={1200} height={800}
+            <Image src={lightbox.url} alt="" width={1200} height={800}
               className="max-h-[85vh] w-auto object-contain rounded-xl" />
-            {lightbox.title && (
-              <div className="mt-3 text-center">
-                <p className="text-white font-semibold">{lightbox.title}</p>
-              </div>
-            )}
           </div>
         </div>
       )}

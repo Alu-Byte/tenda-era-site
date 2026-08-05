@@ -161,7 +161,7 @@ export default function AboutContent({ images }: Props) {
                 >
                   <Image
                     src={img.url}
-                    alt={img.title || img.originalName}
+                    alt=""
                     width={600}
                     height={400}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -173,12 +173,6 @@ export default function AboutContent({ images }: Props) {
                       <ZoomIn className="text-neutral-900" size={20} />
                     </div>
                   </div>
-                  {img.title && (
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                      <p className="text-white font-semibold text-sm">{img.title}</p>
-                      {img.description && <p className="text-white/70 text-xs mt-0.5">{img.description}</p>}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -200,19 +194,13 @@ export default function AboutContent({ images }: Props) {
           <div className="max-w-4xl max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
             <Image
               src={lightbox.url}
-              alt={lightbox.title || lightbox.originalName}
+              alt=""
               width={1200}
               height={800}
               sizes="90vw"
               quality={100}
               className="max-h-[85vh] w-auto object-contain rounded-xl"
             />
-            {lightbox.title && (
-              <div className="mt-3 text-center">
-                <p className="text-white font-semibold">{lightbox.title}</p>
-                {lightbox.description && <p className="text-white/60 text-sm">{lightbox.description}</p>}
-              </div>
-            )}
           </div>
         </div>
       )}
