@@ -1,79 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Award, Shield, Wrench } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 
-function CountUp({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(target);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || started.current) return;
-
-    const start = () => {
-      if (started.current) return;
-      started.current = true;
-      setCount(0);
-      const steps = 50;
-      const increment = target / steps;
-      let current = 0;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          setCount(target);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, 1200 / steps);
-    };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) start(); },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-
-    // Fallback: start after 1.5s even if observer never fires
-    const fallback = setTimeout(start, 1500);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(fallback);
-    };
-  }, [target]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
 export default function HomeStats() {
-  const { t } = useLang();
+  const { lang } = useLang();
 
-  const stats = [
-    { value: 30, suffix: "+", label: t.stats.experience },
-    { value: 1200, suffix: "+", label: t.stats.projects },
-    { value: 4, suffix: "", label: t.stats.partners },
-    { value: 100, suffix: "%", label: t.stats.satisfaction },
-  ];
+  const items = lang === "sq"
+    ? [
+        { icon: Award, k: "Pëlhura europiane", v: "Mehler · Corti · Calbari · Frigerio", note: "Certifikime CE, të garantuara për 5–10 vjet." },
+        { icon: Wrench, k: "Prodhim + Montim", v: "Ekipi ynë vjen te ju", note: "Matje në terren, prodhim në punishten tonë, instalim profesional." },
+        { icon: Shield, k: "Mirëmbajtje pas montimit", v: "Servis + rifreskim pëlhurash", note: "Kontratë vjetore për biznese, riparim urgjent në 48 orë." },
+      ]
+    : [
+        { icon: Award, k: "European fabrics", v: "Mehler · Corti · Calbari · Frigerio", note: "CE-certified, backed by 5–10 year manufacturer warranties." },
+        { icon: Wrench, k: "In-house build + install", v: "Our team comes to you", note: "On-site measurement, workshop fabrication, professional installation." },
+        { icon: Shield, k: "Post-installation service", v: "Service + fabric refresh", note: "Annual contracts for businesses, 48-hour emergency repair." },
+      ];
 
   return (
-    <section className="bg-white py-16 lg:py-20 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="text-center px-2 py-6 lg:py-8 rounded-2xl hover:bg-neutral-50/70 transition-colors relative"
-            >
-              {i > 0 && <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-px h-16 bg-neutral-200/70" />}
-              <p className="font-display text-4xl lg:text-[3.25rem] font-bold text-[#e11d3c] mb-2 tracking-tight leading-none">
-                <CountUp target={stat.value} suffix={stat.suffix} />
-              </p>
-              <p className="text-[11px] lg:text-xs text-neutral-500 font-semibold uppercase tracking-[0.15em]">
-                {stat.label}
-              </p>
+    <section className="bg-white border-y border-[#e7e5e4]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          {items.map((it, i) => (
+            <div key={it.k} className="relative">
+              {i > 0 && (
+                <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-[#e7e5e4]" />
+              )}
+              <div className="mb-5 w-11 h-11 border border-[#e7e5e4] flex items-center justify-center">
+                <it.icon size={18} className="text-[#0f766e]" strokeWidth={1.75} />
+              </div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#57534e] mb-2">{it.k}</p>
+              <p className="text-lg font-semibold text-[#1c1917] leading-snug mb-3">{it.v}</p>
+              <p className="text-sm text-[#57534e] leading-relaxed">{it.note}</p>
             </div>
           ))}
         </div>

@@ -24,10 +24,10 @@ export default async function HomePage() {
       <Navbar />
       <main>
         <HomeHero heroImages={heroImages} />
-        <HomeStats />
+        <HomePartners />
         <HomeProducts categories={categories} subcategories={subcategories} />
         <HomePortfolioPreview images={portfolioImages} />
-        <HomePartners />
+        <HomeStats />
         <HomeCTA />
         <HomeFAQ items={faqs} />
       </main>

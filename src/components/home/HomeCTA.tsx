@@ -5,41 +5,41 @@ import { ArrowRight, Phone } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 
 export default function HomeCTA() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const c = t.cta;
 
   return (
-    <section className="bg-[#fbfaf6] py-20 lg:py-28">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <div className="relative rounded-[2rem] p-10 lg:p-16 overflow-hidden shadow-elevated"
-          style={{
-            background: "linear-gradient(135deg, #171717 0%, #262626 100%)",
-          }}>
-          {/* Glowing accents */}
-          <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#e11d3c]/25 blur-[80px]" />
-          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#f43f5e]/15 blur-[80px]" />
-          {/* Grid pattern */}
-          <div className="absolute inset-0 opacity-[0.05]" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: "24px 24px",
-          }} />
-
-          <div className="relative z-10">
-            <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#f43f5e] animate-pulse" />
+    <section className="bg-[#0c0a09] relative">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+          <div className="lg:col-span-8">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#14b8a6] mb-6 flex items-center gap-3">
+              <span className="w-10 h-px bg-[#14b8a6]" />
               {c.label}
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-[1.1] tracking-tight max-w-2xl mx-auto">{c.title}</h2>
-            <p className="text-white/65 text-base lg:text-lg mb-10 max-w-xl mx-auto leading-relaxed">{c.desc}</p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-4 bg-[#e11d3c] text-white font-semibold rounded-full hover:bg-[#b91429] transition-all touch-manipulation shadow-[0_10px_30px_-8px_rgba(225,29,60,0.6)] hover:-translate-y-0.5 no-underline">
-                {c.btn_quote}
-                <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <a href="tel:+355692075317" className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 backdrop-blur-sm border border-white/25 text-white font-semibold rounded-full hover:bg-white/15 hover:border-white/40 transition-all touch-manipulation no-underline">
-                <Phone size={17} /> {c.btn_call}
-              </a>
-            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight max-w-3xl mb-6">
+              {c.title}
+            </h2>
+            <p className="text-white/70 text-base lg:text-lg max-w-2xl leading-relaxed">{c.desc}</p>
+          </div>
+
+          <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
+            <Link
+              href="/contact"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c2410c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#9a3412] transition-colors no-underline w-full lg:w-auto"
+            >
+              {c.btn_quote}
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+            <a
+              href="tel:+355692075317"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/40 text-white text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-[#0c0a09] transition-colors no-underline w-full lg:w-auto"
+            >
+              <Phone size={16} /> +355 69 207 5317
+            </a>
+            <p className="text-[11px] text-white/50 uppercase tracking-widest mt-1">
+              {lang === "sq" ? "E Hënë – E Shtunë · 8:00 – 18:00" : "Mon – Sat · 8am – 6pm"}
+            </p>
           </div>
         </div>
       </div>

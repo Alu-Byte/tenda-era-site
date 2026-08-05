@@ -626,7 +626,7 @@ export default function AdminDashboard() {
       {/* Top bar */}
       <header className="bg-[#1a1a1a] text-white px-4 md:px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-lg">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#e11d3c] flex items-center justify-center font-bold text-sm">T</div>
+          <div className="w-9 h-9 rounded-full bg-[#0f766e] flex items-center justify-center font-bold text-sm">T</div>
           <div>
             <p className="font-semibold text-sm">Tenda Era</p>
             <p className="text-white/50 text-xs">Paneli i Adminit</p>
@@ -644,16 +644,16 @@ export default function AdminDashboard() {
 
       {/* Tab bar */}
       <div className="bg-white border-b border-gray-200 px-4 md:px-6 flex">
-        <button onClick={() => setTab("images")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "images" ? "border-[#e11d3c] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
+        <button onClick={() => setTab("images")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "images" ? "border-[#0f766e] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
           <ImageIcon size={16} /> Fotot
         </button>
-        <button onClick={() => setTab("products")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "products" ? "border-[#e11d3c] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
+        <button onClick={() => setTab("products")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "products" ? "border-[#0f766e] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
           <Package size={16} /> Produktet
         </button>
-        <button onClick={() => setTab("faq")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "faq" ? "border-[#e11d3c] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
+        <button onClick={() => setTab("faq")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "faq" ? "border-[#0f766e] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
           FAQ
         </button>
-        <button onClick={() => setTab("settings")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "settings" ? "border-[#e11d3c] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
+        <button onClick={() => setTab("settings")} className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold border-b-2 transition-colors ${tab === "settings" ? "border-[#0f766e] text-[#1a1a1a]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
           Cilësimet
         </button>
       </div>
@@ -693,7 +693,7 @@ export default function AdminDashboard() {
             <main className="flex-1 min-w-0">
               {/* Upload zone */}
               <div
-                className={`mb-8 border-2 border-dashed rounded-2xl p-6 bg-white transition-colors ${dragOver ? "border-[#e11d3c] bg-[#e11d3c]/5" : "border-gray-200"}`}
+                className={`mb-8 border-2 border-dashed rounded-2xl p-6 bg-white transition-colors ${dragOver ? "border-[#0f766e] bg-[#0f766e]/5" : "border-gray-200"}`}
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragLeave={() => setDragOver(false)}
                 onDrop={(e) => { e.preventDefault(); setDragOver(false); handleUpload(e.dataTransfer.files); }}
@@ -701,7 +701,7 @@ export default function AdminDashboard() {
                 <div className="mb-5">
                   <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Ngarko në Seksion</label>
                   <select value={uploadSection} onChange={(e) => setUploadSection(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm text-gray-700">
+                    className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm text-gray-700">
                     {allSections.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
                   </select>
                 </div>
@@ -709,11 +709,11 @@ export default function AdminDashboard() {
                   <Upload size={28} className="text-gray-300 mx-auto mb-2" />
                   <p className="text-gray-500 text-sm mb-1">
                     Tërhiq & lësho, ose{" "}
-                    <button onClick={() => fileRef.current?.click()} className="text-[#e11d3c] font-semibold hover:underline">zgjidh skedarë</button>
+                    <button onClick={() => fileRef.current?.click()} className="text-[#0f766e] font-semibold hover:underline">zgjidh skedarë</button>
                   </p>
                   <p className="text-gray-400 text-xs">JPG, PNG, WebP — shumë skedarë mbështeten</p>
                   <input ref={fileRef} type="file" multiple accept="image/*" className="hidden" onChange={(e) => handleUpload(e.target.files)} />
-                  {uploading && <div className="mt-3 flex items-center justify-center gap-2 text-[#e11d3c]"><RefreshCw size={16} className="animate-spin" /><span className="text-sm">Duke ngarkuar...</span></div>}
+                  {uploading && <div className="mt-3 flex items-center justify-center gap-2 text-[#0f766e]"><RefreshCw size={16} className="animate-spin" /><span className="text-sm">Duke ngarkuar...</span></div>}
                 </div>
               </div>
 
@@ -731,7 +731,7 @@ export default function AdminDashboard() {
                 <p className="text-sm font-semibold text-gray-600">
                   {filtered.length} foto
                   {filterSection !== "all" && <span className="font-normal text-gray-400"> · {sectionLabel(filterSection)}</span>}
-                  {selectMode && selected.size > 0 && <span className="ml-2 text-[#e11d3c]">· {selected.size} të zgjedhura</span>}
+                  {selectMode && selected.size > 0 && <span className="ml-2 text-[#0f766e]">· {selected.size} të zgjedhura</span>}
                 </p>
                 <div className="flex items-center gap-2">
                   {!selectMode ? (
@@ -793,16 +793,16 @@ export default function AdminDashboard() {
                       onDragEnd={handleDragEnd}
                       className={`bg-white rounded-2xl overflow-hidden border transition-all cursor-grab active:cursor-grabbing ${
                         isDragging ? "opacity-40 scale-95" :
-                        isDragOver ? "border-[#e11d3c] ring-2 ring-[#e11d3c]/40 scale-[1.02]" :
-                        isSelected ? "border-[#e11d3c] ring-2 ring-[#e11d3c]/30" :
+                        isDragOver ? "border-[#0f766e] ring-2 ring-[#0f766e]/40 scale-[1.02]" :
+                        isSelected ? "border-[#0f766e] ring-2 ring-[#0f766e]/30" :
                         !img.visible ? "opacity-50 border-gray-200" :
-                        "border-gray-100 hover:border-[#e11d3c]/50 hover:shadow-md"
+                        "border-gray-100 hover:border-[#0f766e]/50 hover:shadow-md"
                       }`}
                     >
                       <div className="relative aspect-square bg-gray-100">
                         <Image src={img.url} alt="" fill className="object-cover" />
                         <div className="absolute inset-0 bg-black/0 hover:bg-black/50 transition-all flex items-center justify-center gap-2 opacity-0 hover:opacity-100">
-                          <button onClick={() => toggleVisible(img)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-[#e11d3c] hover:text-white transition-colors">{img.visible ? <Eye size={15} /> : <EyeOff size={15} />}</button>
+                          <button onClick={() => toggleVisible(img)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-[#0f766e] hover:text-white transition-colors">{img.visible ? <Eye size={15} /> : <EyeOff size={15} />}</button>
                           <button onClick={() => startImgEdit(img)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-[#1a1a1a] hover:text-white transition-colors"><Edit2 size={15} /></button>
                           <button onClick={() => deleteImg(img.id)} className="w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors"><Trash2 size={15} /></button>
                         </div>
@@ -815,7 +815,7 @@ export default function AdminDashboard() {
                           <button
                             onMouseDown={(e) => e.stopPropagation()}
                             onClick={(e) => { e.stopPropagation(); toggleSelect(img.id); }}
-                            className={`absolute top-2 left-2 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${isSelected ? "bg-[#e11d3c] border-[#e11d3c]" : "bg-white/80 border-gray-300 hover:border-[#e11d3c]"}`}
+                            className={`absolute top-2 left-2 w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${isSelected ? "bg-[#0f766e] border-[#0f766e]" : "bg-white/80 border-gray-300 hover:border-[#0f766e]"}`}
                           >
                             {isSelected && <Check size={13} className="text-white" />}
                           </button>
@@ -825,7 +825,7 @@ export default function AdminDashboard() {
                       <div className="p-3">
                         {editingImgId === img.id ? (
                           <div className="space-y-2">
-                            <select value={editImgSection} onChange={(e) => setEditImgSection(e.target.value)} className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-200 focus:border-[#e11d3c] focus:outline-none">
+                            <select value={editImgSection} onChange={(e) => setEditImgSection(e.target.value)} className="w-full text-xs px-2 py-1.5 rounded-lg border border-gray-200 focus:border-[#0f766e] focus:outline-none">
                               {allSections.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
                             </select>
                             <div className="flex gap-1.5">
@@ -835,7 +835,7 @@ export default function AdminDashboard() {
                           </div>
                         ) : (
                           <>
-                            <p className="text-xs text-[#e11d3c] font-semibold truncate">{sectionLabel(img.section)}</p>
+                            <p className="text-xs text-[#0f766e] font-semibold truncate">{sectionLabel(img.section)}</p>
                             <p className="text-gray-300 text-xs mt-1">{new Date(img.uploadedAt).toLocaleDateString()}</p>
                           </>
                         )}
@@ -876,7 +876,7 @@ export default function AdminDashboard() {
                         )}
                         <div className="relative flex items-center gap-3">
                           {cat.coverImage ? (
-                            <div className="relative w-14 h-14 rounded-xl overflow-hidden ring-2 ring-[#e11d3c]/60 shrink-0">
+                            <div className="relative w-14 h-14 rounded-xl overflow-hidden ring-2 ring-[#0f766e]/60 shrink-0">
                               <Image src={cat.coverImage} alt={cat.name_en} fill className="object-cover" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
                             </div>
                           ) : (
@@ -906,7 +906,7 @@ export default function AdminDashboard() {
                           />
                           <button
                             onClick={() => { setAddingTo(isAdding ? null : cat.id); setNewSub({ name_sq: "", name_en: "", desc_sq: "", desc_en: "" }); }}
-                            className="flex items-center gap-2 px-4 py-2 bg-[#e11d3c] text-white text-sm font-semibold rounded-xl hover:bg-[#b91429] transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#0f766e] text-white text-sm font-semibold rounded-xl hover:bg-[#115e59] transition-colors"
                           >
                             <Plus size={15} /> Shto Nënkategori
                           </button>
@@ -922,7 +922,7 @@ export default function AdminDashboard() {
                           <div className="px-6 py-3 bg-gray-50 border-b border-gray-100 flex items-center gap-4">
                             <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider shrink-0">Pozicioni</span>
                             <div
-                              className="relative w-40 h-24 rounded-xl overflow-hidden border-2 border-[#e11d3c]/40 cursor-crosshair shrink-0 hover:border-[#e11d3c] transition-colors"
+                              className="relative w-40 h-24 rounded-xl overflow-hidden border-2 border-[#0f766e]/40 cursor-crosshair shrink-0 hover:border-[#0f766e] transition-colors"
                               onClick={(e) => {
                                 const rect = e.currentTarget.getBoundingClientRect();
                                 const x = Math.round(((e.clientX - rect.left) / rect.width) * 100);
@@ -938,7 +938,7 @@ export default function AdminDashboard() {
                                 style={{ objectPosition: cat.coverPosition ?? "50% 50%" }}
                               />
                               <div
-                                className="absolute w-4 h-4 rounded-full bg-white border-2 border-[#e11d3c] shadow-md -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                                className="absolute w-4 h-4 rounded-full bg-white border-2 border-[#0f766e] shadow-md -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                                 style={{ left: `${dotX}%`, top: `${dotY}%` }}
                               />
                             </div>
@@ -949,28 +949,28 @@ export default function AdminDashboard() {
 
                       {/* Add subcategory form */}
                       {isAdding && (
-                        <div className="px-6 py-5 bg-[#e11d3c]/5 border-b border-[#e11d3c]/20">
+                        <div className="px-6 py-5 bg-[#0f766e]/5 border-b border-[#0f766e]/20">
                           <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">Nënkategori e Re</p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
                               <label className="block text-xs text-gray-400 mb-1">🇦🇱 Emri (Shqip) *</label>
                               <input value={newSub.name_sq} onChange={(e) => setNewSub((p) => ({ ...p, name_sq: e.target.value }))}
-                                placeholder="p.sh. Tendë Tërheqëse" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm" />
+                                placeholder="p.sh. Tendë Tërheqëse" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm" />
                             </div>
                             <div>
                               <label className="block text-xs text-gray-400 mb-1">🇬🇧 Emri (Anglisht) *</label>
                               <input value={newSub.name_en} onChange={(e) => setNewSub((p) => ({ ...p, name_en: e.target.value }))}
-                                placeholder="e.g. Retractable Awning" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm" />
+                                placeholder="e.g. Retractable Awning" className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm" />
                             </div>
                             <div>
                               <label className="block text-xs text-gray-400 mb-1">🇦🇱 Përshkrimi (Shqip)</label>
                               <textarea rows={2} value={newSub.desc_sq} onChange={(e) => setNewSub((p) => ({ ...p, desc_sq: e.target.value }))}
-                                className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none" />
+                                className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none" />
                             </div>
                             <div>
                               <label className="block text-xs text-gray-400 mb-1">🇬🇧 Përshkrimi (Anglisht)</label>
                               <textarea rows={2} value={newSub.desc_en} onChange={(e) => setNewSub((p) => ({ ...p, desc_en: e.target.value }))}
-                                className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none" />
+                                className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none" />
                             </div>
                           </div>
                           <div className="flex flex-wrap items-center gap-3">
@@ -1008,22 +1008,22 @@ export default function AdminDashboard() {
                                       <div>
                                         <label className="block text-xs text-gray-400 mb-1">🇦🇱 Emri (Shqip)</label>
                                         <input value={subEdits.name_sq ?? sub.name_sq} onChange={(e) => setSubEdits((p) => ({ ...p, name_sq: e.target.value }))}
-                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm" />
+                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm" />
                                       </div>
                                       <div>
                                         <label className="block text-xs text-gray-400 mb-1">🇬🇧 Emri (Anglisht)</label>
                                         <input value={subEdits.name_en ?? sub.name_en} onChange={(e) => setSubEdits((p) => ({ ...p, name_en: e.target.value }))}
-                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm" />
+                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm" />
                                       </div>
                                       <div>
                                         <label className="block text-xs text-gray-400 mb-1">🇦🇱 Përshkrimi (Shqip)</label>
                                         <textarea rows={2} value={subEdits.desc_sq ?? sub.desc_sq} onChange={(e) => setSubEdits((p) => ({ ...p, desc_sq: e.target.value }))}
-                                          className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none" />
+                                          className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none" />
                                       </div>
                                       <div>
                                         <label className="block text-xs text-gray-400 mb-1">🇬🇧 Përshkrimi (Anglisht)</label>
                                         <textarea rows={2} value={subEdits.desc_en ?? sub.desc_en} onChange={(e) => setSubEdits((p) => ({ ...p, desc_en: e.target.value }))}
-                                          className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none" />
+                                          className="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none" />
                                       </div>
                                       <div>
                                         <label className="block text-xs text-gray-400 mb-1">🟦 3D Model (vendos skedarin .glb në /public/models/)</label>
@@ -1031,7 +1031,7 @@ export default function AdminDashboard() {
                                           value={subEdits.modelUrl ?? sub.modelUrl ?? ""}
                                           onChange={(e) => setSubEdits((p) => ({ ...p, modelUrl: e.target.value || undefined }))}
                                           placeholder="/models/cadra-basic.glb"
-                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm font-mono"
+                                          className="w-full px-3 py-2.5 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm font-mono"
                                         />
                                       </div>
                                     </div>
@@ -1056,7 +1056,7 @@ export default function AdminDashboard() {
                                         <p className="font-semibold text-gray-800">{sub.name_en}</p>
                                         <span className="text-gray-400 text-sm">/ {sub.name_sq}</span>
                                         {imgCount > 0 && (
-                                          <span className="text-xs bg-[#e11d3c]/10 text-[#e11d3c] font-semibold px-2 py-0.5 rounded-full">
+                                          <span className="text-xs bg-[#0f766e]/10 text-[#0f766e] font-semibold px-2 py-0.5 rounded-full">
                                             {imgCount} foto
                                           </span>
                                         )}
@@ -1065,7 +1065,7 @@ export default function AdminDashboard() {
                                     </div>
                                     <div className="flex items-center gap-2 shrink-0">
                                       <button onClick={() => { setEditingSubId(sub.id); setSubEdits({}); }}
-                                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg hover:border-[#e11d3c] transition-colors">
+                                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg hover:border-[#0f766e] transition-colors">
                                         <Edit2 size={12} /> Ndrysho
                                       </button>
                                       <button onClick={() => deleteSub(sub.id)}
@@ -1101,7 +1101,7 @@ export default function AdminDashboard() {
             </div>
             <button
               onClick={() => { setAddingFaq(!addingFaq); setNewFaq({ q_sq: "", a_sq: "", q_en: "", a_en: "" }); }}
-              className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-colors ${addingFaq ? "bg-gray-100 text-gray-600 hover:bg-gray-200" : "bg-[#e11d3c] text-white hover:bg-[#b91429]"}`}
+              className={`flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-colors ${addingFaq ? "bg-gray-100 text-gray-600 hover:bg-gray-200" : "bg-[#0f766e] text-white hover:bg-[#115e59]"}`}
             >
               {addingFaq ? <><X size={15} /> Anulo</> : <><Plus size={15} /> Shto Pyetje</>}
             </button>
@@ -1113,12 +1113,12 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               {/* ── Add form ── */}
               {addingFaq && (
-                <div className="bg-white rounded-2xl border-2 border-[#e11d3c]/25 shadow-sm overflow-hidden">
-                  <div className="px-6 py-4 bg-gradient-to-r from-[#e11d3c]/8 to-transparent border-b border-[#e11d3c]/10 flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-[#e11d3c] flex items-center justify-center shrink-0">
+                <div className="bg-white rounded-2xl border-2 border-[#0f766e]/25 shadow-sm overflow-hidden">
+                  <div className="px-6 py-4 bg-gradient-to-r from-[#0f766e]/8 to-transparent border-b border-[#0f766e]/10 flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-[#0f766e] flex items-center justify-center shrink-0">
                       <Plus size={13} className="text-white" />
                     </div>
-                    <p className="font-semibold text-[#e11d3c] text-sm">Pyetje e re</p>
+                    <p className="font-semibold text-[#0f766e] text-sm">Pyetje e re</p>
                   </div>
                   <div className="p-6 space-y-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1132,13 +1132,13 @@ export default function AdminDashboard() {
                           <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Pyetja *</label>
                           <input value={newFaq.q_sq} onChange={(e) => setNewFaq((p) => ({ ...p, q_sq: e.target.value }))}
                             placeholder="p.sh. A janë rezistente ndaj ujit?"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                         </div>
                         <div>
                           <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Përgjigja</label>
                           <textarea rows={4} value={newFaq.a_sq} onChange={(e) => setNewFaq((p) => ({ ...p, a_sq: e.target.value }))}
                             placeholder="Shkruaj përgjigjen këtu..."
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
                         </div>
                       </div>
                       {/* English column */}
@@ -1151,13 +1151,13 @@ export default function AdminDashboard() {
                           <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Question *</label>
                           <input value={newFaq.q_en} onChange={(e) => setNewFaq((p) => ({ ...p, q_en: e.target.value }))}
                             placeholder="e.g. Are they waterproof?"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                         </div>
                         <div>
                           <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Answer</label>
                           <textarea rows={4} value={newFaq.a_en} onChange={(e) => setNewFaq((p) => ({ ...p, a_en: e.target.value }))}
                             placeholder="Write the answer here..."
-                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
+                            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
                         </div>
                       </div>
                     </div>
@@ -1197,12 +1197,12 @@ export default function AdminDashboard() {
                             <div>
                               <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Pyetja</label>
                               <input value={faqEdits.q_sq ?? faq.q_sq} onChange={(e) => setFaqEdits((p) => ({ ...p, q_sq: e.target.value }))}
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                             </div>
                             <div>
                               <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Përgjigja</label>
                               <textarea rows={4} value={faqEdits.a_sq ?? faq.a_sq} onChange={(e) => setFaqEdits((p) => ({ ...p, a_sq: e.target.value }))}
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
+                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
                             </div>
                           </div>
                           <div className="space-y-4">
@@ -1213,12 +1213,12 @@ export default function AdminDashboard() {
                             <div>
                               <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Question</label>
                               <input value={faqEdits.q_en ?? faq.q_en} onChange={(e) => setFaqEdits((p) => ({ ...p, q_en: e.target.value }))}
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                             </div>
                             <div>
                               <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Answer</label>
                               <textarea rows={4} value={faqEdits.a_en ?? faq.a_en} onChange={(e) => setFaqEdits((p) => ({ ...p, a_en: e.target.value }))}
-                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
+                                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm resize-none bg-gray-50 focus:bg-white transition-colors" />
                             </div>
                           </div>
                         </div>
@@ -1245,8 +1245,8 @@ export default function AdminDashboard() {
                           className="w-7 h-7 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-white disabled:opacity-20 transition-colors">
                           <ChevronUp size={15} />
                         </button>
-                        <div className="w-7 h-7 rounded-lg bg-[#e11d3c]/10 flex items-center justify-center">
-                          <span className="text-xs font-bold text-[#e11d3c]">{idx + 1}</span>
+                        <div className="w-7 h-7 rounded-lg bg-[#0f766e]/10 flex items-center justify-center">
+                          <span className="text-xs font-bold text-[#0f766e]">{idx + 1}</span>
                         </div>
                         <button onClick={() => moveFaq(faq, "down")} disabled={idx === arr.length - 1}
                           className="w-7 h-7 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-700 hover:bg-white disabled:opacity-20 transition-colors">
@@ -1265,7 +1265,7 @@ export default function AdminDashboard() {
                         </div>
                         <div className="flex items-center gap-2 shrink-0 pt-0.5">
                           <button onClick={() => { setEditingFaqId(faq.id); setFaqEdits({}); }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-gray-600 bg-gray-100 rounded-lg hover:bg-[#e11d3c]/10 hover:text-[#e11d3c] transition-colors">
+                            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-gray-600 bg-gray-100 rounded-lg hover:bg-[#0f766e]/10 hover:text-[#0f766e] transition-colors">
                             <Edit2 size={12} /> Ndrysho
                           </button>
                           <button onClick={() => deleteFaqItem(faq.id)}
@@ -1320,22 +1320,22 @@ export default function AdminDashboard() {
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇦🇱 E Hënë–E Premte (Shqip)</label>
                   <input value={hours.weekdays_sq} onChange={(e) => setHours((p) => ({ ...p, weekdays_sq: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇬🇧 Monday–Friday (English)</label>
                   <input value={hours.weekdays_en} onChange={(e) => setHours((p) => ({ ...p, weekdays_en: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇦🇱 E Shtunë (Shqip)</label>
                   <input value={hours.saturday_sq} onChange={(e) => setHours((p) => ({ ...p, saturday_sq: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇬🇧 Saturday (English)</label>
                   <input value={hours.saturday_en} onChange={(e) => setHours((p) => ({ ...p, saturday_en: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
               </div>
               {hoursMsg && (
@@ -1344,7 +1344,7 @@ export default function AdminDashboard() {
                 </div>
               )}
               <button onClick={handleSaveHours} disabled={savingHours}
-                className="w-full py-3 bg-[#e11d3c] text-white text-sm font-bold rounded-xl hover:bg-[#b91429] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
+                className="w-full py-3 bg-[#0f766e] text-white text-sm font-bold rounded-xl hover:bg-[#115e59] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
                 {savingHours ? <RefreshCw size={15} className="animate-spin" /> : <Check size={15} />}
                 {savingHours ? "Duke ruajtur..." : "Ruaj Orarin"}
               </button>
@@ -1371,7 +1371,7 @@ export default function AdminDashboard() {
                 </div>
                 <button
                   onClick={() => setAnn((p) => ({ ...p, active: !p.active }))}
-                  className={`relative w-12 h-6 rounded-full transition-colors ${ann.active ? "bg-[#e11d3c]" : "bg-gray-300"}`}
+                  className={`relative w-12 h-6 rounded-full transition-colors ${ann.active ? "bg-[#0f766e]" : "bg-gray-300"}`}
                 >
                   <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${ann.active ? "translate-x-6" : ""}`} />
                 </button>
@@ -1381,9 +1381,9 @@ export default function AdminDashboard() {
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">Ngjyra e Sfondit</label>
                 <div className="flex gap-3">
-                  {([["red", "bg-[#e11d3c]", "E Kuqe"], ["dark", "bg-[#1a1a1a]", "E Zezë"], ["yellow", "bg-amber-400", "Amber"]] as const).map(([val, cls, label]) => (
+                  {([["red", "bg-[#0f766e]", "E Kuqe"], ["dark", "bg-[#1a1a1a]", "E Zezë"], ["yellow", "bg-amber-400", "Amber"]] as const).map(([val, cls, label]) => (
                     <button key={val} onClick={() => setAnn((p) => ({ ...p, bg: val }))}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all ${ann.bg === val ? "border-[#e11d3c] scale-105" : "border-transparent bg-gray-100 text-gray-600 hover:border-gray-300"}`}>
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-all ${ann.bg === val ? "border-[#0f766e] scale-105" : "border-transparent bg-gray-100 text-gray-600 hover:border-gray-300"}`}>
                       <span className={`w-4 h-4 rounded-full ${cls}`} /> {label}
                     </button>
                   ))}
@@ -1396,13 +1396,13 @@ export default function AdminDashboard() {
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇦🇱 Teksti (Shqip)</label>
                   <input value={ann.text_sq} onChange={(e) => setAnn((p) => ({ ...p, text_sq: e.target.value }))}
                     placeholder="p.sh. Ofertë speciale – 10% zbritje!"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">🇬🇧 Text (English)</label>
                   <input value={ann.text_en} onChange={(e) => setAnn((p) => ({ ...p, text_en: e.target.value }))}
                     placeholder="e.g. Special offer – 10% discount!"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors" />
                 </div>
               </div>
 
@@ -1411,14 +1411,14 @@ export default function AdminDashboard() {
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Lidhja (opsionale)</label>
                 <input value={ann.link ?? ""} onChange={(e) => setAnn((p) => ({ ...p, link: e.target.value || undefined }))}
                   placeholder="p.sh. /contact ose https://..."
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors font-mono" />
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors font-mono" />
               </div>
 
               {/* Preview */}
               {(ann.text_sq || ann.text_en) && (
                 <div className="rounded-xl overflow-hidden border border-gray-200">
                   <p className="text-xs font-bold uppercase tracking-wider text-gray-400 px-4 pt-3 pb-2">Pamja paraprake</p>
-                  <div className={`py-2.5 px-4 text-center text-sm font-semibold relative ${ann.bg === "red" ? "bg-[#e11d3c] text-white" : ann.bg === "dark" ? "bg-[#1a1a1a] text-white" : "bg-amber-400 text-[#1a1a1a]"}`}>
+                  <div className={`py-2.5 px-4 text-center text-sm font-semibold relative ${ann.bg === "red" ? "bg-[#0f766e] text-white" : ann.bg === "dark" ? "bg-[#1a1a1a] text-white" : "bg-amber-400 text-[#1a1a1a]"}`}>
                     {ann.text_sq || ann.text_en}
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 opacity-60"><X size={14} /></span>
                   </div>
@@ -1431,7 +1431,7 @@ export default function AdminDashboard() {
                 </div>
               )}
               <button onClick={handleSaveAnnouncement} disabled={savingAnn}
-                className="w-full py-3 bg-[#e11d3c] text-white text-sm font-bold rounded-xl hover:bg-[#b91429] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
+                className="w-full py-3 bg-[#0f766e] text-white text-sm font-bold rounded-xl hover:bg-[#115e59] transition-colors disabled:opacity-40 flex items-center justify-center gap-2">
                 {savingAnn ? <RefreshCw size={15} className="animate-spin" /> : <Check size={15} />}
                 {savingAnn ? "Duke ruajtur..." : "Ruaj Njoftimin"}
               </button>
@@ -1459,7 +1459,7 @@ export default function AdminDashboard() {
                     value={currentPwd}
                     onChange={(e) => { setCurrentPwd(e.target.value); setPwdMsg(null); }}
                     placeholder="••••••••"
-                    className="w-full pl-4 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors"
+                    className="w-full pl-4 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors"
                   />
                   <button type="button" onClick={() => setShowCurrentPwd(!showCurrentPwd)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
@@ -1478,7 +1478,7 @@ export default function AdminDashboard() {
                     value={newPwd}
                     onChange={(e) => { setNewPwd(e.target.value); setPwdMsg(null); }}
                     placeholder="Minimum 8 karaktere"
-                    className="w-full pl-4 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#e11d3c] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors"
+                    className="w-full pl-4 pr-11 py-3 rounded-xl border border-gray-200 focus:border-[#0f766e] focus:outline-none text-sm bg-gray-50 focus:bg-white transition-colors"
                   />
                   <button type="button" onClick={() => setShowNewPwd(!showNewPwd)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
@@ -1507,7 +1507,7 @@ export default function AdminDashboard() {
                         ? "border-red-300 bg-red-50 focus:border-red-400"
                         : confirmPwd && confirmPwd === newPwd && newPwd.length >= 8
                         ? "border-green-300 bg-green-50 focus:border-green-400"
-                        : "border-gray-200 bg-gray-50 focus:border-[#e11d3c] focus:bg-white"
+                        : "border-gray-200 bg-gray-50 focus:border-[#0f766e] focus:bg-white"
                     }`}
                   />
                   <button type="button" onClick={() => setShowConfirmPwd(!showConfirmPwd)}
@@ -1537,7 +1537,7 @@ export default function AdminDashboard() {
               <button
                 onClick={handlePasswordChange}
                 disabled={savingPwd || !currentPwd || !newPwd || !confirmPwd || newPwd !== confirmPwd || newPwd.length < 8}
-                className="w-full py-3 bg-[#e11d3c] text-white text-sm font-bold rounded-xl hover:bg-[#b91429] transition-colors disabled:opacity-40 flex items-center justify-center gap-2 mt-2"
+                className="w-full py-3 bg-[#0f766e] text-white text-sm font-bold rounded-xl hover:bg-[#115e59] transition-colors disabled:opacity-40 flex items-center justify-center gap-2 mt-2"
               >
                 {savingPwd ? <RefreshCw size={15} className="animate-spin" /> : <Lock size={15} />}
                 {savingPwd ? "Duke ruajtur..." : "Ndrysho Fjalëkalimin"}

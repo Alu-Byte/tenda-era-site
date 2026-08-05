@@ -3,35 +3,38 @@
 import { useLang } from "@/lib/LangContext";
 
 const partners = [
-  { name: "Corti", country: "Italy" },
-  { name: "Calbari", country: "Italy" },
-  { name: "Mehler", country: "Germany" },
-  { name: "Frigerio", country: "Italy" },
+  { name: "Corti", country: "IT" },
+  { name: "Calbari", country: "IT" },
+  { name: "Mehler", country: "DE" },
+  { name: "Frigerio", country: "IT" },
 ];
 
 export default function HomePartners() {
   const { t } = useLang();
 
   return (
-    <section className="bg-white py-14 lg:py-16 border-y border-neutral-100">
-      <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-[11px] text-neutral-400 uppercase tracking-[0.25em] font-bold mb-10">
-          {t.partners_section.label}
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:gap-x-16">
-          {partners.map((p) => (
-            <div key={p.name} className="flex items-center gap-3 group cursor-default">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-neutral-50 to-neutral-100 border border-neutral-200 group-hover:border-[#e11d3c]/40 group-hover:from-[#fef2f4] transition-all flex items-center justify-center">
-                <span className="text-[#e11d3c] font-bold text-base tracking-tight">{p.name[0]}</span>
-              </div>
-              <div>
-                <p className="font-display text-xl lg:text-2xl font-semibold text-neutral-800 group-hover:text-neutral-950 transition-colors leading-tight tracking-tight">
-                  {p.name}
-                </p>
-                <p className="text-[10px] text-neutral-400 uppercase tracking-widest font-semibold">{p.country}</p>
-              </div>
-            </div>
-          ))}
+    <section className="bg-[#f5f4ef] border-y border-[#e7e5e4]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div className="lg:col-span-3">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#57534e]">
+              {t.partners_section.label}
+            </p>
+          </div>
+          <div className="lg:col-span-9">
+            <ul className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+              {partners.map((p) => (
+                <li key={p.name} className="flex items-baseline gap-3">
+                  <span className="text-2xl lg:text-3xl font-bold text-[#1c1917] tracking-tight">
+                    {p.name}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#57534e]">
+                    {p.country}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

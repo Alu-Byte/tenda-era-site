@@ -1,17 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — modernized (lighter, more vibrant red) */
-  --red: #e11d3c;
-  --red-dark: #b91429;
-  --red-light: #f43f5e;
-  --red-soft: #fef2f4;
-  --cream: #fbfaf6;
-  --charcoal: #262626;
-  --navy: #171717;
+  /* Brand palette — modern industrial: deep teal + warm amber on cream */
+  --accent: #0f766e;         /* deep teal — primary CTA */
+  --accent-dark: #115e59;    /* hover/active */
+  --accent-light: #14b8a6;   /* highlights */
+  --accent-soft: #f0fdfa;    /* soft tinted backgrounds */
+  --amber: #c2410c;          /* warm accent for numbers, secondary highlights */
+  --amber-soft: #ffedd5;
+  --cream: #faf9f6;          /* warm off-white page background */
+  --paper: #f5f4ef;          /* slightly deeper cream for section variation */
+  --charcoal: #1c1917;       /* body text, headings */
+  --navy: #0c0a09;           /* dark backgrounds, hero */
   --white: #ffffff;
-  --gray-light: #f7f7f5;
-  --border: #ececec;
+  --steel: #57534e;          /* muted labels/borders */
+  --gray-light: #f4f4f0;
+  --border: #e7e5e4;
+
+  /* Legacy alias — some components still reference --red directly */
+  --red: var(--accent);
+  --red-dark: var(--accent-dark);
+  --red-light: var(--accent-light);
+  --red-soft: var(--accent-soft);
 }
 
 * { box-sizing: border-box; }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import type { Category, Subcategory } from "@/types";
 
@@ -11,93 +11,83 @@ interface Props {
   subcategories: Subcategory[];
 }
 
-const catColors: Record<string, string> = {
-  tenda: "from-neutral-900 to-neutral-700",
-  cadra: "from-[#e11d3c] to-[#b91429]",
-};
-const catColorsFallback = ["from-neutral-900 to-neutral-700", "from-[#e11d3c] to-[#b91429]"];
-
 export default function HomeProducts({ categories, subcategories }: Props) {
   const { lang, t } = useLang();
   const ps = t.products_section;
 
-  const features = [
-    { title: ps.feat1_title, desc: ps.feat1_desc },
-    { title: ps.feat2_title, desc: ps.feat2_desc },
-    { title: ps.feat3_title, desc: ps.feat3_desc },
-  ];
-
   return (
-    <section className="bg-[#fbfaf6] py-20 lg:py-28 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
-          <div>
-            <p className="inline-flex items-center gap-2 text-[#e11d3c] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#e11d3c]" />
-              {ps.label}
+    <section className="bg-[#faf9f6] py-24 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        {/* Section head */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+          <div className="lg:col-span-3">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0f766e]">
+              01 · {ps.label}
             </p>
-            <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 leading-[1.1] tracking-tight max-w-xl">{ps.title}</h2>
           </div>
-          <Link href="/products" className="group inline-flex items-center gap-2 text-neutral-800 font-semibold hover:text-[#e11d3c] transition-colors no-underline">
-            {ps.see_all}
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </Link>
+          <div className="lg:col-span-9">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1c1917] leading-[1.1] tracking-tight max-w-3xl">
+              {ps.title}
+            </h2>
+          </div>
         </div>
 
-        {/* Two main category cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 mb-12">
-          {categories.map((cat, i) => {
+        {/* Categories — full-bleed image tiles, minimal chrome */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+          {categories.map((cat) => {
             const subs = subcategories.filter((s) => s.categoryId === cat.id);
-            const color = catColors[cat.id] ?? catColorsFallback[i % catColorsFallback.length];
             return (
-              <Link key={cat.id} href={`/products#${cat.id}`} className="group relative rounded-3xl overflow-hidden touch-manipulation shadow-soft hover:shadow-elevated transition-all no-underline">
-                <div className={`relative bg-gradient-to-br ${color} p-8 min-h-[280px] flex flex-col justify-between transition-transform duration-500 group-hover:-translate-y-1`}>
-                  {cat.coverImage && (
-                    <>
-                      <Image src={cat.coverImage} alt={lang === "sq" ? cat.name_sq : cat.name_en} fill className="object-cover transition-transform duration-700 group-hover:scale-105" style={{ objectPosition: cat.coverPosition ?? "50% 50%" }} />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${color} opacity-80 group-hover:opacity-70 transition-opacity`} />
-                    </>
-                  )}
-                  <div className="relative flex items-start justify-between">
-                    <span className="text-6xl opacity-80 drop-shadow-lg">{cat.icon}</span>
-                    <div className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/25 transition-colors">
-                      <ArrowRight size={18} className="text-white group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
-                  <div className="relative">
-                    <h3 className="text-white font-display text-3xl lg:text-4xl font-bold mb-2 tracking-tight">
+              <Link
+                key={cat.id}
+                href={`/products#${cat.id}`}
+                className="group relative overflow-hidden no-underline block h-[440px]"
+              >
+                {cat.coverImage ? (
+                  <Image
+                    src={cat.coverImage}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={90}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    style={{ objectPosition: cat.coverPosition ?? "50% 50%" }}
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#292524] to-[#0c0a09]" />
+                )}
+                {/* Dark scrim, heavier at the bottom for text legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+
+                {/* Top-right index tick */}
+                <div className="absolute top-6 right-6 flex items-center gap-2 text-white/70 text-[10px] font-bold uppercase tracking-widest">
+                  <span className="w-6 h-px bg-white/40" />
+                  {cat.id}
+                </div>
+
+                {/* Bottom content */}
+                <div className="absolute bottom-0 left-0 right-0 p-7 lg:p-9 text-white">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <h3 className="text-2xl lg:text-3xl font-bold tracking-tight leading-tight">
                       {lang === "sq" ? cat.name_sq : cat.name_en}
                     </h3>
-                    {subs.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mt-3">
-                        {subs.slice(0, 4).map((sub) => (
-                          <span key={sub.id} className="text-xs bg-white/15 backdrop-blur-sm text-white/95 px-3 py-1 rounded-full font-medium">
-                            {lang === "sq" ? sub.name_sq : sub.name_en}
-                          </span>
-                        ))}
-                        {subs.length > 4 && <span className="text-xs text-white/70 px-2 py-1">+{subs.length - 4}</span>}
-                      </div>
-                    )}
+                    <div className="w-10 h-10 rounded-full bg-[#c2410c] flex items-center justify-center transition-transform group-hover:rotate-45 shrink-0">
+                      <ArrowUpRight size={16} className="text-white" strokeWidth={2.5} />
+                    </div>
                   </div>
+                  {subs.length > 0 && (
+                    <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-white/85">
+                      {subs.slice(0, 4).map((sub, i) => (
+                        <li key={sub.id} className="flex items-center gap-2">
+                          {i > 0 && <span className="w-1 h-1 rounded-full bg-white/40" />}
+                          {lang === "sq" ? sub.name_sq : sub.name_en}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </Link>
             );
           })}
-        </div>
-
-        {/* Feature strip */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
-          {features.map((f, idx) => (
-            <div key={f.title} className="bg-white rounded-2xl p-6 lg:p-7 border border-neutral-100 hover:border-[#e11d3c]/25 hover:shadow-soft transition-all group">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#fef2f4] to-[#fce7ea] flex items-center justify-center text-[#e11d3c] font-bold text-sm group-hover:scale-110 transition-transform">
-                  0{idx + 1}
-                </div>
-                <h4 className="font-semibold text-neutral-900 tracking-tight">{f.title}</h4>
-              </div>
-              <p className="text-sm text-neutral-500 leading-relaxed">{f.desc}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronDown, Phone, Sparkles } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import type { SiteImage } from "@/types";
 
@@ -14,136 +14,96 @@ export default function HomeHero({ heroImages }: Props) {
   const { lang, t } = useLang();
   const heroImage = heroImages[0] ?? null;
 
-  const headline =
-    lang === "sq"
-      ? "Zgjedhja e duhur për shtëpinë dhe biznesin tuaj."
-      : "The right choice for your home and business.";
-
-  const sub =
-    lang === "sq"
-      ? "Prodhues i tendave dhe çadrave premium që nga viti 1994 — montim profesional në të gjithë Shqipërinë."
-      : "Premium awning and umbrella producer since 1994 — professional installation across Albania.";
+  const eyebrow = lang === "sq" ? "Tenda dhe çadra që nga 1994" : "Awnings and umbrellas since 1994";
+  const headline = lang === "sq"
+    ? "Hijeje profesionale për bare, restorante dhe plazhe."
+    : "Professional shade for cafés, restaurants and beaches.";
+  const sub = lang === "sq"
+    ? "Prodhojmë, montojmë dhe mirëmbajmë sisteme tendash dhe çadrash me pëlhura teknike gjermane dhe italiane në të gjithë Shqipërinë."
+    : "We produce, install and service awning and umbrella systems with German and Italian technical fabrics across Albania.";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
+    <section className="relative min-h-[92vh] flex items-end overflow-hidden bg-[#0c0a09]">
+      {/* Background photo */}
+      <div className="absolute inset-0">
         {heroImage ? (
-          <>
-            <Image
-              src={heroImage.url}
-              alt="Tenda Era"
-              fill
-              className="object-cover scale-105"
-              priority
-              quality={90}
-              sizes="100vw"
-            />
-            {/* Modern layered gradient — cleaner, lighter */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/75" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#e11d3c]/20 via-transparent to-transparent" />
-          </>
+          <Image
+            src={heroImage.url}
+            alt=""
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover"
+          />
         ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a12] via-[#661225] to-[#e11d3c]" />
-            <div className="absolute inset-0 opacity-[0.07]" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-              backgroundSize: "24px 24px",
-            }} />
-          </>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0c0a09] via-[#1c1917] to-[#292524]" />
         )}
-      </div>
-
-      {/* Soft accent bar at top */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] z-30 pointer-events-none"
-        style={{ background: "linear-gradient(90deg, #e11d3c 0%, #f43f5e 50%, #e11d3c 100%)" }} />
-
-      {/* Bottom smooth curve */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="w-full h-24 block">
-          <path d="M0,64 C240,120 480,10 720,50 C960,90 1200,20 1440,60 L1440,120 L0,120 Z" fill="#fbfaf6" />
-        </svg>
+        {/* Dark scrim — bottom-heavy so text at the bottom stays legible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/55 to-black/85" />
       </div>
 
       {/* Content */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 pt-32 pb-40 flex flex-col lg:flex-row items-center gap-14">
-
-        {/* Left */}
-        <div className="flex-1 text-white text-center lg:text-left animate-fade-up">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/25 rounded-full pl-2 pr-4 py-1.5 text-sm text-white/90 font-medium mb-8">
-            <span className="inline-flex items-center gap-1 bg-[#e11d3c] text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full">
-              <Sparkles size={10} strokeWidth={2.5} /> 1994
-            </span>
-            <span className="text-white/80">{t.hero.badge.replace("Themeluar 1994 · ", "").replace("Established 1994 · ", "")}</span>
-          </div>
-
-          <h1 className="font-display text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4.5rem] font-bold leading-[1.05] mb-6 tracking-tight">
-            {headline}
-          </h1>
-
-          <p className="text-white/80 text-base sm:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10">
-            {sub}
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-            <Link
-              href="/products"
-              className="group inline-flex items-center gap-2 px-7 py-4 bg-[#e11d3c] text-white font-semibold rounded-full hover:bg-[#b91429] transition-all touch-manipulation shadow-[0_10px_30px_-8px_rgba(225,29,60,0.6)] hover:shadow-[0_14px_40px_-8px_rgba(225,29,60,0.7)] hover:-translate-y-0.5 no-underline"
-            >
-              {t.hero.cta_products}
-              <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-semibold rounded-full hover:bg-white/20 hover:border-white/50 transition-all touch-manipulation no-underline"
-            >
-              <Phone size={16} /> {t.hero.card_btn}
-            </Link>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="mt-10 flex items-center gap-5 justify-center lg:justify-start text-white/60 text-xs">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              {lang === "sq" ? "Konsultim falas" : "Free consultation"}
-            </div>
-            <div className="w-px h-4 bg-white/20" />
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              {lang === "sq" ? "Garanci prodhuesi" : "Manufacturer warranty"}
-            </div>
-          </div>
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-20 lg:pb-28 text-white">
+        {/* Eyebrow with vertical tick */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="w-10 h-px bg-[#14b8a6]" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#14b8a6]">{eyebrow}</span>
         </div>
 
-        {/* Right: floating info card */}
-        <div className="flex-shrink-0 hidden lg:block animate-fade-up delay-200">
-          <div className="w-72 bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-3xl p-7 text-white shadow-2xl relative overflow-hidden">
-            {/* subtle inner glow */}
-            <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-[#e11d3c]/25 blur-3xl pointer-events-none" />
-            <div className="relative">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#e11d3c] to-[#b91429] flex items-center justify-center mb-5 shadow-lg shadow-[#e11d3c]/40">
-                <Sparkles size={22} className="text-white" strokeWidth={2.2} />
-              </div>
-              <h3 className="font-display text-xl font-semibold mb-2 tracking-tight">{t.hero.card_title}</h3>
-              <p className="text-white/70 text-sm mb-6 leading-relaxed">{t.hero.card_desc}</p>
-              <Link
-                href="/contact"
-                className="block w-full py-3 bg-white text-neutral-900 text-sm font-semibold rounded-xl text-center hover:bg-white/95 transition-colors touch-manipulation no-underline"
-              >
-                {t.hero.card_btn} →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.02] tracking-tight max-w-4xl mb-6">
+          {headline}
+        </h1>
 
-      {/* Scroll hint */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 text-white/50 pointer-events-none animate-bounce hidden md:block">
-        <ChevronDown size={22} />
+        <p className="text-white/75 text-base sm:text-lg max-w-2xl leading-relaxed mb-10">
+          {sub}
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/products"
+            className="group inline-flex items-center gap-2 px-7 py-4 bg-[#c2410c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#9a3412] transition-colors no-underline"
+          >
+            {t.hero.cta_products}
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-white/40 text-white text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-[#0c0a09] transition-colors no-underline"
+          >
+            <Phone size={15} /> {t.hero.card_btn}
+          </Link>
+        </div>
+
+        {/* Trust strip pinned bottom */}
+        <div className="mt-14 pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-y-4 gap-x-6 text-xs">
+          <TrustItem
+            k={lang === "sq" ? "Vjet Eksperiencë" : "Years Experience"}
+            v="30+"
+          />
+          <TrustItem
+            k={lang === "sq" ? "Instalime" : "Installations"}
+            v="500+"
+          />
+          <TrustItem
+            k={lang === "sq" ? "Qytete" : "Cities"}
+            v="12"
+          />
+          <TrustItem
+            k={lang === "sq" ? "Garanci" : "Warranty"}
+            v={`5–10 ${lang === "sq" ? "vjet" : "yrs"}`}
+          />
+        </div>
       </div>
     </section>
+  );
+}
+
+function TrustItem({ k, v }: { k: string; v: string }) {
+  return (
+    <div>
+      <p className="text-white text-2xl lg:text-3xl font-bold tabular-nums tracking-tight">{v}</p>
+      <p className="text-white/55 uppercase tracking-widest text-[10px] mt-1">{k}</p>
+    </div>
   );
 }

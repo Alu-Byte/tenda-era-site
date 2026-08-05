@@ -16,7 +16,7 @@ interface Props {
 
 const catBg: Record<string, string> = {
   tenda: "from-[#1a1a1a] to-[#2d2d2d]",
-  cadra: "from-[#e11d3c] to-[#b91429]",
+  cadra: "from-[#0f766e] to-[#115e59]",
 };
 
 export default function ProductsContent({ categories, subcategories, images }: Props) {
@@ -29,13 +29,13 @@ export default function ProductsContent({ categories, subcategories, images }: P
     <>
       {/* Header */}
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
-        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#e11d3c]/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#f43f5e]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#0f766e]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#14b8a6]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
-          <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            <span className="w-6 h-px bg-[#f43f5e]" />
+          <p className="inline-flex items-center gap-2 text-[#14b8a6] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#14b8a6]" />
             {p.label}
-            <span className="w-6 h-px bg-[#f43f5e]" />
+            <span className="w-6 h-px bg-[#14b8a6]" />
           </p>
           <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{p.title}</h1>
           <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{p.subtitle}</p>
@@ -87,7 +87,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
                         <div key={sub.id} id={sub.id}>
                           {/* Subcategory header */}
                           <div className="flex items-center gap-3 mb-6">
-                            <div className="w-1 h-8 rounded-full bg-[#e11d3c]" />
+                            <div className="w-1 h-8 rounded-full bg-[#0f766e]" />
                             <div className="flex-1">
                               <div className="flex items-center gap-3 flex-wrap">
                                 <h3 className="font-display text-2xl font-semibold text-[#1a1a1a]">
@@ -96,7 +96,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
                                 {sub.modelUrl && (
                                   <button
                                     onClick={() => setModel3d({ src: sub.modelUrl!, alt: lang === "sq" ? sub.name_sq : sub.name_en })}
-                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1a1a1a] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#e11d3c] transition-colors"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1a1a1a] text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-[#0f766e] transition-colors"
                                   >
                                     <Box size={13} /> {lang === "sq" ? "Shiko 3D" : "View 3D"}
                                   </button>
@@ -143,11 +143,11 @@ export default function ProductsContent({ categories, subcategories, images }: P
       <section className="bg-[#fbfaf6] py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <div className="relative bg-gradient-to-br from-neutral-950 to-neutral-800 rounded-[2rem] p-10 lg:p-14 overflow-hidden shadow-elevated">
-            <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#e11d3c]/25 blur-[70px]" />
+            <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#0f766e]/25 blur-[70px]" />
             <div className="relative">
               <h3 className="font-display text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">{p.cta_title}</h3>
               <p className="text-white/65 mb-8 leading-relaxed">{p.cta_desc}</p>
-              <Link href="/contact" className="inline-block px-8 py-4 bg-[#e11d3c] text-white font-semibold rounded-full hover:bg-[#b91429] transition-all touch-manipulation shadow-[0_10px_30px_-8px_rgba(225,29,60,0.6)] hover:-translate-y-0.5 no-underline">
+              <Link href="/contact" className="inline-block px-8 py-4 bg-[#0f766e] text-white font-semibold rounded-full hover:bg-[#115e59] transition-all touch-manipulation shadow-[0_10px_30px_-8px_rgba(15,118,110,0.6)] hover:-translate-y-0.5 no-underline">
                 {p.cta_btn}
               </Link>
             </div>
@@ -168,7 +168,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
       {/* Lightbox */}
       {lightbox && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
-          <button className="absolute top-4 right-4 text-white hover:text-[#e11d3c] transition-colors z-10" onClick={() => setLightbox(null)}>
+          <button className="absolute top-4 right-4 text-white hover:text-[#0f766e] transition-colors z-10" onClick={() => setLightbox(null)}>
             <X size={32} />
           </button>
           <div className="max-w-4xl max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>

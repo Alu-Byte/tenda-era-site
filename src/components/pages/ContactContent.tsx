@@ -14,13 +14,13 @@ export default function ContactContent() {
   return (
     <>
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
-        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#e11d3c]/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#f43f5e]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#0f766e]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#14b8a6]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
-          <p className="inline-flex items-center gap-2 text-[#f43f5e] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            <span className="w-6 h-px bg-[#f43f5e]" />
+          <p className="inline-flex items-center gap-2 text-[#14b8a6] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#14b8a6]" />
             {c.label}
-            <span className="w-6 h-px bg-[#f43f5e]" />
+            <span className="w-6 h-px bg-[#14b8a6]" />
           </p>
           <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{c.title}</h1>
           <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{c.desc}</p>
@@ -42,13 +42,13 @@ export default function ContactContent() {
                 { icon: Clock, label: c.hours, value: `${lang === "sq" ? openingHours.weekdays_sq : openingHours.weekdays_en}\n${lang === "sq" ? openingHours.saturday_sq : openingHours.saturday_en}`, href: null },
               ].map((item) => (
                 <div key={item.label} className="flex gap-4 p-4 -mx-4 rounded-2xl hover:bg-white transition-colors group">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#fef2f4] to-[#fce7ea] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <item.icon size={20} className="text-[#e11d3c]" />
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#f0fdfa] to-[#ccfbf1] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <item.icon size={20} className="text-[#0f766e]" />
                   </div>
                   <div className="pt-0.5">
                     <p className="text-[11px] text-neutral-400 uppercase tracking-[0.15em] font-bold mb-1">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} className="text-neutral-900 font-medium hover:text-[#e11d3c] transition-colors">{item.value}</a>
+                      <a href={item.href} className="text-neutral-900 font-medium hover:text-[#0f766e] transition-colors">{item.value}</a>
                     ) : (
                       <p className="text-neutral-900 font-medium whitespace-pre-line leading-relaxed">{item.value}</p>
                     )}
@@ -60,10 +60,10 @@ export default function ContactContent() {
             <div>
               <p className="text-[11px] text-neutral-400 uppercase tracking-[0.15em] font-bold mb-4">{c.follow}</p>
               <div className="flex gap-3">
-                <a href="https://www.facebook.com/profile.php?id=61585040403719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#e11d3c] hover:text-[#e11d3c] hover:shadow-soft transition-all touch-manipulation no-underline">
+                <a href="https://www.facebook.com/profile.php?id=61585040403719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#0f766e] hover:text-[#0f766e] hover:shadow-soft transition-all touch-manipulation no-underline">
                   <FacebookIcon size={16} /> Facebook
                 </a>
-                <a href="https://www.instagram.com/cadra.tenda.erashpk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#e11d3c] hover:text-[#e11d3c] hover:shadow-soft transition-all touch-manipulation no-underline">
+                <a href="https://www.instagram.com/cadra.tenda.erashpk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#0f766e] hover:text-[#0f766e] hover:shadow-soft transition-all touch-manipulation no-underline">
                   <InstagramIcon size={16} /> Instagram
                 </a>
               </div>
