@@ -849,7 +849,7 @@ export default function AdminDashboard() {
                           </div>
                         ) : (
                           <>
-                            <p className="text-xs font-semibold text-gray-700 truncate">{img.title || img.originalName}</p>
+                            <p className={`text-xs font-semibold truncate ${img.title ? "text-gray-700" : "italic text-gray-300"}`}>{img.title || "Pa titull"}</p>
                             <p className="text-xs text-[#e11d3c] mt-0.5 truncate">{sectionLabel(img.section)}</p>
                             <p className="text-gray-300 text-xs mt-1">{new Date(img.uploadedAt).toLocaleDateString()}</p>
                           </>

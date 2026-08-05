@@ -71,4 +71,7 @@ export interface SiteData {
   faqs: FaqItem[];
   openingHours?: OpeningHours;
   announcement?: Announcement;
+  // Persistent admin password bcrypt hash. Written by changePassword and
+  // read by getPasswordHash — MUST survive round-trips through normalize().
+  adminHash?: string;
 }

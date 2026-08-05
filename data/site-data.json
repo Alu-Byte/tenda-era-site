@@ -428,7 +428,7 @@
       "name_en": "Awnings",
       "icon": "",
       "order": 1,
-      "coverImage": "/uploads/e2583e48-6d99-4c3f-a38a-099df891ecb3.jpeg",
+      "coverImage": "https://res.cloudinary.com/qa7ypitq/image/upload/v1785970678/tenda-era/uploads/e2583e48-6d99-4c3f-a38a-099df891ecb3.jpg",
       "coverPosition": "50% 42%"
     },
     {
@@ -437,7 +437,7 @@
       "name_en": "Umbrellas",
       "icon": "",
       "order": 2,
-      "coverImage": "/uploads/660e14da-5e72-47ed-9e2d-fe350a3c9476.jpeg",
+      "coverImage": "https://res.cloudinary.com/qa7ypitq/image/upload/v1785970677/tenda-era/uploads/660e14da-5e72-47ed-9e2d-fe350a3c9476.jpg",
       "coverPosition": "54% 29%"
     }
   ],

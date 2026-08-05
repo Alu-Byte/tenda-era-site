@@ -46,6 +46,9 @@ function normalize(data: SiteData): SiteData {
     faqs: data.faqs ?? [],
     openingHours: data.openingHours,
     announcement: data.announcement,
+    // Preserve the persisted admin password hash — without this it gets
+    // dropped on every read and password changes silently revert on Vercel.
+    adminHash: data.adminHash,
   };
 }
 
