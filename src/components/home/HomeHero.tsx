@@ -47,8 +47,8 @@ export default function HomeHero({ heroImages }: Props) {
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-20 lg:pb-28 text-white">
         {/* Eyebrow with vertical tick */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="w-10 h-px bg-[#14b8a6]" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#14b8a6]">{eyebrow}</span>
+          <span className="w-10 h-px bg-[#e8b473]" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e8b473]">{eyebrow}</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.02] tracking-tight max-w-4xl mb-6">
@@ -61,17 +61,17 @@ export default function HomeHero({ heroImages }: Props) {
 
         <div className="flex flex-wrap gap-3">
           <Link
-            href="/products"
-            className="group inline-flex items-center gap-2 px-7 py-4 bg-[#c2410c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#9a3412] transition-colors no-underline"
+            href="/contact"
+            className="group inline-flex items-center gap-2 px-7 py-4 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#a54f24] transition-colors no-underline"
           >
-            {t.hero.cta_products}
+            <Phone size={15} /> {t.hero.card_btn}
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/contact"
+            href="/products"
             className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-white/40 text-white text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-[#0c0a09] transition-colors no-underline"
           >
-            <Phone size={15} /> {t.hero.card_btn}
+            {t.hero.cta_products}
           </Link>
         </div>
 
@@ -102,7 +102,7 @@ export default function HomeHero({ heroImages }: Props) {
 function TrustItem({ k, v }: { k: string; v: string }) {
   return (
     <div>
-      <p className="text-white text-2xl lg:text-3xl font-bold tabular-nums tracking-tight">{v}</p>
+      <p className="text-[#e8b473] text-2xl lg:text-3xl font-bold tabular-nums tracking-tight">{v}</p>
       <p className="text-white/55 uppercase tracking-widest text-[10px] mt-1">{k}</p>
     </div>
   );

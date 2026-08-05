@@ -58,7 +58,7 @@ export default function PortfolioGallery({ images }: Props) {
             onClick={() => setLightbox(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white hover:text-[#0f766e] transition-colors touch-manipulation"
+              className="absolute top-4 right-4 text-white hover:text-[#0d5c63] transition-colors touch-manipulation"
               onClick={() => setLightbox(null)}
             >
               <X size={32} />
@@ -82,13 +82,13 @@ export default function PortfolioGallery({ images }: Props) {
 
   return (
     <div>
-      <div className="mb-8 p-5 bg-white border border-[#0f766e]/20 rounded-2xl flex items-start gap-4 shadow-soft">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f0fdfa] to-[#ccfbf1] flex items-center justify-center shrink-0">
-          <span className="text-[#0f766e] text-lg">💡</span>
+      <div className="mb-8 p-5 bg-white border border-[#0d5c63]/20 rounded-2xl flex items-start gap-4 shadow-soft">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#e7f0f0] to-[#c9dcd9] flex items-center justify-center shrink-0">
+          <span className="text-[#0d5c63] text-lg">💡</span>
         </div>
         <p className="text-sm text-neutral-600 leading-relaxed pt-1">
           Portfolio images are managed from the{" "}
-          <a href="/admin" className="text-[#0f766e] font-semibold underline">Admin Panel</a>.
+          <a href="/admin" className="text-[#0d5c63] font-semibold underline">Admin Panel</a>.
           Upload your project photos and assign them to &quot;Portfolio&quot; to display them here.
         </p>
       </div>
@@ -104,7 +104,7 @@ export default function PortfolioGallery({ images }: Props) {
             <div
               className="absolute inset-0 opacity-[0.08]"
               style={{
-                backgroundImage: `radial-gradient(circle at 1px 1px, #14b8a6 1px, transparent 0)`,
+                backgroundImage: `radial-gradient(circle at 1px 1px, #4a9d95 1px, transparent 0)`,
                 backgroundSize: "20px 20px",
               }}
             />

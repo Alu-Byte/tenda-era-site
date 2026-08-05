@@ -13,7 +13,7 @@ export default function HomePartners() {
   const { t } = useLang();
 
   return (
-    <section className="bg-[#f5f4ef] border-y border-[#e7e5e4]">
+    <section className="bg-[#f2ede4] border-y border-[#e3ddd1]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-12 lg:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-3">

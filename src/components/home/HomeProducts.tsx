@@ -16,12 +16,12 @@ export default function HomeProducts({ categories, subcategories }: Props) {
   const ps = t.products_section;
 
   return (
-    <section className="bg-[#faf9f6] py-24 lg:py-32">
+    <section className="bg-[#faf7f2] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Section head */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
           <div className="lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0f766e]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c63]">
               01 · {ps.label}
             </p>
           </div>
@@ -70,7 +70,7 @@ export default function HomeProducts({ categories, subcategories }: Props) {
                     <h3 className="text-2xl lg:text-3xl font-bold tracking-tight leading-tight">
                       {lang === "sq" ? cat.name_sq : cat.name_en}
                     </h3>
-                    <div className="w-10 h-10 rounded-full bg-[#c2410c] flex items-center justify-center transition-transform group-hover:rotate-45 shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#c86b3c] flex items-center justify-center transition-transform group-hover:rotate-45 shrink-0">
                       <ArrowUpRight size={16} className="text-white" strokeWidth={2.5} />
                     </div>
                   </div>

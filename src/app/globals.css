@@ -1,27 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — modern industrial: deep teal + warm amber on cream */
-  --accent: #0f766e;         /* deep teal — primary CTA */
-  --accent-dark: #115e59;    /* hover/active */
-  --accent-light: #14b8a6;   /* highlights */
-  --accent-soft: #f0fdfa;    /* soft tinted backgrounds */
-  --amber: #c2410c;          /* warm accent for numbers, secondary highlights */
-  --amber-soft: #ffedd5;
-  --cream: #faf9f6;          /* warm off-white page background */
-  --paper: #f5f4ef;          /* slightly deeper cream for section variation */
+  /* Brand palette — Modern Mediterranean: pine + terracotta + sand + sage on warm ivory */
+  --pine: #0d5c63;           /* primary brand — links, secondary buttons, brand ink */
+  --pine-dark: #0a4a50;      /* hover state for pine */
+  --pine-soft: #e7f0f0;      /* soft tinted backgrounds, highlight fills */
+
+  --terracotta: #c86b3c;     /* PRIMARY CTA — most important actions */
+  --terracotta-dark: #a54f24; /* hover state */
+  --terracotta-soft: #f7e6d8;
+
+  --sand: #e8b473;           /* warm highlight — badges, subtle accents */
+  --sand-soft: #f7ecd8;
+  --sage: #4a9d95;           /* secondary/info accent */
+
+  --ivory: #faf7f2;          /* page background */
+  --paper: #f2ede4;          /* subtle section variation */
   --charcoal: #1c1917;       /* body text, headings */
   --navy: #0c0a09;           /* dark backgrounds, hero */
   --white: #ffffff;
-  --steel: #57534e;          /* muted labels/borders */
-  --gray-light: #f4f4f0;
-  --border: #e7e5e4;
+  --muted: #57534e;          /* muted labels */
+  --border: #e3ddd1;
 
-  /* Legacy alias — some components still reference --red directly */
-  --red: var(--accent);
-  --red-dark: var(--accent-dark);
-  --red-light: var(--accent-light);
-  --red-soft: var(--accent-soft);
+  /* Legacy aliases — kept so any leftover --red / --accent references still resolve */
+  --accent: var(--pine);
+  --accent-dark: var(--pine-dark);
+  --accent-light: var(--sage);
+  --accent-soft: var(--pine-soft);
+  --amber: var(--terracotta);
+  --amber-soft: var(--sand-soft);
+  --cream: var(--ivory);
+  --steel: var(--muted);
+  --gray-light: var(--paper);
+  --red: var(--pine);
+  --red-dark: var(--pine-dark);
+  --red-light: var(--sage);
+  --red-soft: var(--pine-soft);
 }
 
 * { box-sizing: border-box; }

@@ -18,12 +18,12 @@ export default function HomePortfolioPreview({ images }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-[#faf9f6] py-24 lg:py-32">
+    <section className="bg-[#faf7f2] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Head */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-14">
           <div className="lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0f766e]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c63]">
               02 · {ps.label}
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function HomePortfolioPreview({ images }: Props) {
           <div className="lg:col-span-3 flex lg:justify-end lg:items-end">
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#1c1917] hover:text-[#0f766e] transition-colors no-underline"
+              className="group inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#1c1917] hover:text-[#0d5c63] transition-colors no-underline"
             >
               {ps.see_all}
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

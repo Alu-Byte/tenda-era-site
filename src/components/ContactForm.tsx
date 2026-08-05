@@ -31,14 +31,14 @@ export default function ContactForm() {
         </div>
         <h3 className="font-display text-2xl lg:text-3xl font-bold text-neutral-900 tracking-tight">{c.sent_title}</h3>
         <p className="text-neutral-500 max-w-sm leading-relaxed">{c.sent_desc}</p>
-        <button onClick={() => setSent(false)} className="mt-4 px-6 py-3 border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#0f766e] hover:text-[#0f766e] transition-colors touch-manipulation">
+        <button onClick={() => setSent(false)} className="mt-4 px-6 py-3 border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#0d5c63] hover:text-[#0d5c63] transition-colors touch-manipulation">
           {c.send_another}
         </button>
       </div>
     );
   }
 
-  const inputClass = "w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-[#0f766e] focus:ring-4 focus:ring-[#0f766e]/10 focus:outline-none text-neutral-900 text-sm transition-all placeholder:text-neutral-400";
+  const inputClass = "w-full px-4 py-3 rounded-xl border border-neutral-200 bg-white focus:border-[#0d5c63] focus:ring-4 focus:ring-[#0d5c63]/10 focus:outline-none text-neutral-900 text-sm transition-all placeholder:text-neutral-400";
   const labelClass = "block text-[11px] font-bold uppercase tracking-[0.15em] text-neutral-500 mb-2";
 
   return (
@@ -79,7 +79,7 @@ export default function ContactForm() {
         <textarea required rows={5} className={`${inputClass} resize-none`} placeholder={c.message_placeholder} />
       </div>
 
-      <button type="submit" disabled={loading} className="w-full py-4 bg-[#0f766e] text-white font-semibold rounded-xl hover:bg-[#115e59] transition-all flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation shadow-[0_10px_24px_-8px_rgba(15,118,110,0.5)] hover:-translate-y-0.5">
+      <button type="submit" disabled={loading} className="w-full py-4 bg-[#0d5c63] text-white font-semibold rounded-xl hover:bg-[#0a4a50] transition-all flex items-center justify-center gap-2 disabled:opacity-60 touch-manipulation shadow-[0_10px_24px_-8px_rgba(13,92,99,0.5)] hover:-translate-y-0.5">
         {loading ? (
           <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
         ) : (
