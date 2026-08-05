@@ -27,7 +27,7 @@ export default function HomeFAQ({ items }: Props) {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c63] mb-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#a03e14] mb-4">
               04 · {f.label}
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1c1917] leading-[1.1] tracking-tight">
@@ -49,8 +49,8 @@ export default function HomeFAQ({ items }: Props) {
                       aria-expanded={isOpen}
                     >
                       <span className="font-semibold text-[#1c1917] text-base lg:text-lg leading-snug">{q}</span>
-                      <span className="shrink-0 w-8 h-8 border border-[#e3ddd1] flex items-center justify-center text-[#0d5c63]">
-                        {isOpen ? <Minus size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
+                      <span className="shrink-0 w-9 h-9 rounded-full bg-[#fbeae2] flex items-center justify-center text-[#a03e14] transition-colors">
+                        {isOpen ? <Minus size={15} strokeWidth={2.5} /> : <Plus size={15} strokeWidth={2.5} />}
                       </span>
                     </button>
                     <div className={`grid transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
@@ -67,7 +67,7 @@ export default function HomeFAQ({ items }: Props) {
               <div className="mt-6">
                 <button
                   onClick={() => { setShowAll(!showAll); if (showAll) setOpen(null); }}
-                  className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#0d5c63] hover:text-[#0a4a50] transition-colors touch-manipulation"
+                  className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#a03e14] hover:text-[#7c2f0f] transition-colors touch-manipulation"
                 >
                   {showAll
                     ? (lang === "sq" ? "Shfaq më pak" : "Show less")

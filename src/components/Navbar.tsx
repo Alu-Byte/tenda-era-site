@@ -55,7 +55,7 @@ export default function Navbar() {
                 priority
               />
               <span className="text-[15px] font-bold text-neutral-900 whitespace-nowrap tracking-[0.02em] uppercase">
-                Tenda <span className="text-[#0d5c63]">Era</span>
+                Tenda <span className="text-[#a03e14]">Era</span>
               </span>
             </Link>
 
@@ -69,12 +69,12 @@ export default function Navbar() {
                     href={link.href}
                     className={`relative px-3.5 py-2 text-[13px] font-semibold tracking-wide rounded-lg transition-all no-underline
                       ${active
-                        ? "text-[#0d5c63]"
+                        ? "text-[#a03e14]"
                         : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100/70"}`}
                   >
                     {link.label}
                     {active && (
-                      <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#0d5c63]" />
+                      <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#a03e14]" />
                     )}
                   </Link>
                 );
@@ -102,7 +102,7 @@ export default function Navbar() {
               {/* CTA */}
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#c86b3c] text-white text-[12px] font-bold uppercase tracking-wider no-underline hover:bg-[#a54f24] transition-colors"
+                className="inline-flex items-center gap-1.5 pl-3.5 pr-4 py-2 bg-[#c86b3c] text-white text-[12px] font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#a54f24] transition-colors shadow-md shadow-[#c86b3c]/25"
               >
                 <Phone size={13} strokeWidth={2.5} />
                 {t.nav.quote}
@@ -151,7 +151,7 @@ export default function Navbar() {
                 <Image src="/logo.png" alt="Tenda Era" width={34} height={30} className="object-contain"
                   style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))" }} />
                 <span className="text-lg font-bold text-neutral-900 tracking-[0.02em] uppercase">
-                  Tenda <span className="text-[#0d5c63]">Era</span>
+                  Tenda <span className="text-[#a03e14]">Era</span>
                 </span>
               </div>
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu"
@@ -167,7 +167,7 @@ export default function Navbar() {
                   <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
                     className={`flex items-center px-5 py-4 text-sm font-semibold tracking-wide no-underline transition-colors
                       ${active
-                        ? "text-[#0d5c63] bg-[#0d5c63]/5 border-l-4 border-[#0d5c63]"
+                        ? "text-[#a03e14] bg-[#a03e14]/5 border-l-4 border-[#a03e14]"
                         : "text-neutral-800 border-l-4 border-transparent hover:bg-neutral-50"}`}>
                     {link.label}
                   </Link>
@@ -186,7 +186,7 @@ export default function Navbar() {
                 ))}
               </div>
               <Link href="/contact" onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 py-3.5 bg-[#c86b3c] text-white text-sm font-bold uppercase tracking-wider no-underline hover:bg-[#a54f24] transition-colors touch-manipulation">
+                className="flex items-center justify-center gap-2 py-3.5 bg-[#c86b3c] text-white text-sm font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#a54f24] transition-colors touch-manipulation shadow-md shadow-[#c86b3c]/25">
                 <Phone size={14} /> {t.nav.quote}
               </Link>
             </div>

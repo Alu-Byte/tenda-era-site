@@ -26,14 +26,14 @@ export default function HomeCTA() {
           <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
             <Link
               href="/contact"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#a54f24] transition-colors no-underline w-full lg:w-auto"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#a54f24] transition-colors no-underline w-full lg:w-auto shadow-lg shadow-[#c86b3c]/25"
             >
               {c.btn_quote}
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <a
               href="tel:+355692075317"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/40 text-white text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-[#0c0a09] transition-colors no-underline w-full lg:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/40 text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-white hover:text-[#0c0a09] transition-colors no-underline w-full lg:w-auto"
             >
               <Phone size={16} /> +355 69 207 5317
             </a>

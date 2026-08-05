@@ -27,8 +27,8 @@ export default function HomeStats() {
               {i > 0 && (
                 <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-[#e3ddd1]" />
               )}
-              <div className="mb-5 w-11 h-11 border border-[#e3ddd1] flex items-center justify-center">
-                <it.icon size={18} className="text-[#0d5c63]" strokeWidth={1.75} />
+              <div className="mb-5 w-14 h-14 rounded-full bg-[#fbeae2] flex items-center justify-center">
+                <it.icon size={22} className="text-[#a03e14]" strokeWidth={1.75} />
               </div>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#57534e] mb-2">{it.k}</p>
               <p className="text-lg font-semibold text-[#1c1917] leading-snug mb-3">{it.v}</p>

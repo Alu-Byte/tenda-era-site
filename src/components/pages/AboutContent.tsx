@@ -61,13 +61,13 @@ export default function AboutContent({ images }: Props) {
   return (
     <>
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
-        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#0d5c63]/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#4a9d95]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#a03e14]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#dc7a5f]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
-          <p className="inline-flex items-center gap-2 text-[#4a9d95] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            <span className="w-6 h-px bg-[#4a9d95]" />
+          <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#dc7a5f]" />
             {a.label}
-            <span className="w-6 h-px bg-[#4a9d95]" />
+            <span className="w-6 h-px bg-[#dc7a5f]" />
           </p>
           <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{a.title}</h1>
           <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{a.desc}</p>
@@ -81,8 +81,8 @@ export default function AboutContent({ images }: Props) {
       <section className="bg-[#faf7f2] py-20 lg:py-24 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="inline-flex items-center gap-2 text-[#0d5c63] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#0d5c63]" />
+            <p className="inline-flex items-center gap-2 text-[#a03e14] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#a03e14]" />
               {a.story_label}
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 mb-6 tracking-tight leading-[1.1]">{a.story_title}</h2>
@@ -100,10 +100,10 @@ export default function AboutContent({ images }: Props) {
               </>
             ) : (
               <>
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #0d5c63 0, #0d5c63 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `repeating-linear-gradient(45deg, #a03e14 0, #a03e14 1px, transparent 0, transparent 50%)`, backgroundSize: "24px 24px" }} />
                 <div className="text-center absolute inset-0 flex items-center justify-center p-8">
                   <div>
-                    <p className="font-display text-7xl font-bold text-[#0d5c63]">30+</p>
+                    <p className="font-display text-7xl font-bold text-[#a03e14]">30+</p>
                     <p className="text-white/60 text-lg mt-2">{lang === "sq" ? "Vjet Përsosmërie" : "Years of Excellence"}</p>
                   </div>
                 </div>
@@ -117,18 +117,18 @@ export default function AboutContent({ images }: Props) {
       <section className="bg-white py-20 lg:py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <p className="inline-flex items-center gap-2 text-[#0d5c63] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#0d5c63]" />
+            <p className="inline-flex items-center gap-2 text-[#a03e14] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#a03e14]" />
               {a.values_label}
-              <span className="w-6 h-px bg-[#0d5c63]" />
+              <span className="w-6 h-px bg-[#a03e14]" />
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">{a.values_title}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="p-7 rounded-2xl border border-neutral-200 bg-white hover:border-[#0d5c63]/30 hover:shadow-soft transition-all group">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#e7f0f0] to-[#c9dcd9] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <v.icon size={22} className="text-[#0d5c63]" />
+              <div key={v.title} className="p-7 rounded-2xl border border-neutral-200 bg-white hover:border-[#a03e14]/30 hover:shadow-soft transition-all group">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#fbeae2] to-[#f5d5c1] flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                  <v.icon size={22} className="text-[#a03e14]" />
                 </div>
                 <h3 className="font-semibold text-neutral-900 mb-2 tracking-tight">{v.title}</h3>
                 <p className="text-sm text-neutral-500 leading-relaxed">{v.desc}</p>
@@ -143,10 +143,10 @@ export default function AboutContent({ images }: Props) {
         <section className="bg-[#faf7f2] py-20 lg:py-24 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
-              <p className="inline-flex items-center gap-2 text-[#0d5c63] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-                <span className="w-6 h-px bg-[#0d5c63]" />
+              <p className="inline-flex items-center gap-2 text-[#a03e14] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                <span className="w-6 h-px bg-[#a03e14]" />
                 {lang === "sq" ? "Galeri" : "Gallery"}
-                <span className="w-6 h-px bg-[#0d5c63]" />
+                <span className="w-6 h-px bg-[#a03e14]" />
               </p>
               <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">
                 {lang === "sq" ? "Momente nga Ne" : "Moments From Us"}
@@ -186,7 +186,7 @@ export default function AboutContent({ images }: Props) {
           onClick={() => setLightbox(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white hover:text-[#0d5c63] transition-colors touch-manipulation"
+            className="absolute top-4 right-4 text-white hover:text-[#a03e14] transition-colors touch-manipulation"
             onClick={() => setLightbox(null)}
           >
             <X size={32} />
@@ -209,20 +209,20 @@ export default function AboutContent({ images }: Props) {
       <section className={`${galleryImages.length > 0 ? "bg-white" : "bg-[#faf7f2]"} py-20 lg:py-24 px-6`}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
-            <p className="inline-flex items-center gap-2 text-[#0d5c63] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#0d5c63]" />
+            <p className="inline-flex items-center gap-2 text-[#a03e14] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#a03e14]" />
               {a.timeline_label}
-              <span className="w-6 h-px bg-[#0d5c63]" />
+              <span className="w-6 h-px bg-[#a03e14]" />
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight">{a.timeline_title}</h2>
           </div>
           <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#0d5c63]/60 via-[#0d5c63]/25 to-transparent" />
+            <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#a03e14]/60 via-[#a03e14]/25 to-transparent" />
             <div className="space-y-10">
               {timeline.map((item) => (
                 <div key={item.year} className="flex gap-8 items-start">
                   <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0d5c63] to-[#0a4a50] border-4 border-[#faf7f2] flex items-center justify-center z-10 relative shadow-lg shadow-[#0d5c63]/30">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#a03e14] to-[#7c2f0f] border-4 border-[#faf7f2] flex items-center justify-center z-10 relative shadow-lg shadow-[#a03e14]/30">
                       <span className="text-white font-bold text-xs text-center leading-tight">{item.year}</span>
                     </div>
                   </div>
@@ -239,24 +239,24 @@ export default function AboutContent({ images }: Props) {
 
       {/* Partners */}
       <section className="bg-neutral-950 py-20 lg:py-24 px-6 relative overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#0d5c63]/12 blur-[110px] pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#4a9d95]/8 blur-[110px] pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#a03e14]/12 blur-[110px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#dc7a5f]/8 blur-[110px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-14">
-            <p className="inline-flex items-center gap-2 text-[#4a9d95] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#4a9d95]" />
+            <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#dc7a5f]" />
               {a.partners_label}
-              <span className="w-6 h-px bg-[#4a9d95]" />
+              <span className="w-6 h-px bg-[#dc7a5f]" />
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-white tracking-tight">{a.partners_title}</h2>
             <p className="text-white/55 mt-4 max-w-xl mx-auto leading-relaxed">{a.partners_desc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {partners.map((p) => (
-              <div key={p.name} className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-[#0d5c63]/40 hover:bg-white/[0.06] transition-all group">
+              <div key={p.name} className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-[#a03e14]/40 hover:bg-white/[0.06] transition-all group">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0d5c63]/25 to-[#0d5c63]/10 border border-[#0d5c63]/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span className="text-[#4a9d95] font-bold">{p.name[0]}</span>
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#a03e14]/25 to-[#a03e14]/10 border border-[#a03e14]/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span className="text-[#dc7a5f] font-bold">{p.name[0]}</span>
                   </div>
                   <div>
                     <p className="font-display text-lg font-semibold text-white tracking-tight">{p.name}</p>

@@ -2,9 +2,9 @@
 
 :root {
   /* Brand palette — Modern Mediterranean: pine + terracotta + sand + sage on warm ivory */
-  --pine: #0d5c63;           /* primary brand — links, secondary buttons, brand ink */
-  --pine-dark: #0a4a50;      /* hover state for pine */
-  --pine-soft: #e7f0f0;      /* soft tinted backgrounds, highlight fills */
+  --brick: #a03e14;          /* primary brand — links, secondary buttons, brand ink */
+  --brick-dark: #7c2f0f;     /* hover state for brick */
+  --brick-soft: #fbeae2;     /* soft tinted backgrounds */
 
   --terracotta: #c86b3c;     /* PRIMARY CTA — most important actions */
   --terracotta-dark: #a54f24; /* hover state */
@@ -12,7 +12,13 @@
 
   --sand: #e8b473;           /* warm highlight — badges, subtle accents */
   --sand-soft: #f7ecd8;
-  --sage: #4a9d95;           /* secondary/info accent */
+  --clay: #dc7a5f;           /* mid-tone rose, accents */
+
+  /* Legacy alias so leftover pine references still resolve */
+  --pine: var(--brick);
+  --pine-dark: var(--brick-dark);
+  --pine-soft: var(--brick-soft);
+  --sage: var(--clay);
 
   --ivory: #faf7f2;          /* page background */
   --paper: #f2ede4;          /* subtle section variation */

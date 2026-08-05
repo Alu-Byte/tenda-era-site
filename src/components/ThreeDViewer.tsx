@@ -87,7 +87,7 @@ export default function ThreeDViewer({ src, alt, onClose }: Props) {
       onMouseLeave={() => { s.current.dragging = false; }}
     >
       <button
-        className="absolute top-4 right-4 text-white hover:text-[#0d5c63] transition-colors z-10"
+        className="absolute top-4 right-4 text-white hover:text-[#a03e14] transition-colors z-10"
         onClick={onClose}
       >
         <X size={32} />
@@ -139,7 +139,7 @@ export default function ThreeDViewer({ src, alt, onClose }: Props) {
             boxShadow: "0 30px 80px rgba(0,0,0,0.8)",
           }}>
             <div style={{ textAlign: "center" }}>
-              <div style={{ color: "#0d5c63", fontSize: 34, fontFamily: "Georgia, serif", fontWeight: 700 }}>Tenda Era</div>
+              <div style={{ color: "#a03e14", fontSize: 34, fontFamily: "Georgia, serif", fontWeight: 700 }}>Tenda Era</div>
               <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, marginTop: 8, letterSpacing: "0.25em", textTransform: "uppercase" }}>Quality Since 1997</div>
             </div>
           </div>

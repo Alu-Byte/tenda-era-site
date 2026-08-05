@@ -62,14 +62,14 @@ export default function HomeHero({ heroImages }: Props) {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 px-7 py-4 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider hover:bg-[#a54f24] transition-colors no-underline"
+            className="group inline-flex items-center gap-2 pl-6 pr-5 py-3.5 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#a54f24] transition-colors no-underline shadow-lg shadow-[#c86b3c]/30"
           >
             <Phone size={15} /> {t.hero.card_btn}
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 px-7 py-4 bg-transparent border border-white/40 text-white text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-[#0c0a09] transition-colors no-underline"
+            className="inline-flex items-center gap-2 px-6 py-3.5 bg-transparent border border-white/40 text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-white hover:text-[#0c0a09] transition-colors no-underline"
           >
             {t.hero.cta_products}
           </Link>

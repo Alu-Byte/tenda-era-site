@@ -21,7 +21,7 @@ export default function HomeProducts({ categories, subcategories }: Props) {
         {/* Section head */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
           <div className="lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c63]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#a03e14]">
               01 · {ps.label}
             </p>
           </div>
@@ -40,7 +40,7 @@ export default function HomeProducts({ categories, subcategories }: Props) {
               <Link
                 key={cat.id}
                 href={`/products#${cat.id}`}
-                className="group relative overflow-hidden no-underline block h-[440px]"
+                className="group relative overflow-hidden rounded-3xl no-underline block h-[440px] shadow-soft hover:shadow-elevated transition-shadow"
               >
                 {cat.coverImage ? (
                   <Image

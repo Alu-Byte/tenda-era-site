@@ -23,7 +23,7 @@ export default function HomePortfolioPreview({ images }: Props) {
         {/* Head */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-14">
           <div className="lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#0d5c63]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#a03e14]">
               02 · {ps.label}
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function HomePortfolioPreview({ images }: Props) {
           <div className="lg:col-span-3 flex lg:justify-end lg:items-end">
             <Link
               href="/portfolio"
-              className="group inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#1c1917] hover:text-[#0d5c63] transition-colors no-underline"
+              className="group inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#1c1917] hover:text-[#a03e14] transition-colors no-underline"
             >
               {ps.see_all}
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -49,7 +49,7 @@ export default function HomePortfolioPreview({ images }: Props) {
             <Link
               key={img.id}
               href="/portfolio"
-              className={`relative overflow-hidden group no-underline ${
+              className={`relative overflow-hidden rounded-2xl lg:rounded-3xl group no-underline shadow-soft hover:shadow-elevated transition-shadow ${
                 i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto md:h-[520px]" : "aspect-square"
               }`}
             >
