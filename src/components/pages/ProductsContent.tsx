@@ -183,8 +183,8 @@ export default function ProductsContent({ categories, subcategories, images }: P
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
             <div className="lg:col-span-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e8b473] mb-4 flex items-center gap-3">
-                <span className="w-10 h-px bg-[#e8b473]" />
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#fca5a5] mb-4 flex items-center gap-3">
+                <span className="w-10 h-px bg-[#fca5a5]" />
                 {lang === "sq" ? "I gatshëm të fillojmë?" : "Ready to start?"}
               </p>
               <h3 className="text-3xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight max-w-3xl mb-4">
@@ -195,7 +195,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
             <div className="lg:col-span-4 flex flex-col gap-3 lg:items-end">
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#a54f24] transition-colors no-underline w-full lg:w-auto shadow-lg shadow-[#c86b3c]/25"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#dc2626] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#991b1b] transition-colors no-underline w-full lg:w-auto shadow-lg shadow-[#dc2626]/25"
               >
                 {p.cta_btn}
                 <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

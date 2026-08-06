@@ -19,8 +19,8 @@ export default function HomeCTA() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
           <Reveal className="lg:col-span-8">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e8b473] mb-6 flex items-center gap-3">
-              <span className="w-10 h-px bg-[#e8b473]" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#fca5a5] mb-6 flex items-center gap-3">
+              <span className="w-10 h-px bg-[#fca5a5]" />
               {c.label}
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight max-w-3xl mb-6">

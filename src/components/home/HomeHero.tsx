@@ -94,8 +94,8 @@ export default function HomeHero({ heroImages }: Props) {
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-40 pb-20 lg:pb-28 text-white z-10">
         {/* Eyebrow */}
         <div className="flex items-center gap-3 mb-6 animate-fade-up">
-          <span className="w-10 h-px bg-[#e8b473] animate-draw-line origin-left" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#e8b473]">{eyebrow}</span>
+          <span className="w-10 h-px bg-[#fca5a5] animate-draw-line origin-left" />
+          <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#fca5a5]">{eyebrow}</span>
         </div>
 
         {/* Headline — each word fades up with a stagger */}
@@ -122,7 +122,7 @@ export default function HomeHero({ heroImages }: Props) {
         <div className="flex flex-wrap gap-3 animate-fade-up" style={{ animationDelay: "0.75s", opacity: 0, animationFillMode: "forwards" }}>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 pl-6 pr-5 py-3.5 bg-[#c86b3c] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#a54f24] transition-colors no-underline shadow-lg shadow-[#c86b3c]/30 relative"
+            className="group inline-flex items-center gap-2 pl-6 pr-5 py-3.5 bg-[#dc2626] text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-[#991b1b] transition-colors no-underline shadow-lg shadow-[#dc2626]/30 relative"
           >
             <span className="relative flex h-2 w-2 mr-0.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-white/60 animate-soft-ping" />
@@ -160,7 +160,7 @@ export default function HomeHero({ heroImages }: Props) {
 function TrustItem({ k, target, suffix, literal }: { k: string; target?: number; suffix?: string; literal?: string }) {
   return (
     <div>
-      <p className="text-[#e8b473] text-2xl lg:text-3xl font-bold tabular-nums tracking-tight">
+      <p className="text-[#fca5a5] text-2xl lg:text-3xl font-bold tabular-nums tracking-tight">
         {literal ?? (target !== undefined && <CountUp target={target} suffix={suffix ?? ""} />)}
       </p>
       <p className="text-white/55 uppercase tracking-widest text-[10px] mt-1">{k}</p>

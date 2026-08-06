@@ -15,12 +15,12 @@ export default function ContactContent() {
     <>
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
         <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#dc2626]/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#dc7a5f]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#ef4444]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
-          <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            <span className="w-6 h-px bg-[#dc7a5f]" />
+          <p className="inline-flex items-center gap-2 text-[#ef4444] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#ef4444]" />
             {c.label}
-            <span className="w-6 h-px bg-[#dc7a5f]" />
+            <span className="w-6 h-px bg-[#ef4444]" />
           </p>
           <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{c.title}</h1>
           <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{c.desc}</p>

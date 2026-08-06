@@ -62,12 +62,12 @@ export default function AboutContent({ images }: Props) {
     <>
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
         <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#dc2626]/20 blur-[100px] pointer-events-none" />
-        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#dc7a5f]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#ef4444]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
-          <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-            <span className="w-6 h-px bg-[#dc7a5f]" />
+          <p className="inline-flex items-center gap-2 text-[#ef4444] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+            <span className="w-6 h-px bg-[#ef4444]" />
             {a.label}
-            <span className="w-6 h-px bg-[#dc7a5f]" />
+            <span className="w-6 h-px bg-[#ef4444]" />
           </p>
           <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.05]">{a.title}</h1>
           <p className="text-white/65 text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">{a.desc}</p>
@@ -240,13 +240,13 @@ export default function AboutContent({ images }: Props) {
       {/* Partners */}
       <section className="bg-neutral-950 py-20 lg:py-24 px-6 relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#dc2626]/12 blur-[110px] pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#dc7a5f]/8 blur-[110px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[#ef4444]/8 blur-[110px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center mb-14">
-            <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
-              <span className="w-6 h-px bg-[#dc7a5f]" />
+            <p className="inline-flex items-center gap-2 text-[#ef4444] text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="w-6 h-px bg-[#ef4444]" />
               {a.partners_label}
-              <span className="w-6 h-px bg-[#dc7a5f]" />
+              <span className="w-6 h-px bg-[#ef4444]" />
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-bold text-white tracking-tight">{a.partners_title}</h2>
             <p className="text-white/55 mt-4 max-w-xl mx-auto leading-relaxed">{a.partners_desc}</p>
@@ -256,7 +256,7 @@ export default function AboutContent({ images }: Props) {
               <div key={p.name} className="bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-2xl p-7 hover:border-[#dc2626]/40 hover:bg-white/[0.06] transition-all group">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#dc2626]/25 to-[#dc2626]/10 border border-[#dc2626]/30 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span className="text-[#dc7a5f] font-bold">{p.name[0]}</span>
+                    <span className="text-[#ef4444] font-bold">{p.name[0]}</span>
                   </div>
                   <div>
                     <p className="font-display text-lg font-semibold text-white tracking-tight">{p.name}</p>

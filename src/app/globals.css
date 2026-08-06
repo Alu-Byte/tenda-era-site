@@ -2,17 +2,17 @@
 
 :root {
   /* Brand palette — Modern Mediterranean: pine + terracotta + sand + sage on warm ivory */
-  --brick: #dc2626;          /* primary brand — bright red */
-  --brick-dark: #991b1b;     /* hover state */
-  --brick-soft: #fef2f2;     /* soft tinted backgrounds */
+  --brick: #dc2626;          /* primary brand — bright red (red-600) */
+  --brick-dark: #991b1b;     /* hover / active (red-800) */
+  --brick-soft: #fef2f2;     /* soft tinted backgrounds (red-50) */
 
-  --terracotta: #c86b3c;     /* PRIMARY CTA — most important actions */
-  --terracotta-dark: #a54f24; /* hover state */
-  --terracotta-soft: #f7e6d8;
+  --terracotta: #dc2626;     /* PRIMARY CTA — same red as brand for now */
+  --terracotta-dark: #991b1b; /* hover */
+  --terracotta-soft: #fee2e2; /* red-100 */
 
-  --sand: #e8b473;           /* warm highlight — badges, subtle accents */
-  --sand-soft: #f7ecd8;
-  --clay: #dc7a5f;           /* mid-tone rose, accents */
+  --sand: #fca5a5;           /* soft pink-red highlight on dark backgrounds (red-300) */
+  --sand-soft: #fee2e2;      /* red-100 */
+  --clay: #ef4444;           /* mid-tone red (red-500) */
 
   /* Legacy alias so leftover pine references still resolve */
   --pine: var(--brick);

@@ -102,7 +102,7 @@ export default function Navbar() {
               {/* CTA */}
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 pl-3.5 pr-4 py-2 bg-[#c86b3c] text-white text-[12px] font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#a54f24] transition-colors shadow-md shadow-[#c86b3c]/25"
+                className="inline-flex items-center gap-1.5 pl-3.5 pr-4 py-2 bg-[#dc2626] text-white text-[12px] font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#991b1b] transition-colors shadow-md shadow-[#dc2626]/25"
               >
                 <Phone size={13} strokeWidth={2.5} />
                 {t.nav.quote}
@@ -118,7 +118,7 @@ export default function Navbar() {
                   onClick={() => setLang(l)}
                   aria-label={`Switch to ${l.toUpperCase()}`}
                   className={`min-w-[38px] h-11 px-2 text-[11px] font-bold uppercase rounded-full transition-colors touch-manipulation
-                    ${lang === l ? "bg-[#c86b3c] text-white" : "text-neutral-700 hover:bg-neutral-100"}`}
+                    ${lang === l ? "bg-[#dc2626] text-white" : "text-neutral-700 hover:bg-neutral-100"}`}
                 >
                   {l}
                 </button>
@@ -186,7 +186,7 @@ export default function Navbar() {
                 ))}
               </div>
               <Link href="/contact" onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 py-3.5 bg-[#c86b3c] text-white text-sm font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#a54f24] transition-colors touch-manipulation shadow-md shadow-[#c86b3c]/25">
+                className="flex items-center justify-center gap-2 py-3.5 bg-[#dc2626] text-white text-sm font-bold uppercase tracking-wider rounded-full no-underline hover:bg-[#991b1b] transition-colors touch-manipulation shadow-md shadow-[#dc2626]/25">
                 <Phone size={14} /> {t.nav.quote}
               </Link>
             </div>
