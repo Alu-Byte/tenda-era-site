@@ -27,7 +27,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#b91c1c] mb-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626] mb-3">
                 — {p.label}
               </p>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1c1917] leading-[1.05] tracking-tight">
@@ -45,7 +45,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
               <a
                 key={cat.id}
                 href={`#${cat.id}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#e3ddd1] rounded-full text-sm font-semibold text-[#1c1917] hover:border-[#b91c1c] hover:text-[#b91c1c] transition-colors no-underline"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-[#e3ddd1] rounded-full text-sm font-semibold text-[#1c1917] hover:border-[#dc2626] hover:text-[#dc2626] transition-colors no-underline"
               >
                 {lang === "sq" ? cat.name_sq : cat.name_en}
                 <span className="text-xs text-[#57534e]">
@@ -89,7 +89,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
                 </div>
 
                 <div className="lg:col-span-5 lg:pl-4">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#b91c1c] mb-3">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626] mb-3">
                     {lang === "sq" ? "Kategori" : "Category"}
                   </p>
                   <h2 className="text-4xl lg:text-5xl font-bold text-[#1c1917] tracking-tight leading-[1.05] mb-4">
@@ -117,7 +117,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
                         {/* Subcategory header — number + name + description, two-column */}
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 pb-6 border-b border-[#e3ddd1]">
                           <div className="lg:col-span-4 flex items-start gap-4">
-                            <span className="text-[13px] font-mono font-bold text-[#b91c1c] tabular-nums mt-1">
+                            <span className="text-[13px] font-mono font-bold text-[#dc2626] tabular-nums mt-1">
                               {String(subIdx + 1).padStart(2, "0")}
                             </span>
                             <div>
@@ -127,7 +127,7 @@ export default function ProductsContent({ categories, subcategories, images }: P
                               {sub.modelUrl && (
                                 <button
                                   onClick={() => setModel3d({ src: sub.modelUrl!, alt: lang === "sq" ? sub.name_sq : sub.name_en })}
-                                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1c1917] text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-[#b91c1c] transition-colors"
+                                  className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1c1917] text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-[#dc2626] transition-colors"
                                 >
                                   <Box size={13} /> {lang === "sq" ? "Shiko 3D" : "View 3D"}
                                 </button>

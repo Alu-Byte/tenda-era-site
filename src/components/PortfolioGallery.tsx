@@ -16,7 +16,7 @@ export default function PortfolioGallery({ images }: Props) {
       <div className="p-8 bg-white border border-[#e3ddd1] rounded-2xl text-center">
         <p className="text-sm text-[#57534e]">
           No portfolio images yet.{" "}
-          <a href="/admin" className="text-[#b91c1c] font-semibold underline">Upload some from the admin panel.</a>
+          <a href="/admin" className="text-[#dc2626] font-semibold underline">Upload some from the admin panel.</a>
         </p>
       </div>
     );

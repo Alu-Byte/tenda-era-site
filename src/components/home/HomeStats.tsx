@@ -28,7 +28,7 @@ export default function HomeStats() {
                 <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-[#e3ddd1]" />
               )}
               <div className="mb-5 w-14 h-14 rounded-full bg-[#fef2f2] flex items-center justify-center">
-                <it.icon size={22} className="text-[#b91c1c]" strokeWidth={1.75} />
+                <it.icon size={22} className="text-[#dc2626]" strokeWidth={1.75} />
               </div>
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#57534e] mb-2">{it.k}</p>
               <p className="text-lg font-semibold text-[#1c1917] leading-snug mb-3">{it.v}</p>

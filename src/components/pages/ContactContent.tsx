@@ -14,7 +14,7 @@ export default function ContactContent() {
   return (
     <>
       <section className="relative pt-36 pb-24 px-6 overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800">
-        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#b91c1c]/20 blur-[100px] pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#dc2626]/20 blur-[100px] pointer-events-none" />
         <div className="absolute -bottom-32 -left-20 w-96 h-96 rounded-full bg-[#dc7a5f]/10 blur-[100px] pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center relative">
           <p className="inline-flex items-center gap-2 text-[#dc7a5f] text-xs font-bold uppercase tracking-[0.2em] mb-4">
@@ -43,12 +43,12 @@ export default function ContactContent() {
               ].map((item) => (
                 <div key={item.label} className="flex gap-4 p-4 -mx-4 rounded-2xl hover:bg-white transition-colors group">
                   <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#fef2f2] to-[#fecaca] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <item.icon size={20} className="text-[#b91c1c]" />
+                    <item.icon size={20} className="text-[#dc2626]" />
                   </div>
                   <div className="pt-0.5">
                     <p className="text-[11px] text-neutral-400 uppercase tracking-[0.15em] font-bold mb-1">{item.label}</p>
                     {item.href ? (
-                      <a href={item.href} className="text-neutral-900 font-medium hover:text-[#b91c1c] transition-colors">{item.value}</a>
+                      <a href={item.href} className="text-neutral-900 font-medium hover:text-[#dc2626] transition-colors">{item.value}</a>
                     ) : (
                       <p className="text-neutral-900 font-medium whitespace-pre-line leading-relaxed">{item.value}</p>
                     )}
@@ -60,10 +60,10 @@ export default function ContactContent() {
             <div>
               <p className="text-[11px] text-neutral-400 uppercase tracking-[0.15em] font-bold mb-4">{c.follow}</p>
               <div className="flex gap-3">
-                <a href="https://www.facebook.com/profile.php?id=61585040403719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#b91c1c] hover:text-[#b91c1c] hover:shadow-soft transition-all touch-manipulation no-underline">
+                <a href="https://www.facebook.com/profile.php?id=61585040403719" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#dc2626] hover:text-[#dc2626] hover:shadow-soft transition-all touch-manipulation no-underline">
                   <FacebookIcon size={16} /> Facebook
                 </a>
-                <a href="https://www.instagram.com/cadra.tenda.erashpk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#b91c1c] hover:text-[#b91c1c] hover:shadow-soft transition-all touch-manipulation no-underline">
+                <a href="https://www.instagram.com/cadra.tenda.erashpk/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white border border-neutral-200 rounded-full text-sm font-medium text-neutral-800 hover:border-[#dc2626] hover:text-[#dc2626] hover:shadow-soft transition-all touch-manipulation no-underline">
                   <InstagramIcon size={16} /> Instagram
                 </a>
               </div>

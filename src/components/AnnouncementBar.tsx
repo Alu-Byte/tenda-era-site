@@ -8,7 +8,7 @@ import { useLang } from "@/lib/LangContext";
 const STORAGE_KEY = "announcement_dismissed";
 
 const BG: Record<string, string> = {
-  red: "bg-gradient-to-r from-[#b91c1c] to-[#dc7a5f] text-white",
+  red: "bg-gradient-to-r from-[#dc2626] to-[#dc7a5f] text-white",
   dark: "bg-gradient-to-r from-neutral-950 to-neutral-800 text-white",
   yellow: "bg-gradient-to-r from-amber-400 to-amber-300 text-neutral-900",
 };

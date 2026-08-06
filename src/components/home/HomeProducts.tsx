@@ -21,7 +21,7 @@ export default function HomeProducts({ categories, subcategories }: Props) {
         {/* Section head */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
           <div className="lg:col-span-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#b91c1c]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626]">
               01 · {ps.label}
             </p>
           </div>

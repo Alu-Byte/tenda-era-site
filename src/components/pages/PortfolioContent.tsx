@@ -15,7 +15,7 @@ export default function PortfolioContent({ images }: { images: SiteImage[] }) {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
             <div className="lg:col-span-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#b91c1c] mb-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626] mb-3">
                 — {p.label}
               </p>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1c1917] leading-[1.05] tracking-tight">
