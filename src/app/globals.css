@@ -131,6 +131,12 @@ dialog::backdrop {
 .animate-pulse-glow { animation: pulseGlow 2.4s ease-out infinite; }
 .animate-soft-ping { animation: softPing 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
 
+@keyframes sheetIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.animate-sheet-in { animation: sheetIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
 /* Scroll-reveal utility — starts hidden, then Reveal component sets .is-visible */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -143,7 +149,7 @@ dialog::backdrop {
 /* Respect reduced-motion preference — freeze motion-heavy things */
 @media (prefers-reduced-motion: reduce) {
   .animate-ken-burns, .animate-marquee, .animate-marquee-slow,
-  .animate-pulse-glow, .animate-soft-ping, .animate-float { animation: none !important; }
+  .animate-pulse-glow, .animate-soft-ping, .animate-float, .animate-sheet-in { animation: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .animate-word-up { opacity: 1; animation: none; }
 }

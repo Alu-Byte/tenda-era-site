@@ -5,6 +5,27 @@ import { ArrowRight, Phone } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import Reveal from "@/components/Reveal";
 
+function PhoneLine({ number, tel, label }: { number: string; tel: string; label: string }) {
+  return (
+    <a
+      href={`tel:${tel}`}
+      className="group inline-flex items-center gap-3 pl-4 pr-5 py-3 border border-white/40 text-white rounded-full hover:bg-white hover:text-[#0c0a09] transition-colors no-underline"
+    >
+      <span className="w-8 h-8 rounded-full bg-[#dc2626]/25 border border-[#dc2626]/50 flex items-center justify-center shrink-0 group-hover:bg-[#dc2626] group-hover:border-[#dc2626] transition-colors">
+        <Phone size={13} className="text-white group-hover:text-white" />
+      </span>
+      <span className="flex flex-col leading-tight text-left flex-1">
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#fca5a5] group-hover:text-[#dc2626] transition-colors">
+          {label}
+        </span>
+        <span className="text-sm font-bold tabular-nums tracking-tight">
+          +355 69 207 {number}
+        </span>
+      </span>
+    </a>
+  );
+}
+
 export default function HomeCTA() {
   const { t, lang } = useLang();
   const c = t.cta;
@@ -37,14 +58,15 @@ export default function HomeCTA() {
               {c.btn_quote}
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a
-              href="tel:+355692075317"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 border border-white/40 text-white text-sm font-semibold uppercase tracking-wider rounded-full hover:bg-white hover:text-[#0c0a09] transition-colors no-underline w-full lg:w-auto"
-            >
-              <Phone size={16} /> +355 69 207 5317
-            </a>
+            <div className="w-full lg:w-auto flex flex-col gap-2">
+              <PhoneLine number="5317" tel="+355692075317" label="Çadra" />
+              <PhoneLine number="5318" tel="+355692075318" label="Çadra" />
+              <PhoneLine number="5319" tel="+355692075319" label="Tenda" />
+            </div>
             <p className="text-[11px] text-white/50 uppercase tracking-widest mt-1">
-              {lang === "sq" ? "E Hënë – E Shtunë · 8:00 – 18:00" : "Mon – Sat · 8am – 6pm"}
+              {lang === "sq"
+                ? "E Hën–Pre · 8:00–16:00  ·  E Sht · 8:00–14:00"
+                : "Mon–Fri · 8am–4pm  ·  Sat · 8am–2pm"}
             </p>
           </Reveal>
         </div>

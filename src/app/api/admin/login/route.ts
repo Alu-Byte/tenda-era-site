@@ -37,7 +37,21 @@ export async function POST(req: NextRequest) {
 
   const { password } = await req.json();
 
-  if (!(await validatePassword(password))) {
+  let ok = false;
+  try {
+    ok = await validatePassword(password);
+  } catch (err) {
+    // No password source is configured (missing ADMIN_PASSWORD env, no
+    // adminHash in blob, no local auth.json). Log for the operator and
+    // return a clear 503 rather than a generic 500.
+    console.error("[admin/login] password source unavailable:", (err as Error).message);
+    return NextResponse.json(
+      { error: "Admin authentication is not configured on this server." },
+      { status: 503 }
+    );
+  }
+
+  if (!ok) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
 

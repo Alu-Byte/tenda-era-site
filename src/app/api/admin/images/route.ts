@@ -23,6 +23,9 @@ export async function PATCH(req: NextRequest) {
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const { id, ...updates } = await req.json();
+    if (typeof id !== "string" || !id.trim()) {
+      return NextResponse.json({ error: "Missing required field: id" }, { status: 400 });
+    }
     await updateImage(id, updates);
     return NextResponse.json({ ok: true });
   } catch (err) {
@@ -35,7 +38,13 @@ export async function DELETE(req: NextRequest) {
   const authed = await checkAdminAuth();
   if (!authed) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const { id } = await req.json();
+    let id: unknown = new URL(req.url).searchParams.get("id");
+    if (!id) {
+      try { id = (await req.json())?.id; } catch { /* fall through */ }
+    }
+    if (typeof id !== "string" || !id.trim()) {
+      return NextResponse.json({ error: "Missing required field: id" }, { status: 400 });
+    }
     // Snapshot the image record (with url) before we delete it so we know
     // whether it lives on Blob or the local filesystem.
     const data = await readFresh();

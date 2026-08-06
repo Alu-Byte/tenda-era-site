@@ -11,14 +11,14 @@ const DATA_FILE = path.join(process.cwd(), "data", "site-data.json");
 
 const DEFAULT_CATEGORIES: Category[] = [
   { id: "tenda", name_sq: "Tenda", name_en: "Awnings", icon: "▤", order: 1 },
-  { id: "cadra", name_sq: "Çadra", name_en: "Umbrellas", icon: "⛱", order: 2 },
+  { id: "cadra", name_sq: "Çadra", name_en: "Parasols", icon: "⛱", order: 2 },
 ];
 
 const DEFAULT_SUBCATEGORIES: Subcategory[] = [
   { id: "tenda-terhequese", categoryId: "tenda", name_sq: "Tendë Tërheqëse", name_en: "Retractable Awning", desc_sq: "Tenda që rrudhet dhe hapet me motor ose dorë.", desc_en: "Awning that retracts and extends with motor or manual crank.", order: 1 },
   { id: "tenda-fikse", categoryId: "tenda", name_sq: "Tendë Fikse", name_en: "Fixed Awning", desc_sq: "Tendë e montuar në mënyrë permanente mbi fasadë ose tarracë.", desc_en: "Permanently mounted awning over a facade or terrace.", order: 2 },
-  { id: "cadra-plazhi", categoryId: "cadra", name_sq: "Çadër Plazhi", name_en: "Beach Umbrella", desc_sq: "Çadra të mëdha për plazhe dhe zona bregdetare.", desc_en: "Large umbrellas for beaches and coastal areas.", order: 1 },
-  { id: "cadra-restoranti", categoryId: "cadra", name_sq: "Çadër Restoranti", name_en: "Restaurant Umbrella", desc_sq: "Çadra komerciale për restorante, bare dhe kafene.", desc_en: "Commercial umbrellas for restaurants, bars and cafes.", order: 2 },
+  { id: "cadra-plazhi", categoryId: "cadra", name_sq: "Çadër Plazhi", name_en: "Beach Parasol", desc_sq: "Çadra të mëdha për plazhe dhe zona bregdetare.", desc_en: "Large parasols for beaches and coastal areas.", order: 1 },
+  { id: "cadra-restoranti", categoryId: "cadra", name_sq: "Çadër Restoranti", name_en: "Restaurant Parasol", desc_sq: "Çadra komerciale për restorante, bare dhe kafene.", desc_en: "Commercial parasols for restaurants, bars and cafes.", order: 2 },
 ];
 
 const INITIAL_DATA: SiteData = {
@@ -241,8 +241,8 @@ export async function deleteFaq(id: string): Promise<void> {
 
 // ── Opening Hours ─────────────────────────────────────────
 const DEFAULT_HOURS: OpeningHours = {
-  weekdays_sq: "E Hënë – E Premte, 8:00 – 18:00",
-  weekdays_en: "Monday – Friday, 8:00 AM – 6:00 PM",
+  weekdays_sq: "E Hënë – E Premte, 8:00 – 16:00",
+  weekdays_en: "Monday – Friday, 8:00 AM – 4:00 PM",
   saturday_sq: "E Shtunë, 8:00 – 14:00",
   saturday_en: "Saturday, 8:00 AM – 2:00 PM",
 };

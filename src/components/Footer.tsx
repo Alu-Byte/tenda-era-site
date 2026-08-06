@@ -21,9 +21,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 relative">
         {/* Brand */}
         <div className="lg:col-span-1">
-          <div className="flex items-center gap-3 mb-4">
-            <Image src="/logo.jpg" alt="Tenda Era" width={40} height={36} className="object-contain rounded-md" />
-            <span className="font-display text-xl font-bold tracking-tight">Tenda <span className="text-[#dc2626]">Era</span></span>
+          <div className="flex items-center gap-3.5 mb-5">
+            <div className="w-14 h-14 rounded-full bg-white ring-1 ring-white/15 shadow-lg shadow-black/40 shrink-0 flex items-center justify-center overflow-hidden">
+              <Image
+                src="/logo.jpg"
+                alt="Tenda Era"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+            </div>
+            <span className="font-display text-xl font-bold tracking-tight">
+              Tenda <span className="text-[#dc2626]">Era</span>
+            </span>
           </div>
           <p className="text-white/55 text-sm leading-relaxed mb-6">{f.desc}</p>
           <div className="flex gap-2">
@@ -65,7 +75,7 @@ export default function Footer() {
           <ul className="space-y-2.5 text-sm text-white/60">
             {[
               { href: "/products#tenda", label: lang === "sq" ? "Tenda" : "Awnings" },
-              { href: "/products#cadra", label: lang === "sq" ? "Çadra" : "Umbrellas" },
+              { href: "/products#cadra", label: lang === "sq" ? "Çadra" : "Parasols" },
             ].map((p) => (
               <li key={p.href}>
                 <Link href={p.href} className="inline-flex items-center gap-1.5 hover:text-white transition-colors group no-underline">

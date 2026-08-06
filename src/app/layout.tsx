@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://tendaera.com"),
   title: "Tenda Era — Tenda & Çadra Dielli",
   description:
-    "Tenda Era — prodhues i tendave dhe çadrajave premium të diellit për dyqane, bare dhe plazhe në Shqipëri që nga 1994. Sun awnings and umbrellas in Albania.",
-  keywords: ["tenda", "awnings", "umbrellas", "shade", "Albania", "Tirana", "tendaera", "çadra"],
+    "Tenda Era — prodhues i tendave dhe çadrajave premium të diellit për dyqane, bare dhe plazhe në Shqipëri që nga 1994. Sun awnings and parasols in Albania.",
+  keywords: ["tenda", "awnings", "parasols", "umbrellas", "shade", "Albania", "Tirana", "tendaera", "çadra"],
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   verification: {

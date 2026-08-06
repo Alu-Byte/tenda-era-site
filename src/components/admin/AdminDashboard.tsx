@@ -77,8 +77,8 @@ export default function AdminDashboard() {
 
   // ── Opening Hours ──
   const [hours, setHours] = useState<OpeningHours>({
-    weekdays_sq: "E Hënë – E Premte, 8:00 – 18:00",
-    weekdays_en: "Monday – Friday, 8:00 AM – 6:00 PM",
+    weekdays_sq: "E Hënë – E Premte, 8:00 – 16:00",
+    weekdays_en: "Monday – Friday, 8:00 AM – 4:00 PM",
     saturday_sq: "E Shtunë, 8:00 – 14:00",
     saturday_en: "Saturday, 8:00 AM – 2:00 PM",
   });

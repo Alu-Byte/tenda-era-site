@@ -21,6 +21,8 @@ function CountUp({ target, suffix = "", duration = 1400 }: { target: number; suf
     const el = ref.current;
     if (!el) return;
     if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      // Intentional: skip the count-up animation and jump to final value.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(target);
       return;
     }
@@ -51,18 +53,18 @@ export default function HomeHero({ heroImages }: Props) {
   const { lang, t } = useLang();
   const heroImage = heroImages[0] ?? null;
 
-  const eyebrow = lang === "sq" ? "Tenda dhe çadra që nga 1994" : "Awnings and umbrellas since 1994";
+  const eyebrow = lang === "sq" ? "Tenda dhe çadra që nga 1994" : "Awnings and parasols since 1994";
   const headline = lang === "sq"
     ? "Hijeje profesionale për bare, restorante dhe plazhe."
     : "Professional shade for cafés, restaurants and beaches.";
   const sub = lang === "sq"
     ? "Prodhojmë, montojmë dhe mirëmbajmë sisteme tendash dhe çadrash me pëlhura teknike gjermane dhe italiane në të gjithë Shqipërinë."
-    : "We produce, install and service awning and umbrella systems with German and Italian technical fabrics across Albania.";
+    : "We produce, install and service awning and parasol systems with German and Italian technical fabrics across Albania.";
 
   const headlineWords = headline.split(" ");
 
   return (
-    <section className="relative min-h-[92vh] flex items-end overflow-hidden bg-[#0c0a09]">
+    <section className="relative min-h-[80vh] md:min-h-[92vh] flex items-end overflow-hidden bg-[#0c0a09]">
       {/* Background photo with slow Ken Burns pan/zoom */}
       <div className="absolute inset-0">
         {heroImage ? (
