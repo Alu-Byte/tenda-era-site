@@ -55,7 +55,7 @@ export default function Navbar() {
                 priority
               />
               <span className="text-[15px] font-bold text-neutral-900 whitespace-nowrap tracking-[0.02em] uppercase">
-                Tenda <span className="text-[#a03e14]">Era</span>
+                Tenda <span className="text-[#b91c1c]">Era</span>
               </span>
             </Link>
 
@@ -69,12 +69,12 @@ export default function Navbar() {
                     href={link.href}
                     className={`relative px-3.5 py-2 text-[13px] font-semibold tracking-wide rounded-lg transition-all no-underline
                       ${active
-                        ? "text-[#a03e14]"
+                        ? "text-[#b91c1c]"
                         : "text-neutral-700 hover:text-neutral-900 hover:bg-neutral-100/70"}`}
                   >
                     {link.label}
                     {active && (
-                      <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#a03e14]" />
+                      <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-0.5 rounded-full bg-[#b91c1c]" />
                     )}
                   </Link>
                 );
@@ -151,7 +151,7 @@ export default function Navbar() {
                 <Image src="/logo.png" alt="Tenda Era" width={34} height={30} className="object-contain"
                   style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))" }} />
                 <span className="text-lg font-bold text-neutral-900 tracking-[0.02em] uppercase">
-                  Tenda <span className="text-[#a03e14]">Era</span>
+                  Tenda <span className="text-[#b91c1c]">Era</span>
                 </span>
               </div>
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu"
@@ -167,7 +167,7 @@ export default function Navbar() {
                   <Link key={link.href} href={link.href} onClick={() => setOpen(false)}
                     className={`flex items-center px-5 py-4 text-sm font-semibold tracking-wide no-underline transition-colors
                       ${active
-                        ? "text-[#a03e14] bg-[#a03e14]/5 border-l-4 border-[#a03e14]"
+                        ? "text-[#b91c1c] bg-[#b91c1c]/5 border-l-4 border-[#b91c1c]"
                         : "text-neutral-800 border-l-4 border-transparent hover:bg-neutral-50"}`}>
                     {link.label}
                   </Link>

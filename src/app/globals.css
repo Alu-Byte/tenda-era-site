@@ -2,9 +2,9 @@
 
 :root {
   /* Brand palette — Modern Mediterranean: pine + terracotta + sand + sage on warm ivory */
-  --brick: #a03e14;          /* primary brand — links, secondary buttons, brand ink */
-  --brick-dark: #7c2f0f;     /* hover state for brick */
-  --brick-soft: #fbeae2;     /* soft tinted backgrounds */
+  --brick: #b91c1c;          /* primary brand — deep red, links, brand ink */
+  --brick-dark: #991b1b;     /* hover state */
+  --brick-soft: #fef2f2;     /* soft tinted backgrounds */
 
   --terracotta: #c86b3c;     /* PRIMARY CTA — most important actions */
   --terracotta-dark: #a54f24; /* hover state */
