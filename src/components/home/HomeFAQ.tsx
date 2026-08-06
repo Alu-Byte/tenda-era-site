@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 import type { FaqItem } from "@/types";
+import Reveal from "@/components/Reveal";
 
 const INITIAL_SHOW = 5;
 
@@ -26,16 +27,17 @@ export default function HomeFAQ({ items }: Props) {
     <section className="bg-[#faf7f2] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626] mb-4">
+          <Reveal className="lg:col-span-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#dc2626] mb-4 flex items-center gap-3">
+              <span className="w-8 h-px bg-[#dc2626]" />
               04 · {f.label}
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1c1917] leading-[1.1] tracking-tight">
               {f.title}
             </h2>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-8">
+          <Reveal className="lg:col-span-8" delay={2}>
             <ul className="divide-y divide-[#e3ddd1] border-y border-[#e3ddd1]">
               {visible.map((item, i) => {
                 const isOpen = open === i;
@@ -67,7 +69,7 @@ export default function HomeFAQ({ items }: Props) {
               <div className="mt-6">
                 <button
                   onClick={() => { setShowAll(!showAll); if (showAll) setOpen(null); }}
-                  className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#dc2626] hover:text-[#b91c1c] transition-colors touch-manipulation"
+                  className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wider text-[#dc2626] hover:text-[#991b1b] transition-colors touch-manipulation"
                 >
                   {showAll
                     ? (lang === "sq" ? "Shfaq më pak" : "Show less")
@@ -75,7 +77,7 @@ export default function HomeFAQ({ items }: Props) {
                 </button>
               </div>
             )}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

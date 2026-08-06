@@ -2,6 +2,7 @@
 
 import { Award, Shield, Wrench } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
+import Reveal from "@/components/Reveal";
 
 export default function HomeStats() {
   const { lang } = useLang();
@@ -23,17 +24,19 @@ export default function HomeStats() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {items.map((it, i) => (
-            <div key={it.k} className="relative">
-              {i > 0 && (
-                <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-[#e3ddd1]" />
-              )}
-              <div className="mb-5 w-14 h-14 rounded-full bg-[#fef2f2] flex items-center justify-center">
-                <it.icon size={22} className="text-[#dc2626]" strokeWidth={1.75} />
+            <Reveal key={it.k} delay={(i + 1) as 1 | 2 | 3}>
+              <div className="relative group">
+                {i > 0 && (
+                  <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-[#e3ddd1]" />
+                )}
+                <div className="mb-5 w-14 h-14 rounded-full bg-[#fef2f2] flex items-center justify-center transition-all duration-500 group-hover:bg-[#dc2626] group-hover:scale-110 group-hover:rotate-6">
+                  <it.icon size={22} className="text-[#dc2626] group-hover:text-white transition-colors duration-500" strokeWidth={1.75} />
+                </div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#57534e] mb-2">{it.k}</p>
+                <p className="text-lg font-semibold text-[#1c1917] leading-snug mb-3">{it.v}</p>
+                <p className="text-sm text-[#57534e] leading-relaxed">{it.note}</p>
               </div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#57534e] mb-2">{it.k}</p>
-              <p className="text-lg font-semibold text-[#1c1917] leading-snug mb-3">{it.v}</p>
-              <p className="text-sm text-[#57534e] leading-relaxed">{it.note}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
